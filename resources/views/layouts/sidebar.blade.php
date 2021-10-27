@@ -1,7 +1,7 @@
 @if(\Auth::user()->rol == 1)
 
 <a href="{{route('home')}}" class="brand-link">
-<img src="logo.jpeg" class="img-circle elevation-2" alt="User Image" width="40">
+<img src="victal.png" class="img-circle elevation-2" alt="User Image" width="40">
       
       <span class="brand-text font-weight-light">ADMIN VICTAL</span>
     </a>
