@@ -1,0 +1,6 @@
+1.- el super admin pueda eliminar atenciones ya atendidas
+2.- los servicios de tipo procedimientos tiene comision de personal, y no estan saliendo para pagar encomisiones de personal, debe ser por que no hya forma de cambiar a aatendidos
+3.-reversar sesiones
+4.-revisar y actualizar los tickets con la edicion
+5.-ver y editar paquetes
+6.-cuadro de totales en el create, la vaina que no pudiste

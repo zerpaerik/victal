@@ -1,0 +1,5 @@
+1.- arreglar los selects de los creates de atenciones, que vuelvan a 0.00 si no hay servicio seleccionado
+2.-que los tickets se actualizen si se hace una edicion de atenciones
+3.-el cuadrito de totales del create
+4.-en ver historias, cuando reviso una historia de una paciente atendida, no puedo ver quien la atendio, lo mismo pasa en ver controles
+5.-el index de cuentas por cobrar debe mostrar todo lo que hay, sin necesidad de poner filtro de fechas
