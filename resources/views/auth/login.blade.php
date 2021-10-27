@@ -26,7 +26,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-    <center><img src="victal.png" class="img-circle elevation-1" alt="User Image" width="250"></center>
+    <center><img src="victal.png" class="" alt="User Image" width="200"></center>
 
       <p class="login-box-msg">Complete los datos para iniciar sesión</p>
 
