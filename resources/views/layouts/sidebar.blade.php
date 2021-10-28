@@ -440,20 +440,7 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="{{route('compagar.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Comisiones Personal</p>
-                </a>
-              </li>
-
-              
-              <li class="nav-item">
-                <a href="{{route('compagar1.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Comisiones Profesionales</p>
-                </a>
-              </li>
+            
               
             </ul>
           </li>

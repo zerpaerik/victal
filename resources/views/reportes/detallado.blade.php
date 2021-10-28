@@ -89,13 +89,8 @@
                   <div class="col-md-3">
                   <label for="exampleInputEmail1">Sede</label>
                   <select class="form-control" name="sede">
-                    <option value="1">PROCERES</option>
-                    <option value="2">CANTO REY</option>
-                    <option value="3">VIDA FELIZ</option>
-                    <option value="4">ZARATE</option>
-                    <option value="5">INDEPENDENCIA</option>
-                    <option value="6">LOS OLIVOS</option>
-
+                    <option value="1">PRINCIPAL</option>
+                  
                   </select>
                    
                   </div>
