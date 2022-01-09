@@ -48,6 +48,13 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{route('creditos.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Creditos</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{route('laboratorio.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laboratorios</p>
@@ -176,6 +183,39 @@
                 <a href="{{route('comisiones.index1')}}" class="nav-link">
                   <i class="fas fa-cart-arrow-down nav-icon"></i>
                   <p>Profesional</p>
+                </a>
+              </li>
+
+            
+            
+              
+            </ul>
+          </li>
+
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Facturas
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+                <a href="{{route('creditosc.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Por Cobrar</p>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="{{route('creditosco.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Cobradas</p>
                 </a>
               </li>
 

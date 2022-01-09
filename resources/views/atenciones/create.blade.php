@@ -173,6 +173,7 @@
                             <option value="">Seleccione</option>
 							              <option value="1">Personal</option>
                             <option value="2">Profesional</option>
+                            <option value="10">Créditos</option>
                             <option value="3">Otro</option>
 
                         </select>
@@ -841,9 +842,10 @@ function datapac(){
           var link;
           if ($(this).val() == 1) {
             link = '/atenciones/personal/';
-
           }else if ($(this).val() == 2) {
             link = '/atenciones/profesionales/';
+          }else if ($(this).val() == 10) {
+            link = '/atenciones/creditos/';
           } else {
 		    link = '/atenciones/particular/';
 		  }

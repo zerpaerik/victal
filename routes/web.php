@@ -51,6 +51,13 @@ Route::get('profesionales-delete-{id}', 'ProfesionalesController@delete')->middl
 Route::get('profesionales-edit-{id}', 'ProfesionalesController@edit')->name('profesionales.edit');
 Route::post('profesionales/edit', 'ProfesionalesController@update');
 
+Route::get('creditos', 'UserCreditosController@index')->name('creditos.index');
+Route::get('creditos-create', 'UserCreditosController@create')->name('creditos.create')->middleware('auth');
+Route::post('creditos/create', 'UserCreditosController@store')->middleware('auth');
+Route::get('creditos-delete-{id}', 'UserCreditosController@delete')->middleware('auth');
+Route::get('creditos-edit-{id}', 'UserCreditosController@edit')->name('creditos.edit');
+Route::post('creditos/edit', 'UserCreditosController@update');
+
 Route::get('laboratorio', 'LaboratorioController@index')->name('laboratorio.index');
 Route::get('laboratorio-create', 'LaboratorioController@create')->name('laboratorio.create')->middleware('auth');
 Route::post('laboratorio/create', 'LaboratorioController@store')->middleware('auth');
@@ -233,6 +240,8 @@ Route::get('atenciones/getPaquetes/{id}', 'AtencionesController@getPaquetes')->m
 Route::get('atenciones/personal','AtencionesController@personal');
 Route::get('atenciones/profesionales','AtencionesController@profesionales');
 Route::get('atenciones/particular','AtencionesController@particular');
+Route::get('atenciones/creditos','AtencionesController@creditos');
+
 
 Route::get('cobrar', 'CobrarController@index')->name('cobrar.index');
 Route::get('historial_cobros', 'CobrarController@historial')->name('historialc.index');
@@ -273,6 +282,12 @@ Route::get('resultadosgl-reversar-{id}', 'ResultadosController@reversargl');
 
 Route::get('historial_pacientes', 'ReportesController@historial_pacientes')->name('historial.pacientes');
 
+Route::get('creditos_cobrar', 'ComisionesPagarCController@index')->name('creditosc.index');
+Route::get('creditos_cobrados', 'ComisionesPagarCController@index1')->name('creditosco.index');
+Route::get('creditosc-pagar-{id}', 'ComisionesPagarCController@pagar')->middleware('auth');
+Route::post('pagarmultiplec', 'ComisionesPagarCController@pagarmultiple');
+Route::get('creditosc-ticket-{id}', 'ComisionesPagarCController@ticket')->middleware('auth');
+Route::get('creditosc-reversar-{id}', 'ComisionesPagarCController@reversar');
 
 
 
