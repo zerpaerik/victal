@@ -114,7 +114,6 @@
               <label><input type="checkbox" id="checkTodos" />Seleccionar Todos</label>
 
                 <table id="example1" class="table table-bordered table-striped">
-                <form action="/pagarmultiplec" method="post">
                   <thead>
                   <tr>
                     <th>Items</th>
@@ -124,7 +123,7 @@
                     <th>Origen</th>
                     <th>Det.</th>
                     <th>Monto</th>
-                    <th></th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -137,15 +136,23 @@
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td width="5%">{{$an->detalle}}</td>
+                   
                     <td>{{$an->monto}}</td>
 
                     <td>
                     @if(Auth::user()->rol == 1)
-                    <a class="btn btn-danger btn-sm" href="creditosc-pagar-{{$an->id}}" onclick="return confirm('¿Desea Cobrar esta factura?')">
-                    <i class="fa fa-money" aria-hidden="true">
-                              </i>
-                              Cobrar
-                          </a>
+                    <form method="get" action="creditosc-pagar" >
+                    <input type="hidden" value="{{$an->id}}" name="id">
+                    <select class="form-control" name="tipop">
+						              	<option value="" disabled>Seleccione</option>
+                            <option value="EF">Efectivo</option>
+                            <option value="TJ">Tarjeta</option>
+                            <option value="DP">Depósito</option>
+                            <option value="YP">Yape</option>
+                    </select>
+                    <button style="margin-left: 10px;" type="submit" class="btn btn-xs btn-danger" onclick="return confirm('¿Desea cobrar esta factura?')">Cobrar</button>
+                    </form>
+
 
                          
 
@@ -165,9 +172,11 @@
                     <th>Origen</th>
                     <th>Det.</th>
                     <th>Monto</th>
-                    <th></th>
+                    <th>Acciones</th>
                   </tr>
                   <th>
+                  <form action="/pagarmultiplec" method="post" >
+
 								{{ csrf_field() }}
 								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Cobrar estas Facturas?')" class="btn btn-xs btn-danger">Cobrar.Selecc.</button>
 

@@ -258,10 +258,10 @@ class ComisionesPagarCController extends Controller
      * @param  \App\Clientes  $Clientes
      * @return \Illuminate\Http\Response
      */
-    public function pagar($id)
+    public function pagar(Request $request)
     {
 
-      $com = ComisionesC::where('id','=',$id)->first();
+      $com = ComisionesC::where('id','=',$request->id)->first();
 
       $last = ComisionesC::select('recibo')->where('estatus','=',2)->orderby('recibo', 'desc')->max('recibo');
       if ($last != NULL) {
@@ -279,9 +279,10 @@ class ComisionesPagarCController extends Controller
       $resa = $a->update();
      
 
-      $p = ComisionesC::find($id);
+      $p = ComisionesC::find($request->id);
       $p->estatus =2;
       $p->recibo = $recibo;
+      $p->tipop = $request->tipop;
       $p->fecha_pago = date('Y-m-d');
       $res = $p->update();
     
@@ -339,10 +340,11 @@ class ComisionesPagarCController extends Controller
 
       $com = ComisionesC::where('recibo','=',$id)->first();
 
+
      
-      $a = Atenciones::where('id','=',$com->id_atencion)->first();
+     /* $a = Atenciones::where('id','=',$com->id_atencion)->first();
       $a->pagado =1;
-      $resa = $a->update();
+      $resa = $a->update();*/
      
       $sesio = ComisionesC::where('recibo','=',$id)->get();
       if ($sesio != null) {

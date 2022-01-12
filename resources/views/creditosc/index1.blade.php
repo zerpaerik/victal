@@ -137,7 +137,7 @@
 
                     
 
-                          <a class="btn btn-danger btn-sm" href="creditosc-reversar-{{$an->id}}" onclick="return confirm('¿Desea reversar este pago?')">
+                          <a class="btn btn-danger btn-sm" href="creditosc-reversar-{{$an->recibo}}" onclick="return confirm('¿Desea reversar este pago?')">
                     <i class="fa fa-money" aria-hidden="true">
                               </i>
                               Reversar

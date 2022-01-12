@@ -284,7 +284,7 @@ Route::get('historial_pacientes', 'ReportesController@historial_pacientes')->nam
 
 Route::get('creditos_cobrar', 'ComisionesPagarCController@index')->name('creditosc.index');
 Route::get('creditos_cobrados', 'ComisionesPagarCController@index1')->name('creditosco.index');
-Route::get('creditosc-pagar-{id}', 'ComisionesPagarCController@pagar')->middleware('auth');
+Route::get('creditosc-pagar', 'ComisionesPagarCController@pagar')->middleware('auth');
 Route::post('pagarmultiplec', 'ComisionesPagarCController@pagarmultiple');
 Route::get('creditosc-ticket-{id}', 'ComisionesPagarCController@ticket')->middleware('auth');
 Route::get('creditosc-reversar-{id}', 'ComisionesPagarCController@reversar');
