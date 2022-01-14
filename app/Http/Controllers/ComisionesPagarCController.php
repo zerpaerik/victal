@@ -153,7 +153,7 @@ class ComisionesPagarCController extends Controller
 
         
         $comisiones = DB::table('creditosc as a')
-        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.id_responsable', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
+        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.tipop','a.id_responsable', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'a.id_responsable')
@@ -177,7 +177,7 @@ class ComisionesPagarCController extends Controller
       
 
         $comisiones = DB::table('creditosc as a')
-        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.id_responsable', 'a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
+        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.tipop','a.id_responsable', 'a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'a.id_responsable')
@@ -240,6 +240,7 @@ class ComisionesPagarCController extends Controller
                     ->update([
                         'fecha_pago' => date('Y-m-d'),
                         'estatus' => 2,
+                        'tipop' => $request->tipop,
                         'recibo' => $recibo
                     ]);
         }
@@ -310,7 +311,7 @@ class ComisionesPagarCController extends Controller
         ->get();
 
         $ticketu = DB::table('creditosc as a')
-        ->select('a.id', 'a.id_atencion','a.recibo','a.porcentaje','a.fecha_pago','a.detalle','a.monto','a.created_at','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto','c.cuenta', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->select('a.id', 'a.id_atencion','a.recibo','a.tipop','a.porcentaje','a.fecha_pago','a.detalle','a.monto','a.created_at','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto','c.cuenta', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
@@ -354,6 +355,7 @@ class ComisionesPagarCController extends Controller
                   $rsf = ComisionesC::where('id','=',$id_rs)->first();
                   $rsf->estatus =1;
                   $rsf->recibo = '';
+                  $rsf->tipop = '';
                   $rsf->fecha_pago = NULL;
                   $rsf->save();
 

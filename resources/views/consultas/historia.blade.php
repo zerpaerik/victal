@@ -346,9 +346,13 @@
                 
                     </div>
                     <div class="row">
-                     <div class="col-md-12">
-                    <label for="exampleInputEmail1">Examen Auxiliar</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->ex_aux}}">
+                     <div class="col-md-6">
+                    <label for="exampleInputEmail1">Examen Auxiliar Servicios</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->ex_aux_s}}">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="exampleInputEmail1">Examen Auxiliar Laboratorios</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->ex_aux_l}}">
                   </div>
                     </div>
                    <div class="row">
@@ -360,7 +364,7 @@
                     </div>
                    <div class="row">
                      <div class="col-md-12">
-                    <label for="exampleInputEmail1">Observaciones</label>
+                    <label for="exampleInputEmail1">Observacionesss</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->obser}}">
                    </div>
                     </div>
@@ -574,13 +578,26 @@
                     @endforeach
                    </select>           
                     </div>
+                    
                 
                     </div>
                     <br>
                     <div class="row">
-                     <div class="col-md-12">
-                    <label for="exampleInputEmail1">Examen Auxiliar</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="ex_aux" placeholder="Examen Auxiliar"></textarea>
+                     <div class="col-md-6">
+                    <label for="exampleInputEmail1">Examen Auxiliar(Servicios)</label>
+                    <select class="form-control select2" name="ex_aux_s[]" multiple>
+                    @foreach($servicios as $s)
+                    <option value="{{$s->nombre}}">{{$s->nombre}}</option>
+                    @endforeach
+                   </select>    
+                  </div>
+                  <div class="col-md-6">
+                    <label for="exampleInputEmail1">Examen Auxiliar(Laboratorios)</label>
+                    <select class="form-control select2" name="ex_aux_l[]" multiple>
+                    @foreach($analisis as $s)
+                    <option value="{{$s->nombre}}">{{$s->nombre}}</option>
+                    @endforeach
+                   </select> 
                   </div>
                     </div>
                    <br>

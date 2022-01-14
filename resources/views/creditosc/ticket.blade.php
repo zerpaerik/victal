@@ -62,6 +62,8 @@
 
   <p><strong>EMPRESA:</strong>{{ $ticketu->lasto.' '.$ticketu->nameo}}</p>
   <p><strong>RECIBO: </strong>REC-2022-{{ $ticketu->recibo}}</p>
+  <p><strong>TIPO DE PAGO: </strong>{{ $ticketu->tipop}}</p>
+
 
 
 

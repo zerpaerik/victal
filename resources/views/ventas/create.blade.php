@@ -59,12 +59,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Pedidos</h1>
+            <h1 class="m-0 text-dark">Crear Venta</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Movimientos</a></li>
-              <li class="breadcrumb-item active">Pedidos</li>
+              <li class="breadcrumb-item active">Crear Venta</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -86,82 +86,128 @@
               <!-- /.card-header -->
               <!-- form start -->
                     <div class="card-body">
-                    <form method="post" action="pedidos/create" >			
+                    <form method="post" action="ventas/create" >			
                   {{ csrf_field() }}  					
 
-                
-                  <div class="row">
-                  <div class="col-md-12">
-                    <label for="exampleInputEmail1">Seleccione la Habitación:</label>
-                  <select class="form-control" data-placeholder="Seleccione" style="width: 100%;" name="solicitud">
-                   @foreach($solicitudes as $a)
-                   <option value="{{$a->id}}">{{$a->hab}} Huesped:{{$a->nompac}} {{$a->apepac}}</option>
-                    @endforeach
-                  </select>
-
-                  </div>
-                  </div>
+            
                   
                   <br>
-
-
-
                   <div class="row">
-            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Productos seleccionados</label>
+
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total Productos</label>
+
+                    <input type="text" name="total" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
+                    </div>
+                    
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total Ventas</label>
+
+                    <input type="text" name="total" class="number form-control" value="0.00" id="total" readonly="readonly" style="width: 150px">
+                    </div>
+
+                    </div>
+
+
+
+
+<label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Productos seleccionados</label>
             <!-- sheepIt Form -->
-            <div id="servicios" class="embed ">
+            <div id="laboratorios" class="embed ">
             
                 <!-- Form template-->
-                <div id="servicios_template" class="template row">
+                <div id="laboratorios_template" class="template row">
 
-                    <label for="servicios_#index#_servicio" class="col-sm-3 control-label">Productos</label>
+                    <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Productos</label>
                     <div class="col-sm-4">
-
-                      <select id="servicios_#index#_servicio"  name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
-                        <option value="1">Productos</option>
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                        <option value="1">Seleccionar Producto</option>
                         @foreach($productos as $pac)
                           <option value="{{$pac->id}}">
                             {{$pac->nombre}}
                           </option>
                         @endforeach
                       </select>
-                     
                     </div>
 
-                    <label for="servicios_#index#_monto" class="col-sm-2 control-label">Monto</label>
-                    <div class="col-sm-3">
-                      <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="number" type="hidden" value="">
+            
+                 <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                  @if(\Auth::user()->role_id == 6)             
+                    <div class="col-sm-2">
+                      <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
 
-                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto] type="text" class="number form-control monto" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                      <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00" disabled="">
+                    </div>
+                    @elseif(\Auth::user()->role_id == 7) 
+
+
+                      <div class="col-sm-2">
+                      <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
+
+                      <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00" disabled="">
                     </div>
 
-                   
 
-                    <a id="servicios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                    @else
+
+                    <div class="col-sm-2">
+                      <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
+
+                      <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                    </div>
+
+                    @endif
+
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Cantidad</label>
+                    <div class="col-sm-2">
+
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" onkeyup="calcular()" title="Abono" value="0.00">
+                    </div>
+
+                    <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                 </div>
                 <!-- /Form template-->
                 
                 <!-- No forms template -->
-                <div id="servicios_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún laboratorios</div>
                 <!-- /No forms template-->
                 
                 <!-- Controls -->
-                <div id="servicios_controls" class="controls col-sm-11 col-sm-offset-1">
-                    <div id="servicios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Producto</span></a></div>
-                    <div id="servicios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                    <div id="servicios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                <div id="laboratorios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="laboratorios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Producto</span></a></div>
+                    <div id="laboratorios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                 </div>
                 <!-- /Controls -->
                 
             </div>
             <!-- /sheepIt Form --> 
-          </div>
+						
+					</div>
 
-         
-           
+                    <div class="row" style="margin-left: 10px;">
+                 
+
+                 <div class="col-md-4">
+                   <label for="exampleInputEmail1">Cliente</label>
+                   <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="nombre" name="cliente" placeholder="Responsable de Compra" require>
+                 </div>
+                
+                 <div class="col-md-3">
+                   <label for="exampleInputEmail1">Tipo de Pago</label>
+                   <select class="form-control" name="tipop">
+                   <option value="EF">Efectivo</option>
+                   <option value="TJ">Tarjeta</option>
+                   <option value="DP">Depósito</option>
+                   <option value="YP">Yape</option>
+
+                </select>
+                 </div>
+               
+                 </div>
 
 
-            
+                
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -357,12 +403,12 @@ $(document).on('change', '.selectLab', function(){
 
   $.ajax({
      type: "GET",
-     url:  "product/getProduct/"+$(this).val(),
+     url:  "productos/getProducto/"+$(this).val(),
      success: function(a) {
-        $('#laboratorios_'+id+'_montoHidden').val(a.precioventa);
-        $('#laboratorios_'+id+'_monto').val(a.precioventa);
+        $('#laboratorios_'+id+'_montoHidden').val(a.precio);
+        $('#laboratorios_'+id+'_monto').val(a.precio);
         var total = parseFloat($('#total').val());
-        $("#total").val(total + parseFloat(a.precioventa));
+        $("#total").val(total + parseFloat(a.precio));
         calcular();
         calculo_general();
      }
@@ -371,9 +417,40 @@ $(document).on('change', '.selectLab', function(){
 });
 
 
+function calcular() {
+  var total = 0;
+      $(".monto").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $(".montol").each(function(i){
+        total += parseFloat($(this).val() * $("#laboratorios_"+i+"_abonoL").val());
+      })
+
+      $(".montop").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $("#total").val(total);
+}
+
+function calculo_general() {
+  var total = 0;
+  $(".abonoL").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $(".abonoS").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $("#total_a").val(total);
+  $("#total_g").val(parseFloat($("#total").val()) - parseFloat(total));
+}
+
+
 
 </script>
-
 
 
 

@@ -507,7 +507,7 @@ class ProductosController extends Controller
         $productos->medida =$request->medida;
         $productos->categoria =$request->categoria;
         $productos->minimo =$request->minimo;
-        $productos->minimol =$request->minimol;
+        $productos->cantidad =$request->cantidad;
         $res = $productos->update();
 
     

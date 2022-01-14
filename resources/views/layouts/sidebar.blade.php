@@ -407,6 +407,39 @@
             </ul>
           </li>
 
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Existencias
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+                <a href="{{route('productos.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Productos</p>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="{{route('ventas.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Ventas</p>
+                </a>
+              </li>
+
+            
+            
+              
+            </ul>
+          </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-money-check-alt"></i>

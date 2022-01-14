@@ -557,7 +557,6 @@ class AtencionesController extends Controller
 
         $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','Especialista')->orderBy('name','ASC')->get();
 
-
         if(!is_null($request->pac)){
             $paciente = Pacientes::where('dni','=',$request->pac)->first();
             $res = 'SI';

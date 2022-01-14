@@ -116,13 +116,6 @@
                     <label for="exampleInputEmail1">Stock Minimo</label>
                     <input type="number" class="form-control" id="nombre" name="minimo" placeholder="Cantidad Mínima" required>
                   </div>
-
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Stock Minimo Local</label>
-                    <input type="number" class="form-control" id="nombre" name="minimol" placeholder="Cantidad Mínima Local" required>
-                  </div>
-                 
-                  
                   </div>
                   <br>
 

@@ -93,9 +93,8 @@
                     <th>Nombre</th>
                     <th>Medida</th>
                     <th>Categoria</th>
-                    <th>Minimo Central</th>
-                    <th>Minimo Local</th>
-
+                    <th>Stock Minimo</th>
+                    <th>Cantidad Actual</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -107,11 +106,12 @@
                     <td>{{$an->medida}}</td>
                     <td>{{$an->categoria}}</td>
                     <td>{{$an->minimo}}</td>
-                    <td>{{$an->minimol}}</td>
+                    <td>{{$an->cantidad}}</td>
 
                     <td>
                     @if(Auth::user()->rol == 1)
 
+                      
                           <a class="btn btn-info btn-sm" href="productos-edit-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
@@ -122,6 +122,7 @@
                               </i>
                               Delete
                           </a>
+
 
                        
                           @endif</td>
@@ -138,6 +139,8 @@
                   <th>Nombre</th>
                     <th>Medida</th>
                     <th>Categoria</th>
+                    <th>Stock Minimo</th>
+                    <th>Cantidad Actual</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>

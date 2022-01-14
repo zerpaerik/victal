@@ -164,8 +164,8 @@
                   </div>
 
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Stock Minimo Local</label>
-                    <input type="number" class="form-control" id="minimol" value="{{$productos->minimol}}" name="minimol" placeholder="Cantidad Mínima Local" required>
+                    <label for="exampleInputEmail1">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad" value="{{$productos->cantidad}}" name="cantidad" placeholder="Cantidad" required>
                   </div>
                  
                  

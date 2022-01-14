@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
@@ -24,13 +27,13 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -51,18 +54,17 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Facturas Cobradas</h1>
+            <h1 class="m-0 text-dark">Ventas</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Facturas Cobradas</li>
+              <li class="breadcrumb-item active">Ventas</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -71,26 +73,30 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content">   
     @include('flash-message')
+
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="creditos_cobrados">					
+              <a class="btn btn-primary btn-sm" href="{{route('ventas.create')}}">
+                              <i class="fas fa-folder">
+                              </i>
+                              Agregar
+            </a>
+              <form method="get" action="ventas">
+                  {{ csrf_field() }}						
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">Inicio</label>
                     <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
-
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Fin</label>
+                    <label for="exampleInputEmail1">Fin</label>
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
-                  
-                
                  
                   <div class="col-md-2" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
@@ -99,68 +105,91 @@
                   </form>
 
                
-              
+                       
               </div>
-              <br>
-              @if($f1 != null)
-              
-              @endif
+              <div class="row" style="margin-left: 5px;">
+
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total</label>
+                    <input type="text" disabled class="form-control" value="{{$total->monto}} S/">
+                    </div>
+
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Efectivo</label>
+                    <input type="text" disabled class="form-control" value="{{$total_ef->monto}} S/" >
+                    </div>
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Tarjeta</label>
+                    <input type="text" disabled class="form-control" value="{{$total_tj->monto}} S/" >
+                    </div>
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Depósito</label>
+                    <input type="text" disabled class="form-control" value="{{$total_dp->monto}} S/">
+                    </div>
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Yape</label>
+                    <input type="text" disabled class="form-control" value="{{$total_yp->monto}} S/">
+                    </div>
+
+
+
+
+                    </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Recibo</th>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Monto Total</th>
+                    <th>Tipo de Pago</th>
                     <th>Fecha</th>
-                    <th>Empresa</th>
-                    <th>Total Recibo</th>
-                    <th>TP</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($comisiones as $an)
+                  @foreach($ventas as $an)
                   <tr>
-                    <td>REC-2022-{{$an->recibo}}</td>
-                    <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                    <td>{{$an->totalrecibo}}</td>
+                    <td>{{$an->cliente}}</td>
+                    <td>{{$ventass->selectProductos($an->id)}}</td>
+                    <td>{{$an->total}}</td>
                     <td>{{$an->tipop}}</td>
-                   
+                    <td>{{$an->created_at}}</td>
 
                     <td>
-                    <a target="_blank" class="btn btn-success btn-sm" href="creditosc-ticket-{{$an->recibo}}">
-                              <i class="fas fa-print">
-                              </i>
-                              Recibo
-                          </a>
                     @if(Auth::user()->rol == 1)
 
-                    
-
-                          <a class="btn btn-danger btn-sm" href="creditosc-reversar-{{$an->recibo}}" onclick="return confirm('¿Desea reversar este pago?')">
-                    <i class="fa fa-money" aria-hidden="true">
+                      
+                          <a class="btn btn-info btn-sm" href="">
+                              <i class="fas fa-print">
                               </i>
-                              Reversar
+                              Ticket
                           </a>
-                   
-                         
+                          <a class="btn btn-danger btn-sm" href="ventas-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                              <i class="fas fa-trash">
+                              </i>
+                              Eliminar
+                          </a>
 
-                        
-                         </td>
-                          @endif
+
+                       
+                          @endif</td>
                   </tr>
                   @endforeach
+                 
+                 
+               
+                 
                  
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Recibo</th>
-                    <th>Fecha</th>
-                    <th>Empresa</th>
-                    <th>Total Recibo</th>
-                    <th>TP</th>
+                  <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Monto Total</th>
+                    <th>Tipo de Pago</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>
@@ -226,25 +255,44 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
-
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+
+<script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      dom: 'Bfrtip',
+      buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
     });
     $('#example2').DataTable({
       "paging": true,

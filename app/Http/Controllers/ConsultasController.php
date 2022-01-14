@@ -111,11 +111,15 @@ class ConsultasController extends Controller
       $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 
 
+      $servicios = Servicios::where('estatus','=',1)->orderBy('nombre','ASC')->get();
+      $analisis = Analisis::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
 
 
 
-        return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
+
+
+        return view('consultas.historia',compact('cie','cie1','consulta','servicios','analisis','hist','historias','paciente'));
     }
 
     
@@ -211,6 +215,23 @@ class ConsultasController extends Controller
     {
 
 
+      $ex_s = '';
+      $ex_l = '';
+
+
+
+      foreach ($request->ex_aux_s as $s) {
+
+        $ex_s = $ex_s .'-'.$s;
+        
+      }
+
+
+      foreach ($request->ex_aux_l as $l) {
+        $ex_l = $ex_l .'-'.$l;
+
+      }
+
       $consultaf = Consultas::where('id','=',$request->consulta)->first();
       $con = new Historia();
       $con->id_paciente =  $consultaf->id_paciente;
@@ -246,7 +267,8 @@ class ConsultasController extends Controller
       $con->df = $request->diag_fin;
       $con->cie = $request->cie_pd;
       $con->cie1 = $request->cie_df;
-      $con->ex_aux = $request->ex_aux;
+      $con->ex_aux_s = $ex_s;
+      $con->ex_aux_l = $ex_l;
       $con->plan = $request->plan;
       $con->obser = $request->obser;
       $con->prox = $request->prox;

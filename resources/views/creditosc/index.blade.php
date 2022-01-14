@@ -111,6 +111,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+              <form action="/pagarmultiplec" method="post" >
               <label><input type="checkbox" id="checkTodos" />Seleccionar Todos</label>
 
                 <table id="example1" class="table table-bordered table-striped">
@@ -123,7 +124,6 @@
                     <th>Origen</th>
                     <th>Det.</th>
                     <th>Monto</th>
-                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -139,26 +139,6 @@
                    
                     <td>{{$an->monto}}</td>
 
-                    <td>
-                    @if(Auth::user()->rol == 1)
-                    <form method="get" action="creditosc-pagar" >
-                    <input type="hidden" value="{{$an->id}}" name="id">
-                    <select class="form-control" name="tipop">
-						              	<option value="" disabled>Seleccione</option>
-                            <option value="EF">Efectivo</option>
-                            <option value="TJ">Tarjeta</option>
-                            <option value="DP">Depósito</option>
-                            <option value="YP">Yape</option>
-                    </select>
-                    <button style="margin-left: 10px;" type="submit" class="btn btn-xs btn-danger" onclick="return confirm('¿Desea cobrar esta factura?')">Cobrar</button>
-                    </form>
-
-
-                         
-
-                        
-                         </td>
-                          @endif
                   </tr>
                   @endforeach
                  
@@ -172,15 +152,28 @@
                     <th>Origen</th>
                     <th>Det.</th>
                     <th>Monto</th>
-                    <th>Acciones</th>
                   </tr>
                   <th>
-                  <form action="/pagarmultiplec" method="post" >
 
-								{{ csrf_field() }}
+                  <div class="row">
+
+                  <div class="col-md-4">
+                  <select class="form-control" name="tipop">
+						              	<option value="" disabled>Seleccione</option>
+                            <option value="EF">EF</option>
+                            <option value="TJ">TJ</option>
+                            <option value="DP">DP</option>
+                            <option value="YP">YP</option>
+                    </select>
+
+                  </div>
+                  <div class="col-md-2" style="margin-top: 10px;">
+                  {{ csrf_field() }}
 								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Cobrar estas Facturas?')" class="btn btn-xs btn-danger">Cobrar.Selecc.</button>
 
-							    
+              
+                  </div>
+                  </div>
 							</th>
                   </tfoot>
                   </form>
