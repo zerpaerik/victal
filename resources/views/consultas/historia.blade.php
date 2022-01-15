@@ -601,13 +601,54 @@
                   </div>
                     </div>
                    <br>
-                   <div class="row">
-                     <div class="col-md-12">
-                    <label for="exampleInputEmail1">Plan de Tratamiento</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento"></textarea>
+                 
 
-                  </div>
+                    <label for="exampleInputEmail1">Plan de Tratamiento</label>
+            <!-- sheepIt Form -->
+            <div id="laboratorios" class="embed ">
+            
+                <!-- Form template-->
+                <div id="laboratorios_template" class="template row">
+
+                    <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Productos</label>
+                    <div class="col-sm-4">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                        <option value="1">Seleccionar Producto</option>
+                        @foreach($productos as $pac)
+                          <option value="{{$pac->id}}">
+                            {{$pac->nombre}}
+                          </option>
+                        @endforeach
+                      </select>
                     </div>
+
+            
+              
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Indicación</label>
+                    <div class="col-sm-6">
+
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Indicación" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                    </div>
+
+                    <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="laboratorios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="laboratorios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Producto</span></a></div>
+                    <div id="laboratorios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+
+
                     <br>
                    <div class="row">
                      <div class="col-md-12">
@@ -729,6 +770,8 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="../../plugins/sheepit/jquery.sheepItPlugin.min.js"></script>
+
 
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
@@ -770,82 +813,144 @@ function disableEnterKey(e)
 		    });
 		}
 
+
+    
+
 	
 	</script>
 
+
 <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
+$(document).ready(function() {
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
+$(".monto").keyup(function(event) {
+  var montoId = $(this).attr('id');
+  var montoArr = montoId.split('_');
+  var id = montoArr[1];
+  var montoH = parseFloat($('#servicios_'+id+'_montoHidden').val());
+  var monto = parseFloat($(this).val());
+  $('#servicios_'+id+'_montoHidden').val(monto);
+  calcular();
+  calculo_general();
+});
 
-    //Date range picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'MM/DD/YYYY hh:mm A'
+$(".montol").keyup(function(event) {
+  var montoId = $(this).attr('id');
+  var montoArr = montoId.split('_');
+  var id = montoArr[1];
+  var montoH = parseFloat($('#laboratorios_'+id+'_montoHidden').val());
+  var monto = parseFloat($(this).val());
+  $('#laboratorios_'+id+'_montoHidden').val(monto);
+  calcular();
+  calculo_general();
+});
+
+$(".abonoL, .abonoS").keyup(function(){
+  var total = 0;
+  var selectId = $(this).attr('id');
+  var selectArr = selectId.split('_');
+  
+  if(selectArr[0] == 'servicios'){
+      if(parseFloat($(this).val()) == parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+          alert('La cantidad insertada en abono es mayor al monto.');
+          $(this).val('0.00');
+          calculo_general();
+      } else {
+          calculo_general();
       }
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+  } else {
+    if(parseFloat($(this).val()) == 999999){
+          alert('Debe verificar la cantidad.');
+          $(this).val('0.00');
+          calculo_general();
+      } else {
+          calculo_general();
       }
-    )
+  }
+});
 
-    //Timepicker
-    $('#timepicker').datetimepicker({
-      format: 'LT'
-    })
+var botonDisabled = true;
+
+// Main sheepIt form
+var phonesForm = $("#laboratorios").sheepIt({
+    separator: '',
+    allowRemoveCurrent: true,
+    allowAdd: true,
+    allowRemoveAll: true,
+    allowRemoveLast: true,
+
+    // Limits
+    maxFormsCount: 10,
+    minFormsCount: 1,
+    iniFormsCount: 0,
+
+    removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
     
-    //Bootstrap Duallistbox
-    $('.duallistbox').bootstrapDualListbox()
+    afterRemoveCurrent: function(source, event){
+      calcular();
+      calculo_general();
+    }
+});
 
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
 
-    $('.my-colorpicker2').on('colorpickerChange', function(event) {
-      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-    });
+$(document).on('change', '.selectLab', function(){
+  var labId = $(this).attr('id');
+  var labArr = labId.split('_');
+  var id = labArr[1];
 
-    $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    });
+  $.ajax({
+     type: "GET",
+     url:  "productos/getProducto/"+$(this).val(),
+     success: function(a) {
+        $('#laboratorios_'+id+'_montoHidden').val(a.precio);
+        $('#laboratorios_'+id+'_monto').val(a.precio);
+        var total = parseFloat($('#total').val());
+        $("#total").val(total + parseFloat(a.precio));
+        calcular();
+        calculo_general();
+     }
+  });
+})
+});
 
+
+function calcular() {
+  var total = 0;
+      $(".monto").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $(".montol").each(function(i){
+        total += parseFloat($(this).val() * $("#laboratorios_"+i+"_abonoL").val());
+      })
+
+      $(".montop").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $("#total").val(total);
+}
+
+function calculo_general() {
+  var total = 0;
+  $(".abonoL").each(function(){
+    total += parseFloat($(this).val());
   })
+
+  $(".abonoS").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $("#total_a").val(total);
+  $("#total_g").val(parseFloat($("#total").val()) - parseFloat(total));
+}
+
+
+
 </script>
+
+
 <!-- page script -->
 
 </body>

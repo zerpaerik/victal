@@ -52,7 +52,7 @@
 
 <div>
 	<div class="text-center title-header col-12">
-		<center><strong>ORDEN DE EXAMENES</strong> </center>
+		<center><strong>RECETA DE PACIENTE</strong> </center>
 
 
 	</div>
@@ -85,36 +85,24 @@
 
 
 <div style="font-weight: bold; font-size: 14px">
-		SERVICIOS
+		INDICACIONES
 </div>
+@if($receta)
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
-		</tr>
-		@foreach ($hist_s as $s)
-			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $s->servicio }}</td>
-			</tr>
-		@endforeach
-	
-	</table>
-</div>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Medicamento</th>
+            <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Indicación</th>
 
-<div style="font-weight: bold; font-size: 14px">
-		LABORATORIOS
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
-		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
 		</tr>
-		@foreach ($hist_l as $l)
+		@foreach ($receta as $s)
 			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $l->laboratorio }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $s->producto }}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $s->texto }}</td>
 			</tr>
 		@endforeach
 	
 	</table>
 </div>
+@endif
 

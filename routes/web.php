@@ -319,6 +319,7 @@ Route::get('cobrconsultasar-edit-{id}', 'ConsultasController@edit')->name('ingre
 Route::post('consultas/edit', 'ConsultasController@update');
 Route::get('consultas-ticket-{id}', 'ConsultasController@ticket');
 Route::get('consulta-guia-{id}', 'ConsultasController@guia');
+Route::get('consulta-receta-{id}', 'ConsultasController@receta');
 Route::get('historias', 'ConsultasController@historias')->name('historias.index');
 Route::get('historia/reevaluar/{id}', 'ConsultasController@reevaluar');
 Route::post('historia/reevaluar', 'ConsultasController@reevaluarPost');
