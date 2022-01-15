@@ -48,7 +48,7 @@
 
 <div>
 	<div class="text-center title-header col-12">
-		<center><strong>GUIA DE EXAMENES</strong> </center>
+		<center><strong>ORDEN DE EXAMENES</strong> </center>
 
 
 	</div>
