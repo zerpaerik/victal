@@ -141,9 +141,15 @@
                               </i>
                               Ver Historia
                           </a>
+
+                          <a class="btn btn-info btn-sm" href="historias-pdf-{{$an->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ver PDF
+                          </a>
                           @if($an->reevalua == 1)
 
-                         <a class="btn btn-success btn-sm" id="{{$an->id}}" onclick="viewh(this)">
+                         <a class="btn btn-danger btn-sm" id="{{$an->id}}" onclick="viewh(this)">
                               <i class="fas fa-edit">
                               </i>
                               Reevaluar

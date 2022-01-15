@@ -80,10 +80,10 @@
 		EDAD:  {{ $edad }} 
 </div>
 
-<div style="font-weight: bold; font-size: 14px">
+<div style="font-weight: bold; font-size: 14px" class="text-right">
 		DOCTOR:  {{ $consulta->laste }} {{ $consulta->namee }}
 </div>
-<div style="font-weight: bold; font-size: 14px">
+<div style="font-weight: bold; font-size: 14px" class="text-right">
 		PRÓXIMA CONSULTA:  {{date('d/m/Y', strtotime($consulta->prox))}}
 </div>
 <br>

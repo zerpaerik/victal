@@ -324,6 +324,7 @@ Route::get('historias', 'ConsultasController@historias')->name('historias.index'
 Route::get('historia/reevaluar/{id}', 'ConsultasController@reevaluar');
 Route::post('historia/reevaluar', 'ConsultasController@reevaluarPost');
 Route::get('historias-ver-{id}', 'ConsultasController@ver_historias');
+Route::get('historias-pdf-{id}', 'ConsultasController@ver_historias_pdf');
 Route::get('controles', 'ConsultasController@controles')->name('controles.index');
 Route::get('controles-ver-{id}', 'ConsultasController@ver_controles');
 Route::get('historia-crear-{id}', 'ConsultasController@historia_crear');

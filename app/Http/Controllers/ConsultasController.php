@@ -530,6 +530,41 @@ class ConsultasController extends Controller
 
     }
 
+    public function ver_historias_pdf($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+         $historias_base = HistoriaBase::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+         $edad = Carbon::parse($paciente->fechanac)->age;
+
+
+             
+          $view = \View::make('consultas.historia-pdf', compact('hist','historias_base','paciente','edad'));
+
+          $pdf = \App::make('dompdf.wrapper');
+          $pdf->loadHTML($view);
+   
+     
+      return $pdf->stream('report-pdf'.'.pdf');
+
+
+
+
+    }
+
     public function guia($id)
     {
 
