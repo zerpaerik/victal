@@ -72,6 +72,13 @@
 <div style="font-weight: bold; font-size: 14px">
 		PACIENTE:  {{ $consulta->apellidos }} {{ $consulta->nombres }}
 </div>
+<div style="font-weight: bold; font-size: 14px">
+		DNI:  {{ $consulta->dni }} 
+</div>
+
+<div style="font-weight: bold; font-size: 14px">
+		EDAD:  {{ $edad }} 
+</div>
 
 <div style="font-weight: bold; font-size: 14px">
 		DOCTOR:  {{ $consulta->laste }} {{ $consulta->namee }}

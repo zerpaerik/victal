@@ -24,6 +24,7 @@ use App\HistoriaBase;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 
 
 class ConsultasController extends Controller
@@ -531,13 +532,17 @@ class ConsultasController extends Controller
     {
 
       $consulta = DB::table('consultas as a')
-      ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+      ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','b.fechanac','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
       ->join('pacientes as b','b.id','a.id_paciente')
       ->join('users as c','c.id','a.usuario')
       ->join('users as e','e.id','a.id_especialista')
       ->join('atenciones as at','at.id','a.id_atencion')
       ->where('a.id', '=', $id)
       ->first(); 
+
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+      $edad = Carbon::parse($paciente->fechanac)->age;
+
 
       
       $hist_s = DB::table('historia_s as a')
@@ -559,7 +564,7 @@ class ConsultasController extends Controller
 
 
       
-      $view = \View::make('consultas.guia', compact('consulta','hist_s','hist_l'));
+      $view = \View::make('consultas.guia', compact('consulta','hist_s','hist_l','edad'));
 
       $pdf = \App::make('dompdf.wrapper');
       $pdf->loadHTML($view);
@@ -573,13 +578,17 @@ class ConsultasController extends Controller
     {
 
       $consulta = DB::table('consultas as a')
-      ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+      ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','b.fechanac','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
       ->join('pacientes as b','b.id','a.id_paciente')
       ->join('users as c','c.id','a.usuario')
       ->join('users as e','e.id','a.id_especialista')
       ->join('atenciones as at','at.id','a.id_atencion')
       ->where('a.id', '=', $id)
       ->first(); 
+
+
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+      $edad = Carbon::parse($paciente->fechanac)->age;
 
       
       $receta = DB::table('historia_r as a')
@@ -596,7 +605,7 @@ class ConsultasController extends Controller
 
 
       
-      $view = \View::make('consultas.receta', compact('consulta','receta'));
+      $view = \View::make('consultas.receta', compact('consulta','receta','edad'));
 
       $pdf = \App::make('dompdf.wrapper');
       $pdf->loadHTML($view);
