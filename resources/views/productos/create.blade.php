@@ -119,7 +119,7 @@
 
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="number" class="form-control" id="nombre" name="precio" placeholder="Precio de Producto" required>
+                    <input type="text" class="form-control" id="nombre" name="precio" placeholder="Precio de Producto" required>
                   </div>
 
                   </div>

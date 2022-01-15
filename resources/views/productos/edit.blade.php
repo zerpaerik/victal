@@ -170,7 +170,7 @@
 
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="number" class="form-control" id="cantidad" value="{{$productos->precio}}" name="precio" placeholder="Precio" required>
+                    <input type="text" class="form-control" id="cantidad" value="{{$productos->precio}}" name="precio" placeholder="Precio" required>
                   </div>
                  
                  
