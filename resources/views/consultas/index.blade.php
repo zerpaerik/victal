@@ -146,6 +146,16 @@
                     </a>
                     @endif
 
+                    @else
+
+                    <span class="badge bg-success">YA FUE ATENDIDO</span>
+
+                    <a class="btn btn-success btn-sm" href="consulta-guia-{{$an->id}}" target="_blank">
+                              <i class="fas fa-eye">
+                              </i>
+                              Ver Guia
+                          </a>
+
                     @endif
 
                          

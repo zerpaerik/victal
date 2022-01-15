@@ -34,7 +34,7 @@ class ProductosController extends Controller
             $f2 = $request->fin;
 
         $ingresos = DB::table('ingresos_detalle as a')
-        ->select('a.id','a.producto','a.ingreso','a.vence','a.estatus','a.usuario_elimina','a.cantidad','i.created_at','i.usuario','a.precio','i.factura','i.fecha','i.observacion','u.name as usuario','p.nombre as producto', 'p.medida')
+        ->select('a.id','a.producto','a.ingreso','a.vence','a.precio','a.estatus','a.usuario_elimina','a.cantidad','i.created_at','i.usuario','a.precio','i.factura','i.fecha','i.observacion','u.name as usuario','p.nombre as producto', 'p.medida')
         ->join('ingresos as i','i.id','a.ingreso')
         ->join('productos as p','p.id','a.producto')
         ->join('users as u','u.id','i.usuario')
@@ -44,7 +44,7 @@ class ProductosController extends Controller
 
     } else {
         $ingresos = DB::table('ingresos_detalle as a')
-        ->select('a.id','a.producto','a.ingreso','a.vence','a.estatus','a.usuario_elimina','a.cantidad','i.created_at','i.usuario','a.precio','i.factura','i.fecha','i.observacion','u.name as usuario','p.nombre as producto','p.medida')
+        ->select('a.id','a.producto','a.ingreso','a.vence','a.precio','a.estatus','a.usuario_elimina','a.cantidad','i.created_at','i.usuario','a.precio','i.factura','i.fecha','i.observacion','u.name as usuario','p.nombre as producto','p.medida')
         ->join('ingresos as i','i.id','a.ingreso')
         ->join('productos as p','p.id','a.producto')
         ->join('users as u','u.id','i.usuario')
@@ -379,6 +379,7 @@ class ProductosController extends Controller
         $productos->minimo =$request->minimo;
         $productos->minimol =$request->minimol;
         $productos->categoria =$request->categoria;
+        $productos->precio =$request->precio;
         $productos->usuario =Auth::user()->id;
         $productos->save();
 
@@ -508,6 +509,7 @@ class ProductosController extends Controller
         $productos->categoria =$request->categoria;
         $productos->minimo =$request->minimo;
         $productos->cantidad =$request->cantidad;
+        $productos->precio =$request->precio;
         $res = $productos->update();
 
     

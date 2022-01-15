@@ -95,6 +95,7 @@
                     <th>Categoria</th>
                     <th>Stock Minimo</th>
                     <th>Cantidad Actual</th>
+                    <th>Precio</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -107,6 +108,7 @@
                     <td>{{$an->categoria}}</td>
                     <td>{{$an->minimo}}</td>
                     <td>{{$an->cantidad}}</td>
+                    <td>{{$an->precio}}</td>
 
                     <td>
                     @if(Auth::user()->rol == 1)
@@ -141,6 +143,7 @@
                     <th>Categoria</th>
                     <th>Stock Minimo</th>
                     <th>Cantidad Actual</th>
+                    <th>Precio</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>

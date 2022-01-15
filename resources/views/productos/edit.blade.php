@@ -167,6 +167,11 @@
                     <label for="exampleInputEmail1">Cantidad</label>
                     <input type="number" class="form-control" id="cantidad" value="{{$productos->cantidad}}" name="cantidad" placeholder="Cantidad" required>
                   </div>
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Precio</label>
+                    <input type="number" class="form-control" id="cantidad" value="{{$productos->precio}}" name="precio" placeholder="Precio" required>
+                  </div>
                  
                  
                   

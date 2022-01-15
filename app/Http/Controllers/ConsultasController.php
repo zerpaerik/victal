@@ -14,6 +14,8 @@ use App\Consultas;
 use App\Metodos;
 use App\Ciexes;
 use App\Historia;
+use App\HistoriaS;
+use App\HistoriaL;
 use App\AntecedentesObstetricos;
 use App\Control;
 use App\HistoriaBase;
@@ -221,15 +223,14 @@ class ConsultasController extends Controller
 
 
       foreach ($request->ex_aux_s as $s) {
-
-        $ex_s = $ex_s .'-'.$s;
-        
+        $servi = Servicios::where('id','=',$s)->first();
+        $ex_s = $ex_s .'-'.$servi->nombre;
       }
 
 
       foreach ($request->ex_aux_l as $l) {
-        $ex_l = $ex_l .'-'.$l;
-
+        $ana = Analisis::where('id','=',$l)->first();
+        $ex_l = $ex_l .'-'.$ana->nombre;
       }
 
       $consultaf = Consultas::where('id','=',$request->consulta)->first();
@@ -274,6 +275,23 @@ class ConsultasController extends Controller
       $con->prox = $request->prox;
       $con->usuario = Auth::user()->id;
       $con->save();
+
+      foreach ($request->ex_aux_s as $s) {
+        $hs = new HistoriaS();
+        $hs->id_historia =  $con->id;
+        $hs->id_servicio = $s;
+        $hs->consulta = $request->consulta;
+        $hs->save();
+      
+      }
+
+      foreach ($request->ex_aux_l as $l) {
+        $hl = new HistoriaL();
+        $hl->id_historia =  $con->id;
+        $hl->id_lab = $l;
+        $hl->consulta = $request->consulta;
+        $hl->save();
+      }
 
       $con_fin = Consultas::where('id','=',$request->consulta)->first();
       $con_fin->historia = 2;
@@ -477,6 +495,52 @@ class ConsultasController extends Controller
          $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
 
         return view('consultas.historias_ver', compact('hist','historias_base','paciente'));
+
+
+    }
+
+    public function guia($id)
+    {
+
+      $consulta = DB::table('consultas as a')
+      ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+      ->join('pacientes as b','b.id','a.id_paciente')
+      ->join('users as c','c.id','a.usuario')
+      ->join('users as e','e.id','a.id_especialista')
+      ->join('atenciones as at','at.id','a.id_atencion')
+      ->where('a.id', '=', $id)
+      ->first(); 
+
+      
+      $hist_s = DB::table('historia_s as a')
+      ->select('a.*','u.nombre as servicio')
+      ->join('servicios as u','u.id','a.id_servicio')
+      ->where('a.consulta', '=',$id)
+      ->get(); 
+
+
+     
+       
+      $hist_l = DB::table('historia_l as a')
+      ->select('a.*','u.nombre as laboratorio')
+      ->join('analisis as u','u.id','a.id_lab')
+      ->where('a.consulta', '=',$id)
+      ->get(); 
+
+
+
+
+      
+      $view = \View::make('consultas.guia', compact('consulta','hist_s','hist_l'));
+
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+   
+     
+      return $pdf->stream('report-guia'.'.pdf');
+
+
+       
 
 
     }
