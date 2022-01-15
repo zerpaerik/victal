@@ -153,7 +153,7 @@
                     <a class="btn btn-success btn-sm" href="consulta-guia-{{$an->id}}" target="_blank">
                               <i class="fas fa-eye">
                               </i>
-                              Ver Guia
+                              Ver Orden
                           </a>
 
                     @endif
