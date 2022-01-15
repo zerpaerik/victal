@@ -119,5 +119,5 @@
 <div style="font-weight: bold; font-size: 14px">
 		OBSERVACIONES:  
 </div>
-{{ $consulta->laste }} 
+{{ $consulta->obser }} 
 
