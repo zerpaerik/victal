@@ -15,7 +15,7 @@ class HistoriaR extends Model
     protected $table="historia_r";
 
     protected $fillable = [
-        'id_historia','id_producto','consulta','texto'
+        'id_historia','id_producto','consulta','texto','observacion'
     ];
 
     

@@ -278,7 +278,7 @@ class ConsultasController extends Controller
       $con->ex_aux_s = $ex_s;
       $con->ex_aux_l = $ex_l;
       $con->plan = $request->plan;
-      $con->obser = $request->obser;
+      $con->obser = $request->observaciones;
       $con->prox = $request->prox;
       $con->usuario = Auth::user()->id;
       $con->save();
@@ -312,6 +312,7 @@ class ConsultasController extends Controller
            $pedidos->id_producto =$lab['laboratorio'];
            $pedidos->texto =$request->monto_abol['laboratorios'][$key]['abono'];
            $pedidos->consulta =$request->consulta;
+           $pedidos->observacion =$request->obser;
            $pedidos->save();
   
           } else {
@@ -324,6 +325,7 @@ class ConsultasController extends Controller
 
       $con_fin = Consultas::where('id','=',$request->consulta)->first();
       $con_fin->historia = 2;
+      $con_fin->id_historia = $con->id;
       $con_fin->save();
 
       $usuario = DB::table('users')
@@ -532,11 +534,12 @@ class ConsultasController extends Controller
     {
 
       $consulta = DB::table('consultas as a')
-      ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','b.fechanac','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+      ->select('a.id','a.id_paciente','a.id_historia','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','b.fechanac','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha','hist.obser','hist.prox')
       ->join('pacientes as b','b.id','a.id_paciente')
       ->join('users as c','c.id','a.usuario')
       ->join('users as e','e.id','a.id_especialista')
       ->join('atenciones as at','at.id','a.id_atencion')
+      ->join('historia as hist','hist.id','a.id_historia')
       ->where('a.id', '=', $id)
       ->first(); 
 
@@ -578,11 +581,12 @@ class ConsultasController extends Controller
     {
 
       $consulta = DB::table('consultas as a')
-      ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','b.fechanac','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+      ->select('a.id','a.id_paciente','a.id_historia','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','b.fechanac','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha','hist.obser','hist.prox')
       ->join('pacientes as b','b.id','a.id_paciente')
       ->join('users as c','c.id','a.usuario')
       ->join('users as e','e.id','a.id_especialista')
       ->join('atenciones as at','at.id','a.id_atencion')
+      ->join('historia as hist','hist.id','a.id_historia')
       ->where('a.id', '=', $id)
       ->first(); 
 

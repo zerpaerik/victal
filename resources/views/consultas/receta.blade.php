@@ -67,7 +67,7 @@
 </div>
 
 <div style="font-weight: bold; font-size: 14px">
-		FECHA CONSULTA:  {{ $consulta->created_at }} 
+		FECHA CONSULTA:  {{date('d/m/Y', strtotime($consulta->created_at))}}
 </div>
 <div style="font-weight: bold; font-size: 14px">
 		PACIENTE:  {{ $consulta->apellidos }} {{ $consulta->nombres }}
@@ -82,6 +82,9 @@
 
 <div style="font-weight: bold; font-size: 14px">
 		DOCTOR:  {{ $consulta->laste }} {{ $consulta->namee }}
+</div>
+<div style="font-weight: bold; font-size: 14px">
+		PRÓXIMA CONSULTA:  {{date('d/m/Y', strtotime($consulta->prox))}}
 </div>
 <br>
 <br>
@@ -112,4 +115,9 @@
 	</table>
 </div>
 @endif
+
+<div style="font-weight: bold; font-size: 14px">
+		OBSERVACIONES:  
+</div>
+{{ $consulta->laste }} 
 
