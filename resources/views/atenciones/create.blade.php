@@ -259,6 +259,7 @@
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
                         <option value="YP">Yape</option>
+                        <option value="PL">Plin</option>
 
                       </select>
                     </div>
@@ -325,6 +326,7 @@
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
                         <option value="YP">Yape</option>
+                        <option value="PL">Plin</option>
 
                       </select>
                     </div>
@@ -390,6 +392,7 @@
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
                         <option value="YP">Yape</option>
+                        <option value="PL">Plin</option>
 
                       </select>
                     </div>
@@ -458,6 +461,7 @@
                           <option value="TJ">Tarjeta</option>
                           <option value="DP">Depósito</option>
                           <option value="YP">Yape</option>
+                          <option value="PL">Plin</option>
   
                         </select>
                       </div>
@@ -527,6 +531,7 @@
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
                         <option value="YP">Yape</option>
+                        <option value="PL">Plin</option>
 
                       </select>
                     </div>
@@ -595,6 +600,7 @@
                   <option value="TJ">Tarjeta</option>
                   <option value="DP">Depósito</option>
                   <option value="YP">Yape</option>
+                  <option value="PL">Plin</option>
 
                 </select>
               </div>
@@ -652,6 +658,7 @@
                             <option value="TJ">Tarjeta</option>
                             <option value="DP">Depósito</option>
                             <option value="YP">Yape</option>
+                            <option value="PL">Plin</option>
                         </select>
                   </div>
 
@@ -687,6 +694,7 @@
                             <option value="TJ">Tarjeta</option>
                             <option value="DP">Depósito</option>
                             <option value="YP">Yape</option>
+                            <option value="PL">Plin</option>
                         </select>
                   </div>
 

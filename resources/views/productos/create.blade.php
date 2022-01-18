@@ -122,6 +122,12 @@
                     <input type="text" class="form-control" id="nombre" name="precio" placeholder="Precio de Producto" required>
                   </div>
 
+                  
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Principio activo</label>
+                    <input type="text" class="form-control" id="nombre" name="activo" placeholder="Principio activo" required>
+                  </div>
+
                   </div>
                   <br>
 

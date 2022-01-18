@@ -379,6 +379,7 @@ class ProductosController extends Controller
         $productos->minimo =$request->minimo;
         $productos->minimol =$request->minimol;
         $productos->categoria =$request->categoria;
+        $productos->activo =$request->activo;
         $productos->precio =$request->precio;
         $productos->usuario =Auth::user()->id;
         $productos->save();
@@ -509,6 +510,7 @@ class ProductosController extends Controller
         $productos->categoria =$request->categoria;
         $productos->minimo =$request->minimo;
         $productos->cantidad =$request->cantidad;
+        $productos->activo =$request->activo;
         $productos->precio =$request->precio;
         $res = $productos->update();
 

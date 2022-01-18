@@ -631,7 +631,7 @@ class ConsultasController extends Controller
 
       
       $receta = DB::table('historia_r as a')
-      ->select('a.*','u.nombre as producto')
+      ->select('a.*','u.nombre as producto','u.activo')
       ->join('productos as u','u.id','a.id_producto')
       ->where('a.consulta', '=',$id)
       ->get(); 

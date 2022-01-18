@@ -202,7 +202,7 @@ class ReportesController extends Controller
 
 
         $efectivo = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
+        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(pl) as plin'),DB::raw('SUM(egreso) as egre'))
         ->where('a.sede','=',  $request->sede)
        // ->where('a.tipopago','=',  'EF')
         ->whereBetween('a.fecha', [$f1,$f2])
@@ -210,7 +210,7 @@ class ReportesController extends Controller
         ->get();
         
         $totales = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
+        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(pl) as plin'),DB::raw('SUM(egreso) as egre'))
         ->where('a.sede','=',  $request->sede)
        // ->where('a.tipopago','=',  'EF')
         ->whereBetween('a.fecha', [$f1,$f2])
@@ -796,6 +796,13 @@ class ReportesController extends Controller
           ->where('sede','=',$request->session()->get('sede'))
           ->first();
 
+          
+          $plin = Creditos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('tipopago','=','PL')
+          ->where('sede','=',$request->session()->get('sede'))
+          ->first();
+
 
   
   
@@ -994,12 +1001,18 @@ class ReportesController extends Controller
           ->where('tipopago','=','YP')
           ->where('sede','=',$request->session()->get('sede'))
           ->first();
+          $plin = Creditos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('tipopago','=','PL')
+          ->where('sede','=',$request->session()->get('sede'))
+          ->first();
+
 
   
       }
   
 
-          return view('reportes.ingresos', compact('f1','f2','atenciones','total','efec','dep','tarj','yap','historial','ingresos'));
+          return view('reportes.ingresos', compact('f1','f2','atenciones','total','plin','efec','dep','tarj','yap','historial','ingresos'));
   
          
   

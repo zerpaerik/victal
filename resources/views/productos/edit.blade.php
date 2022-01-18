@@ -172,6 +172,10 @@
                     <label for="exampleInputEmail1">Precio</label>
                     <input type="text" class="form-control" id="cantidad" value="{{$productos->precio}}" name="precio" placeholder="Precio" required>
                   </div>
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Principio activo</label>
+                    <input type="text" class="form-control" id="cantidad" value="{{$productos->activo}}" name="activo" placeholder="Principio activo" required>
+                  </div>
                  
                  
                   

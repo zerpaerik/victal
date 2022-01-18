@@ -705,8 +705,10 @@ return view('atenciones.particular');
                     $cre->tarjeta = $request->precio_con;
                   } elseif($request->tipop_con == 'DP') {
                     $cre->dep = $request->precio_con;
-                  } else {
+                  } elseif($request->tipop_con == 'YP')  {
                     $cre->yap = $request->precio_con;
+                  } else {
+                    $cre->pl = $request->precio_con;
                   }
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
@@ -768,13 +770,15 @@ return view('atenciones.particular');
                       $cre->tipopago = $request->tipop_met;
                       if ($request->tipop_met == 'EF') {
                           $cre->efectivo = $request->precio_met;
-                      } elseif ($request->tipop_met == 'TJ') {
-                          $cre->tarjeta = $request->precio_met;
-                      } elseif ($request->tipop_met == 'DP') {
-                          $cre->dep = $request->precio_met;
-                      } else {
+                        } elseif ($request->tipop_met == 'TJ') {
+                            $cre->tarjeta = $request->precio_met;
+                        } elseif ($request->tipop_met == 'DP') {
+                            $cre->dep = $request->precio_met;
+                        } elseif($request->tipop_con == 'YP')  {
                           $cre->yap = $request->precio_met;
-                      }
+                        } else {
+                          $cre->pl = $request->precio_met;
+                        }
                       $cre->usuario = Auth::user()->id;
                       $cre->sede = $request->session()->get('sede');
                       $cre->fecha = date('Y-m-d');
@@ -835,9 +839,11 @@ return view('atenciones.particular');
                                   $cre->tarjeta =(float)$request->monto_abol['servicios'][$key]['abono'];
                               } elseif ($request->id_pago['servicios'][$key]['tipop'] == 'DP') {
                                   $cre->dep = (float)$request->monto_abol['servicios'][$key]['abono'];
-                              } else {
+                                } elseif($request->id_pago['servicios'][$key]['tipop'] == 'YP')  {
                                   $cre->yap = (float)$request->monto_abol['servicios'][$key]['abono'];
-                              }
+                                } else {
+                                  $cre->pl = (float)$request->monto_abol['servicios'][$key]['abono'];
+                                }
                               $cre->usuario = Auth::user()->id;
                               $cre->sede = $request->session()->get('sede');
                               $cre->fecha = date('Y-m-d');
@@ -956,9 +962,11 @@ return view('atenciones.particular');
                               $cre->tarjeta =(float)$request->monto_abol['salud'][$key]['abono'];
                           } elseif ($request->id_pago['salud'][$key]['tipop'] == 'DP') {
                               $cre->dep = (float)$request->monto_abol['salud'][$key]['abono'];
-                          } else {
+                            } elseif($request->id_pago['salud'][$key]['tipop'] == 'YP')  {
                               $cre->yap = (float)$request->monto_abol['salud'][$key]['abono'];
-                          }
+                            } else {
+                              $cre->pl = (float)$request->monto_abol['salud'][$key]['abono'];
+                            }
                           $cre->usuario = Auth::user()->id;
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
@@ -1095,9 +1103,11 @@ return view('atenciones.particular');
                                   $cre->tarjeta =(float)$request->monto_abol['analisis'][$key]['abono'];
                               } elseif ($request->id_pago['analisis'][$key]['tipop'] == 'DP') {
                                   $cre->dep = (float)$request->monto_abol['analisis'][$key]['abono'];
-                              } else {
+                                } elseif($request->id_pago['analisis'][$key]['tipop'] == 'YP')  {
                                   $cre->yap = (float)$request->monto_abol['analisis'][$key]['abono'];
-                              }
+                                } else {
+                                  $cre->pl = (float)$request->monto_abol['analisis'][$key]['abono'];
+                                }
                               $cre->usuario = Auth::user()->id;
                               $cre->sede = $request->session()->get('sede');
                               $cre->fecha = date('Y-m-d');
@@ -1192,9 +1202,11 @@ return view('atenciones.particular');
                                   $cre->tarjeta =(float)$request->monto_abol['paquetes'][$key]['abono'];
                               } elseif ($request->id_pago['paquetes'][$key]['tipop'] == 'DP') {
                                   $cre->dep = (float)$request->monto_abol['paquetes'][$key]['abono'];
-                              } else {
+                                } elseif($request->id_pago['paquetes'][$key]['tipop'] == 'YP')  {
                                   $cre->yap = (float)$request->monto_abol['paquetes'][$key]['abono'];
-                              }
+                                } else {
+                                  $cre->pl = (float)$request->monto_abol['paquetes'][$key]['abono'];
+                                }
                               $cre->usuario = Auth::user()->id;
                               $cre->sede = $request->session()->get('sede');
                               $cre->fecha = date('Y-m-d');
@@ -1416,9 +1428,11 @@ return view('atenciones.particular');
                                   $cre->tarjeta =(float)$request->monto_abol['ecografias'][$key]['abono'];
                               } elseif ($request->id_pago['ecografias'][$key]['tipop'] == 'DP') {
                                   $cre->dep = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                              } else {
+                                } elseif($request->id_pago['ecografias'][$key]['tipop'] == 'YP')  {
                                   $cre->yap = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                              }
+                                } else {
+                                  $cre->pl = (float)$request->monto_abol['ecografias'][$key]['abono'];
+                                }
                               $cre->usuario = Auth::user()->id;
                               $cre->sede = $request->session()->get('sede');
                               $cre->fecha = date('Y-m-d');
@@ -1533,9 +1547,11 @@ return view('atenciones.particular');
                                   $cre->tarjeta =(float)$request->monto_abol['rayos'][$key]['abono'];
                               } elseif ($request->id_pago['rayos'][$key]['tipop'] == 'DP') {
                                   $cre->dep = (float)$request->monto_abol['rayos'][$key]['abono'];
-                              } else {
+                                } elseif($request->id_pago['rayos'][$key]['tipop'] == 'YP')  {
                                   $cre->yap = (float)$request->monto_abol['rayos'][$key]['abono'];
-                              }
+                                } else {
+                                  $cre->pl = (float)$request->monto_abol['rayos'][$key]['abono'];
+                                }
                               $cre->usuario = Auth::user()->id;
                               $cre->sede = $request->session()->get('sede');
                               $cre->fecha = date('Y-m-d');
@@ -1848,21 +1864,32 @@ return view('atenciones.particular');
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
+        $creditos->pl = '0';
       } elseif($request->tipo_pago == 'TJ') {
         $creditos->tarjeta = $request->abono;
         $creditos->efectivo = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
+        $creditos->pl = '0';
       } elseif($request->tipo_pago == 'DP') {
         $creditos->dep = $request->abono;
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
+        $creditos->pl = '0';
+      } elseif($request->tipo_pago == 'YP') {
+        $creditos->efectivo = '0';
+        $creditos->tarjeta = '0';
+        $creditos->dep = '0';
+        $creditos->pl = '0';
+        $creditos->yap = $request->abono;
       } else {
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos->yap = '0';
+        $creditos->pl = $request->abono;
+
       }
       $creditos->save();
 
@@ -1984,11 +2011,19 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
+      } elseif($request->tipo_pago == 'YP') {
+        $creditos->efectivo = '0';
+        $creditos->tarjeta = '0';
+        $creditos->dep = '0';
+        $creditos->pl = '0';
+        $creditos->yap = $request->abono;
       } else {
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos->yap = '0';
+        $creditos->pl = $request->abono;
+
       }
       $creditos->save();
 
@@ -2083,11 +2118,19 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
+      } elseif($request->tipo_pago == 'YP') {
+        $creditos->efectivo = '0';
+        $creditos->tarjeta = '0';
+        $creditos->dep = '0';
+        $creditos->pl = '0';
+        $creditos->yap = $request->abono;
       } else {
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos->yap = '0';
+        $creditos->pl = $request->abono;
+
       }
       $creditos->save();
 
@@ -2182,11 +2225,19 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
+      } elseif($request->tipo_pago == 'YP') {
+        $creditos->efectivo = '0';
+        $creditos->tarjeta = '0';
+        $creditos->dep = '0';
+        $creditos->pl = '0';
+        $creditos->yap = $request->abono;
       } else {
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos->yap = '0';
+        $creditos->pl = $request->abono;
+
       }
       $creditos->save();
 
@@ -2233,11 +2284,19 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
+      } elseif($request->tipo_pago == 'YP') {
+        $creditos->efectivo = '0';
+        $creditos->tarjeta = '0';
+        $creditos->dep = '0';
+        $creditos->pl = '0';
+        $creditos->yap = $request->monto;
       } else {
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->monto;
+        $creditos->yap = '0';
+        $creditos->pl = $request->monto;
+
       }
       $creditos->save();
 
