@@ -66,6 +66,11 @@ class VentasController extends Controller
         ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
         ->first();
 
+        $total_pl = VentasDetalle::whereBetween('created_at', [$f1, $f2])
+        ->where('tipop', '=', 'PL')
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->first();
+
         
         $total_yp = VentasDetalle::whereBetween('created_at',  [$f1, $f2])
         ->where('tipop', '=', 'YP')
@@ -108,6 +113,12 @@ class VentasController extends Controller
         ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
         ->first();
 
+          
+        $total_pl = VentasDetalle::where('created_at', '=', date('Y-m-d'))
+        ->where('tipop', '=', 'PL')
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->first();
+
         
         $total_yp = VentasDetalle::where('created_at', '=', date('Y-m-d'))
         ->where('tipop', '=', 'YP')
@@ -126,7 +137,7 @@ class VentasController extends Controller
 
     
 
-        return view('ventas.index', compact('ventas','f1','f2','ventass','total','total_ef','total_tj','total_dp','total_yp'));
+        return view('ventas.index', compact('ventas','f1','f2','ventass','total','total_pl','total_ef','total_tj','total_dp','total_yp'));
         //
     }
 

@@ -113,7 +113,6 @@
                     <label for="exampleInputEmail1">Total</label>
                     <input type="text" disabled class="form-control" value="{{$total->monto}} S/">
                     </div>
-
                     <div class="col-md-2">
                     <label for="exampleInputEmail1">Efectivo</label>
                     <input type="text" disabled class="form-control" value="{{$total_ef->monto}} S/" >
@@ -129,6 +128,10 @@
                     <div class="col-md-2">
                     <label for="exampleInputEmail1">Yape</label>
                     <input type="text" disabled class="form-control" value="{{$total_yp->monto}} S/">
+                    </div>
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Plin</label>
+                    <input type="text" disabled class="form-control" value="{{$total_pl->monto}} S/">
                     </div>
 
 
