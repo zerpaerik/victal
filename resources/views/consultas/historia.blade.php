@@ -612,11 +612,11 @@
 
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Productos</label>
                     <div class="col-sm-4">
-                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control select22">
                         <option value="1">Seleccionar Producto</option>
                         @foreach($productos as $pac)
                           <option value="{{$pac->id}}">
-                            {{$pac->nombre}}
+                            {{$pac->nombre}} {{$pac->activo}}
                           </option>
                         @endforeach
                       </select>
@@ -954,6 +954,7 @@ function calculo_general() {
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+    $('.select22').select2()
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
