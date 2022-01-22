@@ -153,7 +153,7 @@ class ComisionesPagarCController extends Controller
 
         
         $comisiones = DB::table('creditosc as a')
-        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.tipop','a.id_responsable', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
+        ->select('a.id', 'a.estatus','a.archivo','a.recibo','a.id_origen','a.tipop','a.id_responsable', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'a.id_responsable')
@@ -177,7 +177,7 @@ class ComisionesPagarCController extends Controller
       
 
         $comisiones = DB::table('creditosc as a')
-        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.tipop','a.id_responsable', 'a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
+        ->select('a.id', 'a.estatus','a.archivo','a.recibo','a.id_origen','a.tipop','a.id_responsable', 'a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'a.id_responsable')
@@ -355,9 +355,11 @@ class ComisionesPagarCController extends Controller
                   $rsf = ComisionesC::where('id','=',$id_rs)->first();
                   $rsf->estatus =1;
                   $rsf->recibo = '';
+                  $rsf->archivo = NULL;
                   $rsf->tipop = '';
                   $rsf->fecha_pago = NULL;
                   $rsf->save();
+                  
 
               }
           }
@@ -371,6 +373,50 @@ class ComisionesPagarCController extends Controller
 
         //
     }
+
+    
+    public function guardar_archivo(Request $request){
+
+
+
+
+      $com = ComisionesC::where('recibo','=',$request->id)->get();
+
+
+      if ($com != null) {
+          
+
+          foreach ($com as $rs) {
+            $id_rs = $rs->id;
+            if (!is_null($id_rs)) {
+                $rsf = ComisionesC::where('id','=',$id_rs)->first();
+                $img = $request->file('informe');
+                $nombre_imagen=$img->getClientOriginalName();
+                $rsf->archivo =$nombre_imagen;
+                $rsf->usuario_archivo=Auth::user()->id;
+                if ($rsf->save()) {
+                  \Storage::disk('public')->put($nombre_imagen, \File::get($img));
+              }
+              \DB::commit();
+
+            }
+        }
+
+
+      }
+
+
+      return redirect()->route('creditosco.index')
+      ->with('success','Creado Exitosamente!');
+         
+    }
+
+    public function guardar_archivo_get($id){
+
+      return view('creditosc.archivo', compact('id'));
+
+    }
+
 
 
 

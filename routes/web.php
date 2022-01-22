@@ -294,6 +294,8 @@ Route::get('creditosc-pagar', 'ComisionesPagarCController@pagar')->middleware('a
 Route::post('pagarmultiplec', 'ComisionesPagarCController@pagarmultiple');
 Route::get('creditosc-ticket-{id}', 'ComisionesPagarCController@ticket')->middleware('auth');
 Route::get('creditosc-reversar-{id}', 'ComisionesPagarCController@reversar');
+Route::get('creditosc-archivo-{id}', 'ComisionesPagarCController@guardar_archivo_get');
+Route::post('creditosc_archivo', 'ComisionesPagarCController@guardar_archivo');
 
 
 
@@ -380,6 +382,7 @@ Route::get('ventas', 'VentasController@index')->name('ventas.index');
 Route::get('ventas-create', 'VentasController@create')->name('ventas.create')->middleware('auth');
 Route::post('ventas/create', 'VentasController@store')->middleware('auth');
 Route::get('ventas-delete-{id}','VentasController@delete');
+
 
 
 

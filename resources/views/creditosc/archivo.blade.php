@@ -29,8 +29,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -51,18 +49,17 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Facturas Cobradas</h1>
+            <h1 class="m-0 text-dark">Guardar Comprobante</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Facturas Cobradas</li>
+              <li class="breadcrumb-item active">Comprobante de pago</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -72,125 +69,69 @@
 
     <!-- Main content -->
     <section class="content">
-    @include('flash-message')
       <div class="container-fluid">
-      <div class="card">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-              <form method="get" action="creditos_cobrados">					
-                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
-
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Inicio</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
-                  </div>
-
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
-                  </div>
-                  
-                
-                 
-                  <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </form>
-
-               
-              
+                <h3 class="card-title">Agregar</h3>
               </div>
-              <br>
-              @if($f1 != null)
-              
-              @endif
+              @include('flash-message')
+
               <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Recibo</th>
-                    <th>Fecha</th>
-                    <th>Empresa</th>
-                    <th>Total Recibo</th>
-                    <th>TP</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </thead>
-                  <tbody>
+              <!-- form start -->
+              <form role="form" method="post" action="creditosc_archivo" enctype="multipart/form-data">
+					{{ csrf_field() }}                
+                    <div class="card-body">
+                    <div class="row">
+                  <div class="col-md-6">
+                    <label for="exampleInputEmail1">Adjunte el Archivo</label>
+                    <input type="file"  class="form-control" id="nombre" name="informe" placeholder="Nombre">
+                  </div>
 
-                  @foreach($comisiones as $an)
-                  <tr>
-                    <td>REC-2022-{{$an->recibo}}</td>
-                    <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                    <td>{{$an->totalrecibo}}</td>
-                    <td>{{$an->tipop}}</td>
-                   
-
-                    <td>
-                    <a target="_blank" class="btn btn-success btn-sm" href="creditosc-ticket-{{$an->recibo}}">
-                              <i class="fas fa-print">
-                              </i>
-                              Recibo
-                          </a>
-                        @if($an->archivo == null)
-                          <a class="btn btn-primary btn-sm" href="creditosc-archivo-{{$an->recibo}}">
-                              <i class="fas fa-upload">
-                              </i>
-                          </a>
-                          @else
-                          <a target="_blank" class="btn btn-success btn-sm" href="{{route('descargar2',$an->archivo)}}">
-                              <i class="fas fa-download">
-                              </i>
-                          </a>
-                          @endif
-                    @if(Auth::user()->rol == 1)
-
-                    
-
-                          <a class="btn btn-danger btn-sm" href="creditosc-reversar-{{$an->recibo}}" onclick="return confirm('¿Desea reversar este pago?')">
-                    <i class="fa fa-money" aria-hidden="true">
-                              </i>
-                              Reversar
-                          </a>
-                   
-                         
-
-                        
-                         </td>
-                          @endif
-                  </tr>
-                  @endforeach
+                  <input type="hidden" name="id" value="{{$id}}">
                  
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                  <th>Recibo</th>
-                    <th>Fecha</th>
-                    <th>Empresa</th>
-                    <th>Total Recibo</th>
-                    <th>TP</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </tfoot>
-                </table>
+                  </div>
+              
+                  <br>
+                  
+
+                  
+
+        
+                 
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+         
+            <!-- /.card -->
+
+           
+           
+               
+
+
+           
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <!-- /.col -->
+          <!--/.col (right) -->
         </div>
         <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-  </div>
-  </div>
-  </section>
+    
 
   <!-- /.content-wrapper -->
   
@@ -237,10 +178,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
-
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -251,22 +188,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+
 </body>
 </html>

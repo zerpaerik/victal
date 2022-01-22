@@ -280,5 +280,44 @@ class VentasController extends Controller
 
         //
     }
+
+
+    public function guardar_archivo(Request $request){
+
+
+
+        $usuario = DB::table('users')
+        ->select('*')
+        ->where('id','=', Auth::user()->id)
+        ->first();  
+  
+  
+        $rs = Atenciones::where('id','=',$request->id)->first();
+        $img = $request->file('informe');
+        $nombre_imagen=$img->getClientOriginalName();
+        $rs->usuario_archivo=Auth::user()->id;
+        $rs->archivo=$nombre_imagen;
+        if ($rs->save()) {
+            \Storage::disk('public')->put($nombre_imagen, \File::get($img));
+        }
+        \DB::commit();
+  
+  
+        return redirect()->route('atenciones.index')
+        ->with('success','Creado Exitosamente!');
+           
+      }
+  
+      public function guardar_archivo_get($id){
+  
+        return view('ventas.archivo', compact('id'));
+  
+      }
+  
+  
+
+
+
+
 }
 
