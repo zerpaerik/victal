@@ -211,6 +211,12 @@ Route::get('atenciones-editp-{id}', 'AtencionesController@editp')->name('atencio
 Route::get('atenciones-editc-{id}', 'AtencionesController@editc')->name('atenciones.editc');
 Route::get('atenciones-editm-{id}', 'AtencionesController@editm')->name('atenciones.editm');
 Route::get('atenciones-editsa-{id}', 'AtencionesController@editsa')->name('atenciones.editsa');
+Route::get('atenciones-archivo-{id}', 'AtencionesController@guardar_archivo_get');
+Route::post('atenciones_archivo', 'AtencionesController@guardar_archivo');
+
+
+
+
 
 Route::get('pagos-personal', 'PagosPersonalController@index')->name('pagosp.index');
 Route::get('pagosp-create', 'PagosPersonalController@create')->name('pagosp.create')->middleware('auth');

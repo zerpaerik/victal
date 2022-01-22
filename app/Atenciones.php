@@ -15,7 +15,7 @@ class Atenciones extends Model
     protected $table="atenciones";
 
     protected $fillable = [
-        'tipo_origen','id_origen','tipo_atencion','id_tipo', 'id_paciente','monto','abono','resta','estatus','llego','tipo_pago','eliminado_por','usuario','sede','pagado','atendido'
+        'tipo_origen','id_origen','tipo_atencion','id_tipo', 'id_paciente','monto','abono','resta','estatus','llego','tipo_pago','eliminado_por','usuario','sede','pagado','atendido','archivo'
     ];
 
     

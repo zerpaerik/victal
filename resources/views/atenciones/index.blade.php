@@ -155,6 +155,20 @@
                               <i class="fas fa-print">
                               </i>
                           </a>
+
+                          @if($an->archivo == null)
+                          <a class="btn btn-primary btn-sm" href="atenciones-archivo-{{$an->id}}">
+                              <i class="fas fa-upload">
+                          </i>
+                          </a>
+
+
+                          @else
+                          <a href="{{route('descargar2',$an->archivo)}}" class="btn btn-success btn-sm" target="_blank"><i class="fas fa-download">
+                          </i></a>
+
+                          @endif
+
                           @if($an->atendido == 2)
                           @if(Auth::user()->rol == 1)
                           <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
