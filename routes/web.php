@@ -271,6 +271,10 @@ Route::get('resultados-asocl-{id}', 'ResultadosController@asociarl');
 Route::get('resultados-desoc-{id}', 'ResultadosController@desoc');
 Route::get('resultados-desocl-{id}', 'ResultadosController@desocl');
 Route::get('resultados-reversar-{id}', 'ResultadosController@reversar');
+Route::get('resultados-ver-{id}', 'ResultadosController@ver');
+Route::get('resultados-redactar-{id}', 'ResultadosController@redactar');
+Route::post('resultados/redactar', 'ResultadosController@redactarPost');
+
 Route::get('resultados-reversarl-{id}', 'ResultadosController@reversarl');
 Route::get('modelo-informe-{id}-{id2}', 'ResultadosController@modelo_informe');
 Route::get('modelo-informel-{id}-{id2}', 'ResultadosController@modelo_informel');
@@ -485,6 +489,14 @@ Route::get('caja-consolidado2/{id}/{fecha1?}/{fecha2?}','CajaController@consolid
 Route::get('caja-ticket-{id}','CajaController@ticket');
 Route::get('caja-cerrar-{id}','CajaController@cerrar');
 Route::get('saldo/view/{id}', 'CajaController@saldo');
+
+Route::get('templates', 'TemplatesController@index')->name('templates.index');
+Route::get('templates-create', 'TemplatesController@create')->name('templates.create')->middleware('auth');
+Route::post('templates/create', 'TemplatesController@store')->middleware('auth');
+Route::get('templates-delete-{id}', 'TemplatesController@delete')->middleware('auth');
+Route::get('templates-edit-{id}', 'TemplatesController@edit')->name('templates.edit');
+Route::post('templates/edit', 'TemplatesController@update');
+
 
 Route::get('download2/{filename}', function($filename)
 {

@@ -140,86 +140,14 @@
 
 
 
-                        <form action="{{'resultados-asocl-' .$an->id}}" method="get">
-                                    <select class="form-control" name="informe">
-                                    <option value="">Seleccione</option>
-                                    <option value="ACIDO URICO.docx">ACIDO URICO</option>
-                                    <option value="AGLUTINACIONES.docx">AGLUTINACIONES</option>
-                                    <option value="ALFA FETOPROTEINAS.docx">ALFA FETOPROTEINASsss</option>
-                                    <option value="AMILASA SERICA.docx">AMILASA SERICA</option>
-									                  <option value="ANTIGENO SARS CoV 2.docx">ANTIGENO SARS CoV 2</option>
-                                    <option value="ASO.docx">ASO</option>
-                                    <option value="BETA HCG(cuantitativo).docx">BETA HCG(cuantitativo)</option>
-                                    <option value="BK-SERIADO.docx">BK-SERIADO</option>
-                                    <option value="CAMPAÑA.docx">CAMPAÑA</option>
-                                    <option value="COLESTEROL TOTAL.docx">COLESTEROL TOTAL</option>
-                                    <option value="COPROFUNCIONAL.docx">COPROFUNCIONAL</option>
-                                    <option value="CPK-MB.docx">CPK-MB</option>
-                                    <option value="CREATININA.docx">CREATININA</option>
-                                    <option value="CULTIVO SECRECION.docx">CULTIVO SECRECION</option>
-                                    <option value="CONSTANTES CORPUSCULARES.docx">CONSTANTES CORPUSCULARES</option>
-                                    <option value="CULTIVO DE SECRECION VAGINAL POSITIVO.docx">CULTIVO DE SECRECION VAGINAL POSITIVO</option>
-                                    <option value="CULTIVO DE SEMEN  NEGATIVO.docx">CULTIVO DE SEMEN  NEGATIVO</option>
-                                    <option value="DOSAJE DE POTASIO.docx">DOSAJE DE POTASIO</option>
-                                    <option value="ESPERMATOGRAMA.docx">ESPERMATOGRAMA</option>
-                                    <option value="EX. COMPLETO DE ORINA.docx">EX. COMPLETO DE ORINA</option>
-                                    <option value="EXTRADIOL.docx">EXTRADIOL</option>
-                                    <option value="FTA.docx">FTA</option>
-                                    <option value="GLOCOSA POST PANDRIAL.docx">GLOCOSA POST PANDRIAL</option>
-                                    <option value="GLOCOSA.docx">GLOCOSA</option>
-                                    <option value="GLU - COLT - TRIG.docx">GLU - COLT - TRIG</option>
-                                    <option value="GRUPO SANGUINEO.docx">GRUPO SANGUINEO</option>
-                                    <option value="HEMOGLOBINA.docx">HEMOGLOBINA</option>
-                                    <option value="HEMOGRAMA COMPLETA.docx">HEMOGRAMA COMPLETA</option>
-                                    <option value="HEMOGLOBINA GLUCOSILADA.docx">HEMOGLOBINA GLUCOSILADA</option>
-                                    <option value="HEMOGLOBINA -HEMATOCRITO.docx">HEMOGLOBINA -HEMATOCRITO</option>
-                                    <option value="HEPATITIS B.docx">HEPATITIS B</option>
-                                    <option value="HIV.docx">HIV</option>
-                                    <option value="LIPASA.docx">LIPASA</option>
-                                    <option value="PARASITO SERIADO.docx">PARASITO SERIADO</option>
-                                    <option value="PARASITOLOGICO SIMPLE.docx">PARASITOLOGICO SIMPLE</option>
-                                    <option value="PCR.docx">PCR</option>
-                                    <option value="PERFIL DE COAGULACION.docx">PERFIL DE COAGULACION</option>
-                                    <option value="PERFIL HEPATICO.docx">PERFIL HEPATICO</option>
-                                    <option value="PERFIL LIPIDICO.docx">PERFIL LIPIDICOs</option>
-                                    <option value="PERFIL OBSTETRICO.docx">PERFIL OBSTETRICO</option>
-                                    <option value="PERFIL TIROIDEO.docx">PERFIL TIROIDEO</option>
-                                    <option value="PROTENURIA.docx">PROTENURIA</option>
-                                    <option value="PSA TOTAL.docx">PSA TOTAL</option>
-								                  	<option value="PRUEBA RAPIDA.docx">PRUEBA RAPIDA</option>
-									                  <option value="PRUEBA RAPIDA PDF.docx">PRUEBA RAPIDA PDF</option>
-                                    <option value="RECUENTO DE PLAQUETAS.docx">RECUENTO DE PLAQUETAS</option>
-                                    <option value="RPR.docx">RPR</option>
-                                    <option value="RASPADO DE PIEL.docx">RASPADO DE PIEL</option>
-								                  	<option value="ROXANA_LAB.docx">ROXANA LAB</option>
-                                    <option value="RX.INFLAMATORIO.docx">RX.INFLAMATORIO</option>
-                                    <option value="SECRECION VAGINAL.docx">SECRECION VAGINAL</option>
-                                    <option value="SECRECION FARINGEA.docx">SECRECION FARINGEA</option>
-                                    <option value="SECRECION URETRAL.docx">SECRECION URETRAL</option>
-                                    <option value="SUB UNIDAD NEGATIVO.docx">SUB UNIDAD NEGATIVO</option>
-                                    <option value="SUB UNIDAD POSITIVO.docx">SUB UNIDAD POSITIVO</option>
-                                    <option value="TEST DE GRAHAM.docx">TEST DE GRAHAM</option>
-                                    <option value="THEVENON.docx">THEVENON</option>
-                                    <option value="TIEMPO DE COAGULACION - TIEMPO DE SANGRIA.docx">TIEMPO DE COAGULACION - TIEMPO DE SANGRIA</option>
-                                    <option value="TRIGLICERIDOS.docx">TRIGLICERIDOS</option>
-                                    <option value="TSH.docx">TSH</option>
-                                    <option value="UREA.docx">UREA</option>
-                                    <option value="UROCULTIVO NEGATIVO.docx">UROCULTIVO NEGATIVO</option>
-                                    <option value="UROCULTIVO POSITIVO.docx">UROCULTIVO POSITIVO</option>
-                                    <option value="VOLUMEN CORPUSCULARES.docx">VOLUMEN CORPUSCULARES</option>
-                                    <option value="VSG.docx">VSG</option>
-
-                                   
                                     
-                                    </select>
 
                                 </td>
                                 <td>
 
-                                <input type="hidden" name="id" value="{{$an->id}}">
 
 
-                                <input type="submit" class="btn btn-success" value="Asociar">
+                                <a href="resultados-redactar-{{$an->id}}" class="btn btn-success">Redactar Informe</a>
                                 </td>
 
 

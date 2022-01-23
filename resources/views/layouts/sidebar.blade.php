@@ -94,6 +94,12 @@
                   <p>Roles</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('templates.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Plantillas</p>
+                </a>
+              </li>
             
               
               

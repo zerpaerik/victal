@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Resultados Guardados Laboratorio</h1>
+            <h1 class="m-0 text-dark">Plantillas</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Resultados Guardados Laboratorio</li>
+              <li class="breadcrumb-item active">Plantillas de Resultados</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,99 +76,46 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="resultadosgl">					
-                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
-
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Buscar por Apellidos</label>
-                    <input type="text" class="form-control"  name="filtro">
-                  </div>
-
-                  <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </div>
-
-                  </form>
-
-                  <form method="get" action="resultadosgl">					
-                  <label for="exampleInputEmail1">Seleccione el Paciente</label>
-
-                    <div class="row">
-                  <div class="col-md-3">
-                  <select class="form-control" name="id_paciente">
-                    @foreach($pacientes as $role)
-                      <option value="{{$role->id}}">{{$role->apellidos}},{{$role->nombres}}-{{$role->dni}}</option>
-                    @endforeach
-                  </select>
-                   
-                  </div>
-
-                  <div class="col-md-2" style="margin-top: 1px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </form>
-              
+                <a class="btn btn-primary btn-sm" href="{{route('templates.create')}}">
+                              <i class="fas fa-folder">
+                              </i>
+                              Agregar
+                          </a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Fecha</th>
-                    <th>Pac.</th>
-                    <th>Origen</th>
-                    <th>Det.</th>
-                    <th>Informe.</th>
+                    <th>Laboratorio</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($resultados as $an)
+                  @foreach($templates as $an)
                   <tr>
-                   <td>{{$an->created_at}}</td>
-                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
-                    <td>{{$an->lastname}} {{$an->name}}</td>
-                    <td>{{$an->laboratorio}}</td>
-                    <td>
-                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
-                    <a href="resultadosgl-reversar-{{$an->id}}" class="btn btn-success">Reversar</a>
-                    @endif
-
-                    <a href="resultados-ver-{{$an->id}}" class="btn btn-success" target="_blank">Ver Informe</a>
-
-                    </td>
-
-
+                    <td>{{$an->detalle}}</td>
                     <td>
                     @if(Auth::user()->rol == 1)
-                   
 
-                         
-
+    
                         
-                         </td>
-                          @endif
+                          @endif</td>
                   </tr>
                   @endforeach
+                 
+                 
+               
+                 
                  
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Fecha</th>
-                    <th>Pac.</th>
-                    <th>Origen</th>
-                    <th>Det.</th>
-                    <th>Informe.</th>
+                    <th>Laboratorio</th>
                     <th>Acciones</th>
                   </tr>
-                 
                   </tfoot>
-
                 </table>
               </div>
               <!-- /.card-body -->
