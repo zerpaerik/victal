@@ -56,7 +56,14 @@
 <body>
 
     <img src="/var/www/html/sistemaVICTAL/public/image.png"  style="width: 20%; color: black;"/>
+    <div>
+	<div class="text-center title-header col-12">
+	   <center><strong>CLINICA VICTAL</strong> </center>
+		<center><strong>RESULTADO DE LABORATORIO</strong> </center>
 
+
+	</div>
+</div>
 
 
 
