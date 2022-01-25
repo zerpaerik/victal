@@ -4,18 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VentasDetalle extends Model
+class TemplatesReferencia extends Model
 {
      /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-
-    protected $table="ventas_detalle";
+    protected $table="template_referencia";
 
     protected $fillable = [
-        'id_venta','id_producto','cantidad','monto','total','usuario','cliente','archivo','usuario_archivo'
+        'nombre','id_plantilla'
     ];
 
     

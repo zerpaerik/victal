@@ -8,6 +8,8 @@ use App\Tiempo;
 use App\Material;
 use App\Solicitudes;
 use App\Templates;
+use App\TemplatesReferencia;
+use App\Referencias;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -45,7 +47,8 @@ class TemplatesController extends Controller
     {
 
         $analisis = Analisis::where('estatus','=',1)->get();
-        return view('templates.create', compact('analisis'));
+        $referencias = Referencias::where('estatus','=',1)->get();
+        return view('templates.create', compact('analisis','referencias'));
     }
 
     /**
@@ -58,21 +61,22 @@ class TemplatesController extends Controller
     {
 
 
-
-        
         if (isset($request->monto_l)) {
             foreach ($request->monto_l['laboratorios'] as $key => $lab) {
+
+               
 
                $pedidos = new Templates();
                $pedidos->id_laboratorio =$request->analisis;
                $pedidos->nombre =$request->monto_l['laboratorios'][$key]['monto'];
-               $pedidos->referencia =$request->monto_abol['laboratorios'][$key]['abono'];
-               $pedidos->usuario =Auth::user()->id;
+               $pedidos->medida =$request->monto_abol['laboratorios'][$key]['abono'];
+               $pedidos->referencia =$request->monto_abos['laboratorios'][$key]['abonos'];
                $pedidos->save();
 
+            
+        
+   
 
-      
-              
             }
           }
                

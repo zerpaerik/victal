@@ -104,8 +104,12 @@
                     <input type="float" class="form-control" id="email" name="valor[{{$pla->id}}]" placeholder="Valor de resultado" required>
                   </div>
                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">UM = Unidad de Medida</label>
+                    <input type="textarea" class="form-control" id="name" name="referencia[]" placeholder="Porcentaje Personal" value="{{$pla->medida}}" readonly="readonly">
+                  </div>
+                  <div class="col-md-3">
                     <label for="exampleInputEmail1">Valor Referencial</label>
-                    <input type="float" class="form-control" id="name" name="referencia[]" placeholder="Porcentaje Personal" value="{{$pla->referencia}}" readonly="readonly">
+                    <input type="textarea" class="form-control" id="name" name="referencia[]" placeholder="Porcentaje Personal" value="{{$pla->referencia}}" readonly="readonly">
                   </div>
                   <input type="hidden" name="id_plantilla[]" value="{{$pla->id}}">
                   </div>

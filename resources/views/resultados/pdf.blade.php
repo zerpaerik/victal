@@ -55,22 +55,19 @@
 </head>
 <body>
 
-    <img src="/var/www/html/sistemaVICTAL/public/image.png"  style="width: 20%; color: black;"/>
+     <img src="/var/www/html/victal/public/image.png"  style="width: 20%;"/>
     <div>
 	<div class="text-center title-header col-12">
-	   <center><strong>CLINICA VICTAL</strong> </center>
-		<center><strong>RESULTADO DE LABORATORIO</strong> </center>
-
-
+		<center>Informe <strong># LAB00{{ $res_i->id}}</strong> </center>
 	</div>
 </div>
 
 
 
-  <p><strong>PACIENTE:</strong>{{ $res_i->apellidos.' '.$res_i->nombres}}</p>
-  <p><strong>DNI PACIENTE:</strong>{{ $res_i->dni}}</p>
-  <p><strong>EXAMEN: </strong>{{ $res_i->detalle}}</p>
-  <p><strong>FECHA: </strong>{{ date('d-m-Y', strtotime($res_i->created_at))}}</p>
+  <p><strong>Paciente:</strong> {{ $res_i->apellidos.' '.$res_i->nombres}}</p>
+  <p><strong>Dni:</strong> {{ $res_i->dni}}</p>
+  <p><strong>Analisis de Laboratorio: </strong> {{ $res_i->detalle}}</p>
+  <p><strong>Fecha: </strong> {{ date('d-m-Y', strtotime($res_i->created_at))}}</p>
 
   <br><br>
 
@@ -80,17 +77,19 @@
 <table style="margin-top: -30px;border: none;border-collapse:collapse;">
   <thead>
   
-    <tr><th style="width:35%;" scope="col">NOMBRE</th>
-    <th style="width:15%;" scope="col">RESULTADO</th>
-    <th style="width:35%;text-overflow:ellipsis;" scope="col">VALOR DE REFERENCIA</th>
+    <tr><th style="width:25%;" scope="col">Nombre</th>
+    <th style="width:20%;" scope="col">Resultado</th>
+	<th style="width:20%;" scope="col">UM</th>
+    <th style="width:35%;text-overflow:ellipsis;" scope="col">Rango de Referencia</th>
   
   
  
   </thead>
   <tbody>
     @foreach($res as $r)
-    <tr><td style="padding: 0;text-align: left;">{{$r->nom_val}}</td>
-    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{$r->valor}}</td>
+    <tr><td style="padding: 0;">{{$r->nom_val}}</td>
+    <td style="padding: 0;">{{$r->valor}}</td>
+	<td style="padding: 0;">{{$r->medida}}</td>
     <td style="padding: 0;">{{$r->referencia}}</td>
     @endforeach
  </tbody>

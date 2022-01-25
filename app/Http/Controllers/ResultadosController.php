@@ -766,7 +766,7 @@ class ResultadosController extends Controller
 
 	  
         $res = DB::table('resultados_laboratorio as a')
-        ->select('a.*','b.*','an.nombre as detalle','t.nombre as nom_val','t.referencia')
+        ->select('a.*','b.*','an.nombre as detalle','t.nombre as nom_val','t.referencia','t.medida')
         ->join('resultados_lab_template as b','b.id_resultado','a.id')
         ->join('analisis as an','an.id','a.id_laboratorio')
         ->join('templates as t','t.id','b.id_plantilla')

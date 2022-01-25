@@ -312,7 +312,7 @@ class RequerimientosController extends Controller
 
 
         if (isset($request->id_laboratorio)) {
-            foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+            foreach ($request->monto_s['laboratorios'] as $key => $laboratorio) {
               if (!is_null($laboratorio['laboratorio'])) {
 
 

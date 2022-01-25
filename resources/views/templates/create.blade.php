@@ -125,16 +125,24 @@
                   
 
                     <div class="col-sm-3">
-                      <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
-
                       <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Nombre de campo" data-toggle="tooltip" data-placement="bottom" title="Monto">
                     </div>
 
 
-                    <label for="laboratorios_#index#_abonoL" class="col-sm-2 control-label">Valor Referencial</label>
-                    <div class="col-sm-3">
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">UM = Unidad de medida</label>
+                    <div class="col-sm-2">
 
-                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Valor referencial" data-toggle="tooltip" data-placement="bottom" onkeyup="calcular()" title="Abono">
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Unidad de Medida" data-toggle="tooltip" data-placement="bottom" onkeyup="calcular()" title="Abono">
+                    </div>
+
+                    <label for="laboratorios_#index#_abonoS" class="col-sm-1 control-label">Valores de Referencia</label>
+                    <div class="col-sm-4">
+
+                    <input id="laboratorios_#index#_abonoS" name="monto_abos[laboratorios][#index#][abonos] type="text" class="number form-control abonoL" placeholder="Escriba todos los valores de referencia" data-toggle="tooltip" data-placement="bottom" onkeyup="calcular()" title="Abono">
+
+
+                    </select>
+
                     </div>
 
                     <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
