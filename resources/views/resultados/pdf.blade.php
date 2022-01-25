@@ -55,7 +55,7 @@
 </head>
 <body>
 
-     <img src="/var/www/html/victal/public/image.png"  style="width: 20%;"/>
+     <img src="victal.png"  style="width: 20%;"/>
     <div>
 	<div class="text-center title-header col-12">
 		<center>Informe <strong># LAB00{{ $res_i->id}}</strong> </center>
