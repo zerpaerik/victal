@@ -353,6 +353,23 @@ table {
               
 			</div>
 
+			<div class="divTable">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell divTableHead"> ATENDIDO POR:</div>
+					</div>
+				</div>
+			</div>
+			<div class="divTable">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell" style="width: 100%">{{$hist->lastname}} {{$hist->name}}</div>
+                       
+					</div>
+				</div>
+              
+			</div>
+
             <div class="divTable">
 				<div class="divTableBody">
 					<div class="divTableRow">
