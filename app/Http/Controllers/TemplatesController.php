@@ -47,8 +47,7 @@ class TemplatesController extends Controller
     {
 
         $analisis = Analisis::where('estatus','=',1)->get();
-        $referencias = Referencias::where('estatus','=',1)->get();
-        return view('templates.create', compact('analisis','referencias'));
+        return view('templates.create', compact('analisis'));
     }
 
     /**
@@ -64,7 +63,6 @@ class TemplatesController extends Controller
         if (isset($request->monto_l)) {
             foreach ($request->monto_l['laboratorios'] as $key => $lab) {
 
-               
 
                $pedidos = new Templates();
                $pedidos->id_laboratorio =$request->analisis;
@@ -74,9 +72,6 @@ class TemplatesController extends Controller
                $pedidos->save();
 
             
-        
-   
-
             }
           }
                
