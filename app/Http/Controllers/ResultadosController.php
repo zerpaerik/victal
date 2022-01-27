@@ -867,14 +867,18 @@ class ResultadosController extends Controller
     {
 
       $res_i = DB::table('resultados_laboratorio as a')
-      ->select('a.*','b.*','at.id_paciente','an.nombre as detalle','t.nombre as nom_val','t.referencia','t.metodo','pac.apellidos','pac.nombres','pac.dni','at.id_tipo')
+      ->select('a.*','b.*','at.id_paciente','at.id_origen','at.tipo_origen','an.nombre as detalle','t.nombre as nom_val','t.referencia','t.metodo','pac.apellidos','pac.nombres','pac.dni','pac.fechanac','pac.tipo_doc','at.id_tipo','us.name','us.lastname')
       ->join('resultados_lab_template as b','b.id_resultado','a.id_atec_paquete')
       ->join('templates as t','t.id','b.id_plantilla')
       ->join('atenciones as at','at.id','a.id_atencion')
       ->join('paquetes as an','an.id','at.id_tipo')
       ->join('pacientes as pac','pac.id','at.id_paciente')
+      ->join('users as us','us.id','at.id_origen')
       ->where('a.id_atec_paquete', '=', $id)
       ->first(); 
+
+      $edad = Carbon::parse($res_i->fechanac)->age;
+
 
 
 	  
@@ -898,7 +902,7 @@ class ResultadosController extends Controller
 
 
 
-        $view = \View::make('resultados.pdf', compact('res_i','res'));
+        $view = \View::make('resultados.pdf', compact('res_i','res','edad'));
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
      
