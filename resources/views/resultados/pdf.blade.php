@@ -1,7 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<style>
-	.row{
+<html>
+    <head>
+        <style>
+            /** 
+                Establezca los márgenes de la página en 0, por lo que el pie de página y el encabezado
+                puede ser de altura y anchura completas.
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Defina ahora los márgenes reales de cada página en el PDF **/
+            body {
+                margin-top: 3cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Definir las reglas del encabezado **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 0cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Definir las reglas del pie de página **/
+            footer {
+                position: fixed; 
+                bottom: 0cm; 
+                left: 0cm; 
+                right: 0cm;
+                height: 2cm;
+            }
+
+			.row{
 		width: 1024px;
 		margin: 0 auto;
 	}
@@ -46,28 +80,28 @@
 		font-size: 14px;
 		padding: 8px 5px;
 	}
+        </style>
+    </head>
+    <body>
+        <!-- Defina bloques de encabezado y pie de página antes de su contenido -->
+        <header>
+            <img src="header.png" width="100%" height="100%"/>
+        </header>
 
-	
-</style>
-<head>
-	<title>Resultado de LABORATORIO</title>
+        <footer>
+            <img src="footer.png" width="100%" height="100%"/>
+        </footer>
 
-</head>
-<body>
-
-     <img src="victal.png"  style="width: 20%;"/>
-    <div>
-	<div class="text-center title-header col-12">
-		<center>Informe <strong># LAB00{{ $res_i->id}}</strong> </center>
-	</div>
-</div>
-
-
+        <!-- Envuelva el contenido de su PDF dentro de una etiqueta principal -->
+        <main>
+		<div>
 
   <p><strong>Paciente:</strong> {{ $res_i->apellidos.' '.$res_i->nombres}}</p>
   <p><strong>Dni:</strong> {{ $res_i->dni}}</p>
   <p><strong>Analisis de Laboratorio: </strong> {{ $res_i->detalle}}</p>
   <p><strong>Fecha: </strong> {{ date('d-m-Y', strtotime($res_i->created_at))}}</p>
+  </div>
+
 
   <br><br>
 
@@ -89,7 +123,8 @@
   </thead>
   <tbody>
     @foreach($res as $r)
-    <tr><td style="padding: 0;">{{$r->nom_val}}</td>
+    <tr>
+	<td style="padding: 0;">{{$r->nom_val}}</td>
     <td style="padding: 0;">{{$r->valor}}</td>
 	<td style="padding: 0;">{{$r->medida}}</td>
     <td style="padding: 0;">{{$r->referencia}}</td>
@@ -103,7 +138,6 @@
 
 
 </table>
-
-
-</body>
+        </main>
+    </body>
 </html>
