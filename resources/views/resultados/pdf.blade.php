@@ -80,6 +80,26 @@
 		font-size: 14px;
 		padding: 8px 5px;
 	}
+
+	/** 
+            * Defina el ancho, alto, márgenes y posición de la marca de agua.
+            **/
+            #watermark {
+                position: fixed;
+                bottom:   0px;
+                left:     0px;
+                /** El ancho y la altura pueden cambiar
+                    según las dimensiones de su membrete
+                **/
+                width:    21.8cm;
+                height:   28cm;
+
+                /** Tu marca de agua debe estar detrás de cada contenido **/
+                z-index:  -1000;
+            }
+
+
+
         </style>
     </head>
     <body>
@@ -91,6 +111,10 @@
         <footer>
             <img src="footer.PNG" width="100%" height="100%"/>
         </footer>
+
+		<div id="watermark">
+            <img src="water.PNG" height="100%" width="100%" />
+        </div>
 
         <!-- Envuelva el contenido de su PDF dentro de una etiqueta principal -->
         <main>
