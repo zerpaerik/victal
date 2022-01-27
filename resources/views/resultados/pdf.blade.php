@@ -120,18 +120,36 @@
         <main>
 		<div>
 
-  <p><strong>Paciente:</strong> {{ $res_i->apellidos.' '.$res_i->nombres}}</p>
-  <p style="margin-top: -13px;"><strong>{{ $res_i->tipo_doc}}:</strong> {{ $res_i->dni}}</p>
-  <p style="margin-top: -13px;"><strong>Edad:</strong> {{ $edad}}</p>
-  <p style="margin-top: -13px;"><strong>Analisis de Laboratorio: </strong> {{ $res_i->detalle}}</p>
-  <p style="margin-top: -13px;"><strong>Fecha: </strong> {{ date('d-m-Y', strtotime($res_i->created_at))}}</p>
-  @if($res_i->tipo_origen == 10)
-  <p style="margin-top: -13px;"><strong>Empresa: </strong> {{ $res_i->name}}</p>
-  @endif
-  </div>
+        <div>
+        <div class="col-6" >
+        <div>
+        <p><strong>Paciente:</strong> {{ $res_i->apellidos.' '.$res_i->nombres}}</p>
+        <p style="margin-top: -13px;"><strong>{{ $res_i->tipo_doc}}:</strong> {{ $res_i->dni}}</p>
+        <p style="margin-top: -13px;"><strong>Analisis de Laboratorio: </strong> {{ $res_i->detalle}}</p>
+       
+        </div>     
+           </div>
+        <div class="col-6 text-right">
+
+        </div> 
+    </div>
+
+    <!-- No podrá ver este texto. -->
 
 
-  <br><br>
+
+
+
+        <div>
+        <p style="margin-top: 25px;"><strong>Edad:</strong> {{ $edad}}</p>
+        <p style="margin-top: -13px;"><strong>Fecha: </strong> {{ date('d-m-Y', strtotime($res_i->created_at))}}</p>
+        @if($res_i->tipo_origen == 10)
+        <p style="margin-top: -13px;"><strong>Empresa: </strong> {{ $res_i->name}}</p>
+        @endif
+        </div>
+
+
+  <br><br><br><br>
 
 
 
