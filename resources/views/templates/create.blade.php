@@ -94,7 +94,7 @@
                   <br>
 
                   <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label for="exampleInputEmail1">Seleccione el Laboratorio:</label>
                   <select class="form-control" data-placeholder="Seleccione" style="width: 100%;" name="analisis" required>
                    @foreach($analisis as $a)
@@ -103,6 +103,7 @@
                   </select>
 
                   </div>
+               
                   </div>
                   <br>
 

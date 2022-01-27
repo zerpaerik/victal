@@ -65,6 +65,7 @@ class AnalisisController extends Controller
             $analisis->material =$request->material;
             $analisis->tiempo =$request->tiempo;
             $analisis->porcentaje =$request->porcentaje;
+            $analisis->metodo =$request->metodo;
             $analisis->usuario =Auth::user()->id;
             $analisis->save();
                
@@ -133,7 +134,8 @@ class AnalisisController extends Controller
       $p->costo =$request->costo;
       $p->precio =$request->precio;
       $p->material =$request->material;
-      $p->tiempo =$request->tiempo;
+      $p->tiempo =$request->tiempo;      
+      $p->metodo =$request->metodo;
       $p->porcentaje =$request->porcentaje;
       $res = $p->update();
     

@@ -78,9 +78,11 @@
   <thead>
   
     <tr><th style="width:25%;" scope="col">Nombre</th>
-    <th style="width:20%;" scope="col">Resultado</th>
-	<th style="width:20%;" scope="col">UM</th>
+    <th style="width:15%;" scope="col">Resultado</th>
+	<th style="width:15%;" scope="col">UM</th>
     <th style="width:35%;text-overflow:ellipsis;" scope="col">Rango de Referencia</th>
+	<th style="width:15%;" scope="col">Método</th>
+
   
   
  
@@ -91,6 +93,7 @@
     <td style="padding: 0;">{{$r->valor}}</td>
 	<td style="padding: 0;">{{$r->medida}}</td>
     <td style="padding: 0;">{{$r->referencia}}</td>
+	<td style="padding: 0;">{{$r->metodo}}</td>
     @endforeach
  </tbody>
 

@@ -139,8 +139,11 @@
                     <a href="resultadosgl-reversar-{{$an->id}}" class="btn btn-success">Reversar</a>
                     @endif
 
+                    @if($an->es_paquete == 0)
                     <a href="resultados-ver-{{$an->id}}" class="btn btn-success" target="_blank">Ver Informe</a>
-
+                    @else
+                    <a href="resultados-verp-{{$an->id_atec_paquete}}" class="btn btn-success" target="_blank">Ver Informe</a>
+                    @endif
                     </td>
 
 

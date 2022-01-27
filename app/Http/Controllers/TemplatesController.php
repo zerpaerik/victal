@@ -27,7 +27,7 @@ class TemplatesController extends Controller
     {
 
         $templates = DB::table('templates as a')
-        ->select('a.id','a.id_laboratorio','an.nombre as detalle','a.nombre','a.referencia')
+        ->select('a.id','a.id_laboratorio','a.medida','a.metodo','a.referencia','an.nombre as detalle','a.nombre','a.referencia')
         ->join('analisis as an', 'an.id', 'a.id_laboratorio')
         ->groupBy('a.id_laboratorio')
         ->get(); 

@@ -88,6 +88,8 @@
                   <thead>
                   <tr>
                     <th>Laboratorio</th>
+                    <th>Unidad de Medida</th>
+                    <th>Valores Referenciales</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -96,6 +98,9 @@
                   @foreach($templates as $an)
                   <tr>
                     <td>{{$an->detalle}}</td>
+                    <td>{{$an->medida}}</td>
+                    <td>{{$an->referencia}}</td>
+
                     <td>
                     @if(Auth::user()->rol == 1)
 

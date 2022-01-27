@@ -109,7 +109,6 @@
                     <th>Pac.</th>
                     <th>Origen</th>
                     <th>Det.</th>
-                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -123,7 +122,7 @@
                     @else
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     @endif                    
-                     <td>{{$an->lastname}} {{$an->name}}</td>
+                    <td>{{$an->lastname}} {{$an->name}}</td>
                     <td>{{$an->laboratorio}}</td>
 
                     <td>
@@ -146,8 +145,11 @@
                                 <td>
 
 
-
+                                @if($an->es_paquete == 0)
                                 <a href="resultados-redactar-{{$an->id}}" class="btn btn-success">Redactar Informe</a>
+                                @else
+                                <a href="resultados-redactarp-{{$an->id_atec_paquete}}" class="btn btn-success">Redactar Informe</a>
+                                @endif
                                 </td>
 
 

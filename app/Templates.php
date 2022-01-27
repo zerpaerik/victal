@@ -14,7 +14,7 @@ class Templates extends Model
     protected $table="templates";
 
     protected $fillable = [
-        'nombre','id_laboratorio','referencia','medida'
+        'nombre','id_laboratorio','referencia','medida','metodo'
     ];
 
     

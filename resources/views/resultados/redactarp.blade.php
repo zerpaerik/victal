@@ -63,12 +63,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Analisis</h1>
+            <h1 class="m-0 text-dark">Redactar Informe</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Analisis</li>
+              <li class="breadcrumb-item active">Redactar Informe de Laboratorio</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -87,48 +87,42 @@
               <div class="card-header">
                 <h3 class="card-title">Agregar</h3>
               </div>
+              
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="analisis/create" accept-charset="UTF-8" enctype="multipart/form-data">					
-              {{ csrf_field() }}                
+              <form method="post" action="resultados/redactarp" accept-charset="UTF-8" enctype="multipart/form-data">					
+                   {{ csrf_field() }}                
                     <div class="card-body">
-                    <div class="row">
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="name" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" placeholder="Nombre de Analisis">
-                  </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control" id="email" name="precio" placeholder="Precio">
-                  </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Costo</label>
-                    <input type="float" class="form-control" id="email" name="costo" placeholder="Costo">
-                  </div>
-
-                 
-                  </div>
+                    @foreach($plantilla as $pla)
+                    @foreach($pla as $p)
+                    <label for="exampleInputEmail1">{{$p->laboratorio}}</label>
                   <div class="row">
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Porcentaje</label>
-                    <input type="float" class="form-control" id="name" name="porcentaje" placeholder="Porcentaje">
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Nombre de Campo</label>
+                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="name" name="nombre[]" placeholder="Nombre de Servicio" value="{{$p->nombre}}" readonly="readonly">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Tiempo</label>
-                    <input type="text" class="form-control" id="email" name="tiempo" placeholder="Tiempo" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Valor</label>
+                    <input type="float" class="form-control" id="email" name="valor[{{$p->id}}]" placeholder="Valor de resultado" required>
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Material</label>
-                    <input type="text" class="form-control" id="email" name="material" placeholder="Material" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">UM = Unidad de Medida</label>
+                    <input type="textarea" class="form-control" id="name" name="referencia[]" placeholder="Porcentaje Personal" value="{{$p->medida}}" readonly="readonly">
                   </div>
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Valor Referencial</label>
+                    <input type="textarea" class="form-control" id="name" name="referencia[]" placeholder="Porcentaje Personal" value="{{$p->referencia}}" readonly="readonly">
+                  </div>
+                  <input type="hidden" name="id_laboratorio[]" value="{{$p->id_laboratorio}}">
+                  </div>
+                  @endforeach
+                  @endforeach
 
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Método</label>
-                    <input type="text" class="form-control" id="email" name="metodo" placeholder="Método" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                  </div>
+                  <input type="hidden" name="id_atec_paquete" value="{{$id}}">
+                  <input type="hidden" name="id_laboratorio" value="">
 
-                 
-                  </div>
+
+                  
                   <br>
                   
                   
@@ -228,6 +222,31 @@
 <!-- page script -->
 <!-- Summernote -->
 <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el2').on('change',function(){
+          var link;
+          if ($(this).val() == 'SALUD') {
+            link = '/servicios/sesiones/';
+          } else {
+		    link = '/servicios/nada/';
+		  }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#sesiones').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
 <script>
   $(function () {
     // Summernote

@@ -119,6 +119,12 @@
                     <input type="float" class="form-control" id="email" name="material" value="{{$analisis->material}}" placeholder="Precio">
                   </div>
 
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Método</label>
+                    <input type="float" class="form-control" id="email" name="metodo" value="{{$analisis->metodo}}" placeholder="Precio">
+                  </div>
+
+
                   
                 
                  

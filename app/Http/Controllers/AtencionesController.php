@@ -1116,6 +1116,7 @@ return view('atenciones.particular');
 
                           $rs = new ResultadosLaboratorio();
                           $rs->id_atencion =  $lab->id;
+                          $rs->id_atec_paquete =  $lab->id;
                           $rs->id_laboratorio =$laboratorio['analisi'];
                           $rs->save();
 
@@ -1300,11 +1301,10 @@ return view('atenciones.particular');
 
                           // VERIFICANDO LABORATORIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
 
-
                           $searchLabPaq = DB::table('paquetes_l')
-              ->select('*')
-              ->where('paquete', '=', $paq['paquete'])
-              ->get();
+                        ->select('*')
+                        ->where('paquete', '=', $paq['paquete'])
+                        ->get();
 
 
                           foreach ($searchLabPaq as $labp) {
@@ -1312,6 +1312,8 @@ return view('atenciones.particular');
                               if (!is_null($id_laboratorio)) {
                                   $rs = new ResultadosLaboratorio();
                                   $rs->id_atencion =  $lab->id;
+                                  $rs->es_paquete =  1;
+                                  $rs->id_atec_paquete =  $lab->id;
                                   $rs->id_laboratorio =$id_laboratorio;
                                   $rs->save();
                               }

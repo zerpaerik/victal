@@ -15,7 +15,7 @@ class Analisis extends Model
     protected $table="analisis";
 
     protected $fillable = [
-        'nombre','descripcion','precio','material', 'tiempo','usuario','foto','cliente','ult_ingreso','pedido','costo','porcentaje'
+        'nombre','descripcion','precio','material','metodo', 'tiempo','usuario','foto','cliente','ult_ingreso','pedido','costo','porcentaje'
     ];
 
     
