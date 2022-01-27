@@ -85,11 +85,11 @@
     <body>
         <!-- Defina bloques de encabezado y pie de página antes de su contenido -->
         <header>
-            <img src="header.png" width="100%" height="100%"/>
+            <img src="header.PNG" width="100%" height="100%"/>
         </header>
 
         <footer>
-            <img src="footer.png" width="100%" height="100%"/>
+            <img src="footer.PNG" width="100%" height="100%"/>
         </footer>
 
         <!-- Envuelva el contenido de su PDF dentro de una etiqueta principal -->
