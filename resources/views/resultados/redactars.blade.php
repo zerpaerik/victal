@@ -29,8 +29,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -51,18 +49,17 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Resultados Guardados Servicio</h1>
+            <h1 class="m-0 text-dark">Resultados</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Resultados Guardados Servicio</li>
+              <li class="breadcrumb-item active">Resultados de Servicio</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -72,121 +69,109 @@
 
     <!-- Main content -->
     <section class="content">
-    @include('flash-message')
       <div class="container-fluid">
-      <div class="card">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-              <form method="get" action="resultadosg">					
-                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
-
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Buscar por Apellidos</label>
-                    <input type="text" class="form-control"  name="filtro">
-                  </div>
-
-                  <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </div>
-
-                  </form>
-
-                  <form method="get" action="resultadosg">					
-                  <label for="exampleInputEmail1">Seleccione el Paciente</label>
-
-                    <div class="row">
-                  <div class="col-md-3">
-                  <select class="form-control" name="id_paciente">
-                    @foreach($pacientes as $role)
-                      <option value="{{$role->id}}">{{$role->apellidos}},{{$role->nombres}}-{{$role->dni}}</option>
-                    @endforeach
-                  </select>
-                   
-                  </div>
-
-                  <div class="col-md-2" style="margin-top: 1px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </form>
-              
+                <h3 class="card-title">Agregar</h3>
               </div>
               <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="post" action="resultados/redactars">
+					{{ csrf_field() }}                
+                    <div class="card-body">
+                    <div class="row">
+
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Sub Titulo</label>
+                    <input type="text" class="form-control" id="nombre" name="subtitulo" placeholder="Subtitulo de campo">
+                  </div>
+                  <div class="col-md-10">
+                    <label for="exampleInputEmail1">Contenido</label>
+                    <textarea name="contenido" id="nota" class="form-control" cols="4" rows="3"></textarea>
+                  </div>
+
+                  <input type="hidden" name="id_resultado" value="{{$resultados->id}}">
+                  <input type="hidden" name="id_servicio" value="{{$resultados->id_servicio}}">
+
+
+                  </div>
+                  <br>
+                
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+              </form>
+              @if(!$resf)
+              <center>AÚN NO HA REGISTRADO NINGÚN VALOR PARA EL RESULTADO</center>
+              @else
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Fecha</th>
-                    <th>Pac.</th>
-                    <th>Origen</th>
-                    <th>Det.</th>
-                    <th>Informe.</th>
-                    <th>Acciones</th>
+                    <th>Subtitulo</th>
+                    <th>Contenido</th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($resultados as $an)
+                  @foreach($res as $an)
                   <tr>
-                   <td>{{$an->created_at}}</td>
-                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
-                    <td>{{$an->lastname}} {{$an->name}}</td>
-                    <td>{{$an->servicio}}</td>
-                    <td>
-                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
-
-                    <a href="resultadosg-reversar-{{$an->id}}" class="btn btn-success">Reversar</a>
-                    @endif
-
-                    <a href="resultados-vers-{{$an->id}}" class="btn btn-success" target="_blank">Ver Informe</a>
-
-
-                    </td>
-
-
-                    <td>
-                    @if(Auth::user()->rol == 1)
+                    <td>{{$an->subtitulo}}</td>
+                    <td>{{$an->valor}}</td>
                    
-
-                         
-
-                        
-                         </td>
-                          @endif
+                   
                   </tr>
                   @endforeach
+                 
+                 
+               
+                 
                  
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Fecha</th>
-                    <th>Pac.</th>
-                    <th>Origen</th>
-                    <th>Det.</th>
-                    <th>Informe.</th>
-                    <th>Acciones</th>
+                   <th>Subtitulo</th>
+                    <th>Contenido</th>
                   </tr>
-                 
                   </tfoot>
-
                 </table>
+              </div>
+              <a class="btn btn-danger btn-sm" href="resultados" onclick="return confirm('Al salir ya el resultado quedará guardado')">
+                              <i class="fas fa-exit">
+                              </i>
+                              Salir
+                          </a>
+              @endif
+            </div>
+            <!-- /.card -->
+
+         
+            <!-- /.card -->
+
+           
+           
+               
+
+
+           
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <!-- /.col -->
+          <!--/.col (right) -->
         </div>
         <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-  </div>
-  </div>
-  </section>
+    
 
   <!-- /.content-wrapper -->
   
@@ -233,10 +218,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
-
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -247,22 +228,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+
 </body>
 </html>

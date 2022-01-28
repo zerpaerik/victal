@@ -14,7 +14,9 @@ use App\Comisiones;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
 use App\ResultadosLabTemplate;
+use App\ResultadosServTemplate;
 use App\Templates;
+use App\Subtitulos;
 use Auth;
 use Illuminate\Http\Request;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -913,6 +915,59 @@ class ResultadosController extends Controller
       
     }	  
 
+    public function vers($id)
+    {
+
+   
+
+    
+      $res_i = DB::table('resultados_servicios as a')
+      ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_origen', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni','pa.tipo_doc', 'c.name', 'c.lastname')
+      ->join('atenciones as b', 'b.id', 'a.id_atencion')
+      ->join('users as c', 'c.id', 'b.id_origen')
+      ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+      ->join('servicios as s', 's.id', 'a.id_servicio')
+      //->where('a.estatus', '=', 1)
+      ->where('a.id',  '=', $id)
+      //->where('a.monto', '!=', '0')
+      ->first();
+
+
+
+
+      $edad = Carbon::parse($res_i->fechanac)->age;
+
+
+
+	  
+      /*  $res = DB::table('resultados_laboratorio as a')
+        ->select('a.*','b.*','an.nombre as detalle','t.nombre as nom_val','t.referencia','t.medida')
+        ->join('resultados_lab_template as b','b.id_resultado','a.id_atec_paquete')
+        ->join('analisis as an','an.id','a.id_laboratorio')
+        ->join('templates as t','t.id','b.id_plantilla')
+        ->where('a.id_atec_paquete', '=', $id)
+        ->get(); */
+
+        $res = DB::table('resultados_serv_template as a')
+        ->select('a.*')
+        ->where('a.id_resultado', '=', $id)
+        ->get();
+
+
+
+
+        $view = \View::make('resultados.pdfs', compact('res_i','res','edad'));
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+    
+        return $pdf->stream('resultados-ver'.'.pdf');  
+
+
+      
+    }	  
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -944,6 +999,46 @@ class ResultadosController extends Controller
 
 
         return view('resultados.redactar', compact('resultados','plantilla'));
+
+      
+    }
+
+    public function redactars($id)
+    {
+
+     
+
+        $resultados = DB::table('resultados_servicios as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_origen', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'b.id_origen')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_servicio')
+        //->where('a.estatus', '=', 1)
+        ->where('a.id',  '=', $id)
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+        $subtitulos = Subtitulos::where('estatus','=',1)->get();
+
+        $res = DB::table('resultados_serv_template as a')
+        ->select('a.*')
+        ->where('a.id_resultado',  '=', $id)
+        ->get();
+
+        $resf = DB::table('resultados_serv_template as a')
+        ->select('a.*')
+        ->where('a.id_resultado',  '=', $id)
+        ->first();
+        
+
+        
+
+
+
+
+
+        return view('resultados.redactars', compact('resultados','subtitulos','resf','res'));
 
       
     }
@@ -1026,6 +1121,44 @@ class ResultadosController extends Controller
       
       return redirect()->route('resultados.index1')
       ->with('success','Creado Exitosamente!');
+
+    }
+
+    public function redactarPostS(Request $request){
+
+
+
+
+      $rl = ResultadosServicios::where('id','=',$request->id_resultado)->first();
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
+      $at = Atenciones::where('id','=',$rl->id_atencion)->first();
+      $at->informe =  'PLANTILLA';
+      $at->atendido =  2;
+      $at->atendido_por =  $usuario->lastname.' '.$usuario->name;
+      $at->save();
+
+      $rs = ResultadosServicios::where('id','=',$request->id_resultado)->first();
+      $rs->estatus=3;
+      $rs->usuario_informe=Auth::user()->id;
+      $rs->informe_guarda='PLANTILLA';
+      $rs->save();
+
+      $lab = new ResultadosServTemplate();
+      $lab->id_resultado =  $request->id_resultado;
+      $lab->subtitulo =  $request->subtitulo;
+      $lab->valor =  $request->contenido;
+      $lab->id_servicio = $request->id_servicio;
+      $lab->usuario = Auth::user()->id;
+      $lab->save();
+
+    
+      
+     return back();
 
     }
 

@@ -273,10 +273,13 @@ Route::get('resultados-desocl-{id}', 'ResultadosController@desocl');
 Route::get('resultados-reversar-{id}', 'ResultadosController@reversar');
 Route::get('resultados-ver-{id}', 'ResultadosController@ver');
 Route::get('resultados-verp-{id}', 'ResultadosController@verp');
+Route::get('resultados-vers-{id}', 'ResultadosController@vers');
 Route::get('resultados-redactar-{id}', 'ResultadosController@redactar');
+Route::get('resultados-redactars-{id}', 'ResultadosController@redactars');
 Route::get('resultados-redactarp-{id}', 'ResultadosController@redactarp');
 Route::post('resultados/redactar', 'ResultadosController@redactarPost');
 Route::post('resultados/redactarp', 'ResultadosController@redactarPostP');
+Route::post('resultados/redactars', 'ResultadosController@redactarPostS');
 
 Route::get('resultados-reversarl-{id}', 'ResultadosController@reversarl');
 Route::get('modelo-informe-{id}-{id2}', 'ResultadosController@modelo_informe');
