@@ -503,6 +503,13 @@ Route::get('templates-delete-{id}', 'TemplatesController@delete')->middleware('a
 Route::get('templates-edit-{id}', 'TemplatesController@edit')->name('templates.edit');
 Route::post('templates/edit', 'TemplatesController@update');
 
+Route::get('templates_s', 'TemplatesController@index1')->name('templates.index1');
+Route::get('templates-creates', 'TemplatesController@creates')->name('templates.creates')->middleware('auth');
+Route::post('templates/creates', 'TemplatesController@stores')->middleware('auth');
+
+
+
+
 
 Route::get('download2/{filename}', function($filename)
 {

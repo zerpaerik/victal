@@ -16,6 +16,7 @@ use App\ResultadosLaboratorio;
 use App\ResultadosLabTemplate;
 use App\ResultadosServTemplate;
 use App\Templates;
+use App\TemplatesS;
 use App\Subtitulos;
 use Auth;
 use Illuminate\Http\Request;
@@ -953,6 +954,17 @@ class ResultadosController extends Controller
         ->where('a.id_resultado', '=', $id)
         ->get();
 
+        $res = DB::table('resultados_serv_template as a')
+        ->select('a.*','b.*','t.subtitulo')
+        ->join('servicios as b','b.id','a.id_servicio')
+       // ->join('analisis as an','an.id','a.id_laboratorio')
+        ->join('templates_s as t','t.id','a.id_plantilla')
+        ->where('a.id_resultado', '=', $id)
+        //->groupBy('b.id_resultado')
+        ->get();
+
+
+
 
 
 
@@ -1021,6 +1033,9 @@ class ResultadosController extends Controller
 
         $subtitulos = Subtitulos::where('estatus','=',1)->get();
 
+        $plantilla = TemplatesS::where('id_servicio','=',$resultados->id_servicio)->get();
+
+
         $res = DB::table('resultados_serv_template as a')
         ->select('a.*')
         ->where('a.id_resultado',  '=', $id)
@@ -1038,7 +1053,7 @@ class ResultadosController extends Controller
 
 
 
-        return view('resultados.redactars', compact('resultados','subtitulos','resf','res'));
+        return view('resultados.redactars', compact('resultados','subtitulos','resf','res','plantilla'));
 
       
     }
@@ -1148,17 +1163,31 @@ class ResultadosController extends Controller
       $rs->informe_guarda='PLANTILLA';
       $rs->save();
 
-      $lab = new ResultadosServTemplate();
+     /* $lab = new ResultadosServTemplate();
       $lab->id_resultado =  $request->id_resultado;
       $lab->subtitulo =  $request->subtitulo;
       $lab->valor =  $request->contenido;
       $lab->id_servicio = $request->id_servicio;
       $lab->usuario = Auth::user()->id;
-      $lab->save();
+      $lab->save();*/
+
+      
+      foreach($request->valor as $key => $val){
+        // dd($key);
+         $lab = new ResultadosServTemplate();
+         $lab->id_resultado =  $request->id_resultado;
+         $lab->id_plantilla = $key;
+         $lab->subtitulo =  $val;
+         $lab->valor =  $val;
+         $lab->id_servicio = $request->id_servicio;
+         $lab->usuario = Auth::user()->id;
+         $lab->save();
+    }
 
     
       
-     return back();
+    return redirect()->route('resultados.index')
+    ->with('success','Creado Exitosamente!');
 
     }
 

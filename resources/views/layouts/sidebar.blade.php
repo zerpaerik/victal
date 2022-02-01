@@ -95,9 +95,16 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('templates.index')}}" class="nav-link">
+                <a href="{{route('templates.index1')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Plantillas</p>
+                  <p>Plantillas Analisis</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('templates.index1')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Plantillas Servicios</p>
                 </a>
               </li>
             
@@ -556,7 +563,7 @@
     @if(\Auth::user()->rol == 2)
 
 <a href="{{route('home')}}" class="brand-link">
-<img src="logo.jpeg" class="img-circle elevation-2" alt="User Image" width="40">
+<img src="victal.png" class="img-circle elevation-2" alt="User Image" width="40">
       
       <span class="brand-text font-weight-light">ADMIN VICTAL</span>
     </a>
@@ -940,7 +947,7 @@
     @if(\Auth::user()->rol == 7)
 
 <a href="{{route('home')}}" class="brand-link">
-<img src="logo.jpeg" class="img-circle elevation-2" alt="User Image" width="40">
+<img src="victal.png" class="img-circle elevation-2" alt="User Image" width="40">
       
       <span class="brand-text font-weight-light">ADMIN VICTAL</span>
     </a>
@@ -1248,7 +1255,7 @@
     @if(\Auth::user()->rol == 10)
 
 <a href="{{route('home')}}" class="brand-link">
-<img src="logo.jpeg" class="img-circle elevation-2" alt="User Image" width="40">
+<img src="victal.png" class="img-circle elevation-2" alt="User Image" width="40">
       
       <span class="brand-text font-weight-light">ADMIN VICTAL</span>
     </a>
@@ -1479,7 +1486,7 @@
 
     
 <a href="{{route('home')}}" class="brand-link">
-<img src="logo.jpeg" class="img-circle elevation-2" alt="User Image" width="40">
+<img src="victal.png" class="img-circle elevation-2" alt="User Image" width="40">
       
       <span class="brand-text font-weight-light">ADMIN VICTAL</span>
     </a>

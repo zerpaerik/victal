@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 use App\Equipos;
 use App\Analisis;
+use App\Servicios;
 use App\Clientes;
 use App\Tiempo;
 use App\Material;
 use App\Solicitudes;
 use App\Templates;
+use App\TemplatesS;
 use App\TemplatesReferencia;
 use App\Referencias;
 use App\User;
@@ -36,6 +38,19 @@ class TemplatesController extends Controller
         //
     }
 
+    public function index1()
+    {
+
+        $templates = DB::table('templates_s as a')
+        ->select('a.id','a.id_servicio','an.nombre as detalle')
+        ->join('servicios as an', 'an.id', 'a.id_servicio')
+        ->groupBy('a.id_servicio')
+        ->get(); 
+
+        return view('templates.index1', compact('templates'));
+        //
+    }
+
 
 
     /**
@@ -48,6 +63,13 @@ class TemplatesController extends Controller
 
         $analisis = Analisis::where('estatus','=',1)->get();
         return view('templates.create', compact('analisis'));
+    }
+
+    public function creates()
+    {
+
+        $servicios = Servicios::where('estatus','=',1)->get();
+        return view('templates.creates', compact('servicios'));
     }
 
     /**
@@ -77,6 +99,30 @@ class TemplatesController extends Controller
                
 
         return redirect()->action('TemplatesController@index')
+        ->with('success','Creado Exitosamente!');
+
+        //return redirect()->action('AnalisisController@index', ["created" => true, "analisis" => Analisis::all()]);
+
+    }
+
+    public function stores(Request $request)
+    {
+
+
+        if (isset($request->monto_l)) {
+            foreach ($request->monto_l['laboratorios'] as $key => $lab) {
+
+
+               $pedidos = new TemplatesS();
+               $pedidos->id_servicio =$request->servicio;
+               $pedidos->subtitulo =$request->monto_l['laboratorios'][$key]['monto'];
+               $pedidos->save();
+            
+            }
+          }
+               
+
+        return redirect()->action('TemplatesController@index1')
         ->with('success','Creado Exitosamente!');
 
         //return redirect()->action('AnalisisController@index', ["created" => true, "analisis" => Analisis::all()]);
