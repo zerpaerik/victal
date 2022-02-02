@@ -105,7 +105,7 @@
     <body>
         <!-- Defina bloques de encabezado y pie de página antes de su contenido -->
         <header>
-            <img src="header.PNG" width="100%" height="100%"/>
+            <img src="headers.PNG" width="100%" height="100%"/>
         </header>
 
         <footer>

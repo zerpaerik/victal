@@ -74,6 +74,19 @@ class HomeController extends Controller
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
+        $plin = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('tipopago', '=', 'PL')
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+        
+        $cred = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('tipopago', '=', 'CR')
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
             $egresos = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
             ->where('tipo', '!=', 'EXTERNO')
         ->select(DB::raw('SUM(monto) as monto'))
@@ -123,6 +136,20 @@ class HomeController extends Controller
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
+        $plin = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
+        array($fecha, $fechafin))
+    ->select(DB::raw('SUM(monto) as monto'))
+    ->where('tipopago', '=', 'PL')
+    ->where('sede', '=', $request->session()->get('sede'))
+    ->first();
+
+    $cred = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
+    array($fecha, $fechafin))
+->select(DB::raw('SUM(monto) as monto'))
+->where('tipopago', '=', 'CR')
+->where('sede', '=', $request->session()->get('sede'))
+->first();
+
             $egresos = Debitos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
             ->where('tipo', '!=', 'EXTERNO')
@@ -134,6 +161,6 @@ class HomeController extends Controller
 
         }
 
-        return view('home',compact('sedes', 'total','efec','tarj','dep','count','yap','egresos'));
+        return view('home',compact('sedes', 'total','efec','tarj','dep','count','yap','plin','cred','egresos'));
     }
 }
