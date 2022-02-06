@@ -103,6 +103,7 @@
                     <option value="7">Paquetes</option>
                     <option value="5">Consultas/Controles</option>
                     <option value="6">Métodos</option>
+                    <option value="12">Estética</option>
                     @elseif($tipo == '2')
                     <option value="1" >Procedimiento</option>
                     <option value="2" selected>Ecografia</option>
@@ -112,6 +113,7 @@
                     <option value="7">Paquetes</option>
                     <option value="5">Consultas/Controles</option>
                     <option value="6">Métodos</option>
+                    <option value="12">Estética</option>
                     @elseif($tipo == '3')
                     <option value="1" >Procedimiento</option>
                     <option value="2" >Ecografia</option>
@@ -121,6 +123,7 @@
                     <option value="7">Paquetes</option>
                     <option value="5">Consultas/Controles</option>
                     <option value="6">Métodos</option>
+                    <option value="12">Estética</option>
                     @elseif($tipo == '4')
                     <option value="1" >Procedimiento</option>
                     <option value="2" >Ecografia</option>
@@ -130,6 +133,7 @@
                     <option value="7">Paquetes</option>
                     <option value="5">Consultas/Controles</option>
                     <option value="6">Métodos</option>
+                    <option value="12">Estética</option>
                     @elseif($tipo == '5')
                     <option value="1" >Procedimiento</option>
                     <option value="2" >Ecografia</option>
@@ -139,6 +143,7 @@
                     <option value="7">Paquetes</option>
                     <option value="5" selected>Consultas/Controles</option>
                     <option value="6">Métodos</option>
+                    <option value="12">Estética</option>
                     @elseif($tipo == '6')
                     <option value="1" >Procedimiento</option>
                     <option value="2" >Ecografia</option>
@@ -148,6 +153,7 @@
                     <option value="7">Paquetes</option>
                     <option value="5" >Consultas/Controles</option>
                     <option value="6" selected>Métodos</option>
+                    <option value="12">Estética</option>
                     @elseif($tipo == '7')
                     <option value="1" >Procedimiento</option>
                     <option value="2" >Ecografia</option>
@@ -157,6 +163,17 @@
                     <option value="7" selected>Paquetes</option>
                     <option value="5" >Consultas/Controles</option>
                     <option value="6" >Métodos</option>
+                    <option value="12">Estética</option>
+                    @elseif($tipo == '12')
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" >Ecografia</option>
+                    <option value="3" >Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4" >Laboratorios</option>
+                    <option value="7" >Paquetes</option>
+                    <option value="5" >Consultas/Controles</option>
+                    <option value="6" >Métodos</option>
+                    <option value="12" selected>Estética</option>
                     @else
                     <option value="1" >Procedimiento</option>
                     <option value="2" >Ecografia</option>

@@ -206,6 +206,9 @@
     <a class="nav-link" data-toggle="tab" href="#sal">Salud Mental</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#est">Estética</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#lab">Laboratorios</a>
   </li>
   <li class="nav-item">
@@ -487,6 +490,76 @@
             </div>
   
     </div>
+
+    <div class="tab-pane container fade" id="est">
+    <div class="row">
+              <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i>Estética Seleccionadas</label>
+              <!-- sheepIt Form -->
+              <div id="estetica" class="embed ">
+              
+                  <!-- Form template-->
+                  <div id="estetica_template" class="template row">
+  
+                  <label for="estetica_#index#_este" class="col-sm-1 control-label">Estética</label>
+                      <div class="col-sm-3">
+                        <select id="estetica_#index#_este" name="id_este[estetica][#index#][_este]" class="selectEste form-control">
+                          <option value="1">Seleccionar Estética</option>
+                          @foreach($estetica as $est)
+                            <option value="{{$est->id}}">
+                              {{$est->nombre}} Precio:{{$est->precio}}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+  
+                      <label for="estetica_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                      <div class="col-sm-1">
+                        <input id="estetica_#index#_montoHidden" name="monto_h[estetica][#index#][montoHidden]" class="text" type="hidden" value="">
+  
+                        <input id="estetica_#index#_monto" name="monto_s[estetica][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      </div>
+  
+                      <label for="estetica_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                      <div class="col-sm-1">
+  
+                        <input id="estetica_#index#_abonoL" name="monto_abol[estetica][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      </div>
+  
+                      <label for="estetica_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
+                      <div class="col-sm-2">
+                        <select id="estetica_#index#_salu" name="id_pago[estetica][#index#][tipop]" class="form-control">
+                        <option value="" disabled>Seleccione</option>
+                          <option value="EF">Efectivo</option>
+                          <option value="TJ">Tarjeta</option>
+                          <option value="DP">Depósito</option>
+                          <option value="YP">Yape</option>
+                          <option value="PL">Plin</option>
+  
+                        </select>
+                      </div>
+  
+                     
+  
+                      <a id="estetica_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                  </div>
+                  <!-- /Form template-->
+                  
+                  <!-- No forms template -->
+                  <div id="estetica_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                  <!-- /No forms template-->
+                  
+                  <!-- Controls -->
+                  <div id="estetica_controls" class="controls col-sm-11 col-sm-offset-1">
+                      <div id="estetica_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar SaludM</span></a></div>
+                  </div>
+                  <!-- /Controls -->
+                  
+              </div>
+              <!-- /sheepIt Form --> 
+            </div>
+  
+    </div>
+
 
   <div class="tab-pane container fade" id="lab">
   <div class="row">
@@ -976,6 +1049,28 @@ $(document).on('change','.selectServ',function(){
       });
     });
 
+    $(document).on('change','.selectEste',function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "atenciones/getServicio/"+$(this).val(),
+         success: function(a) {
+           console.log(a);
+           
+            $('#estetica_'+id+'_montoHidden').val(a.precio);
+            $('#estetica_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+            sumar();
+          
+          
+         }
+      });
+    });
+
     $(document).on('change','.selectLab',function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
@@ -1138,6 +1233,26 @@ var botonDisabled = true;
     });
 
     var phonesForm = $("#salud").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+         sumar();
+         restar();
+
+        }
+    });
+
+    var phonesForm = $("#estetica").sheepIt({
         separator: '',
         allowRemoveCurrent: true,
         allowAdd: true,
