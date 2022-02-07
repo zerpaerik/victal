@@ -147,41 +147,98 @@ class PaquetesController extends Controller
      */
     public function edit($id)
     {
-        $material = Material::where('estatus','=',1)->get();
-        $tiempo = Tiempo::where('estatus','=',1)->get();
-        $servicio = Servicios::where('id','=',$id)->first();
+      $paquete = Paquetes::findOrFail($id);
+      $serviciosP = PaqueteServ::where('paquete',$id)->with('servicio')->get();
+      $laboratoriosP = PaqueteLab::where('paquete',$id)->with('laboratorio')->get();
+      $servicios = Servicios::all();
+      $laboratorios = Analisis::all();
 
-        return view('servicios.edit', compact('material','tiempo','servicio')); //
+      $consultasP = PaqueteCon::where('paquete',$id)->first();
+      $controlesP = PaqueteCont::where('paquete',$id)->first();
+     
+      return view('paquetes.edit', compact('paquete','serviciosP','laboratoriosP','servicios','laboratorios','consultasP','controlesP'));  
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Clientes  $Clientes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Analisis $analisis)
+    public function update(Request $request, $id)
     {
 
+      
 
+
+      $paquete = Paquetes::where('id',$id)
+                          ->update([
+                              'precio' => $request->precio,
+                              'porcentaje' => $request->porcentaje
+                          ]);
+
+        if (isset($request->id_servicio)) {
+            foreach ($request->id_servicio['servicios'] as $servicio) {
+              PaqueteServ::where('id', $servicio['id'])
+                          ->update([
+                              'servicio' => $servicio['servicio']
+                          ]);
+          }
+        }
        
+        if (isset($request->id_laboratorio)) {
+          foreach ($request->id_laboratorio['laboratorios'] as $laboratorio) {
+            PaqueteLab::where('id', $laboratorio['id'])
+                          ->update([
+                              'laboratorio' => $laboratorio['laboratorio']
+                          ]);
+          }
+        }
 
-      $p = Servicios::find($request->id);
-      $p->nombre =$request->nombre;
-      $p->tipo =$request->tipo;
-      $p->precio =$request->precio;
-      $p->porcentaje1 =$request->porcentaje1;
-      $p->porcentaje2 =$request->porcentaje2;
-      $p->porcentaje =$request->porcentaje;
-      $res = $p->update();
-    
-    
-    return redirect()->action('ServiciosController@index')
-    ->with('success','Modificado Exitosamente!');
 
-        //
+
+
+        if (isset($request->consultas)) {
+
+             $consul=PaqueteCon::where('paquete','=',$id)->first();
+
+             if($consul){
+          
+                PaqueteCon::where('paquete','=',$id)
+                          ->update([
+                              'cantidad' => $request->consultas
+                          ]);
+              } else {
+
+              $consultas = new PaqueteCon;
+              $consultas->paquete     = $id;
+              $consultas->cantidad = $request->consultas;
+              $consultas->save();
+
+
+              }
+         
+        }
+
+           if (isset($request->controles)) {
+
+             $cont=PaqueteCont::where('paquete','=',$id)->first();
+
+             if($cont){
+            PaqueteCont::where('paquete','=',$id)
+                          ->update([
+                              'cantidad' => $request->controles
+                          ]);
+            }else{
+
+              $control = new PaqueteCont;
+              $control->paquete     = $id;
+              $control->cantidad = $request->controles;
+              $control->save();
+
+            }
+         
+        }
+ 
+
+      return redirect()->route('paquetes.index');
     }
+
+    
 
   
    

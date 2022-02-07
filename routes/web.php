@@ -143,7 +143,7 @@ Route::get('paquetes-create', 'PaquetesController@create')->name('paquetes.creat
 Route::post('paquetes/create', 'PaquetesController@store')->middleware('auth');
 Route::get('paquetes-delete-{id}', 'PaquetesController@delete')->middleware('auth');
 Route::get('paquetes-edit-{id}', 'PaquetesController@edit')->name('paquetes.edit');
-Route::post('paquetes/edit', 'PaquetesController@update');
+Route::post('paquetes/edit/{id}', 'PaquetesController@update');
 Route::get('paquetes/ver/{id}', 'PaquetesController@ver')->middleware('auth');
 
 

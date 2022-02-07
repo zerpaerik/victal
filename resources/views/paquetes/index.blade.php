@@ -109,6 +109,11 @@
                               </i>
                               Ver
                           </a>
+                          <a class="btn btn-primary btn-sm" href="paquetes-edit-{{$an->id}}">
+                              <i class="fas fa-edit">
+                              </i>
+                                Editar
+                          </a>
                           <a class="btn btn-danger btn-sm" href="paquetes-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>

@@ -90,6 +90,7 @@ class TemplatesController extends Controller
 
                $pedidos = new Templates();
                $pedidos->id_laboratorio =$request->analisis;
+               $pedidos->subtitulo =$request->subtitulo;
                $pedidos->nombre =$request->monto_l['laboratorios'][$key]['monto'];
                $pedidos->medida =$request->monto_abol['laboratorios'][$key]['abono'];
                $pedidos->referencia =$request->monto_abos['laboratorios'][$key]['abonos'];

@@ -103,6 +103,12 @@
                   </select>
 
                   </div>
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Subtitulo</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="subtitulo" placeholder="Subtitulo">
+                  </div>
+                  
                
                   </div>
                   <br>
@@ -346,7 +352,7 @@ var phonesForm = $("#laboratorios").sheepIt({
     allowRemoveLast: true,
 
     // Limits
-    maxFormsCount: 10,
+    maxFormsCount: 25,
     minFormsCount: 1,
     iniFormsCount: 0,
 
