@@ -195,11 +195,11 @@ class PaquetesController extends Controller
     public function delete($id)
     {
 
-        $analisis = Servicios::find($id);
+        $analisis = Paquetes::find($id);
         $analisis->estatus = 0;
         $analisis->save();
 
-        return redirect()->action('ServiciosController@index');
+        return redirect()->action('PaquetesController@index');
 
         //
     }

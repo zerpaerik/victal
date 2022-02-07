@@ -29,8 +29,9 @@ class TemplatesController extends Controller
     {
 
         $templates = DB::table('templates as a')
-        ->select('a.id','a.id_laboratorio','a.medida','a.metodo','a.referencia','an.nombre as detalle','a.nombre','a.referencia')
+        ->select('a.id','a.id_laboratorio','a.estatus','a.medida','a.metodo','a.referencia','an.nombre as detalle','a.nombre','a.referencia')
         ->join('analisis as an', 'an.id', 'a.id_laboratorio')
+        ->where('a.estatus','=',1)
         ->groupBy('a.id_laboratorio')
         ->get(); 
 
@@ -42,8 +43,9 @@ class TemplatesController extends Controller
     {
 
         $templates = DB::table('templates_s as a')
-        ->select('a.id','a.id_servicio','an.nombre as detalle')
+        ->select('a.id','a.estatus','a.id_servicio','an.nombre as detalle')
         ->join('servicios as an', 'an.id', 'a.id_servicio')
+        ->where('a.estatus','=',1)
         ->groupBy('a.id_servicio')
         ->get(); 
 
@@ -131,27 +133,34 @@ class TemplatesController extends Controller
 
     public function ver($id)
     {
-	  
-        $req = DB::table('requerimientos as a')
-        ->select('a.id','a.asunto','a.prioridad','a.categoria','a.descripcion','a.estatus','a.estado','a.empresa','b.nombre as empresa')
-        ->join('clientes as b','b.id','a.empresa')
-        ->where('a.empresa', '=', Auth::user()->empresa)
-        ->where('a.estatus', '=', 1)
-        ->where('a.id', '=', $id)
-        ->first(); 
+      $analisis = Analisis::where('id','=',$id)->first();
+     // $servicios = PaqueteServ::where('paquete', $paquete->id)->with('servicio')->get();
 
-        //$equipos = ActivosRequerimientos::
+      $templates_detalle = DB::table('templates as a')
+      ->select('a.*','an.nombre')
+      ->join('analisis as an', 'an.id', 'a.id_laboratorio')
+      ->where('a.id_laboratorio',$id)
+      ->get(); 
+      
+    
+      
+      return view('templates.ver', compact('templates_detalle','analisis'));
+    }
 
-        $equipos = DB::table('activos_requerimientos as a')
-        ->select('a.id','a.activo','a.ticket','b.nombre','b.modelo','b.serial')
-        ->join('equipos as b','b.id','a.activo')
-        ->where('ticket','=',$id)
-        ->get();
+    public function vers($id)
+    {
+      $servicio = Servicios::where('id','=',$id)->first();
+     // $servicios = PaqueteServ::where('paquete', $paquete->id)->with('servicio')->get();
 
-
-	  
-      return view('requerimientos.ver', compact('req','equipos'));
-    }	  
+      $templates_detalle = DB::table('templates_s as a')
+      ->select('a.*')
+      ->where('a.id_servicio','=',$id)
+      ->get(); 
+      
+    
+      
+      return view('templates.vers', compact('templates_detalle','servicio'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -240,13 +249,43 @@ class TemplatesController extends Controller
     public function delete($id)
     {
 
-        $analisis = Analisis::find($id);
-        $analisis->estatus = 0;
-        $analisis->save();
+        $templates = Templates::where('id_laboratorio','=',$id)->get();
 
-        return redirect()->action('AnalisisController@index');
+        foreach ($templates as $key => $value) {
+
+            $analisis = Templates::find($value->id);
+            $analisis->estatus = 0;
+            $analisis->save();
+
+        }
+
+
+        return redirect()->action('TemplatesController@index');
 
         //
     }
+
+    public function deletes($id)
+    {
+
+        $templates = TemplatesS::where('id_servicio','=',$id)->get();
+
+
+        foreach ($templates as $key => $value) {
+
+            $analisis = TemplatesS::find($value->id);
+            $analisis->estatus = 0;
+            $analisis->save();
+
+        }
+
+
+        return redirect()->action('TemplatesController@index1');
+
+        //
+    }
+
+
+
 }
 

@@ -502,10 +502,16 @@ Route::post('templates/create', 'TemplatesController@store')->middleware('auth')
 Route::get('templates-delete-{id}', 'TemplatesController@delete')->middleware('auth');
 Route::get('templates-edit-{id}', 'TemplatesController@edit')->name('templates.edit');
 Route::post('templates/edit', 'TemplatesController@update');
+Route::get('templates/ver/{id}', 'TemplatesController@ver')->middleware('auth');
+
 
 Route::get('templates_s', 'TemplatesController@index1')->name('templates.index1');
 Route::get('templates-creates', 'TemplatesController@creates')->name('templates.creates')->middleware('auth');
 Route::post('templates/creates', 'TemplatesController@stores')->middleware('auth');
+Route::get('templates/vers/{id}', 'TemplatesController@vers')->middleware('auth');
+Route::get('templates-deletes-{id}', 'TemplatesController@deletes')->middleware('auth');
+
+
 
 
 
