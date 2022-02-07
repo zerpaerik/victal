@@ -22,6 +22,7 @@
                       <th>Nombre</th>
                       <th>Medida</th>
                       <th>Referencia</th>
+                      <th>Subtitulo</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -30,6 +31,7 @@
                       <td>{{$hist->nombre}}</td>
                       <td>{{$hist->medida}}</td>
                       <td>{{$hist->referencia}}</td>
+                      <td>{{$hist->subtitulo}}</td>
 
                     </tr>
                   @endforeach
