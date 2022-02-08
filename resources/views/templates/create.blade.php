@@ -126,12 +126,17 @@
                 <div id="laboratorios_template" class="template row">
 
                 
+                <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Subtitulo</label>
+                  
 
+                  <div class="col-sm-2">
+                    <input id="laboratorios_#index#_montos" name="monto_ls[laboratorios][#index#][montos] type="text" class="number form-control montol" placeholder="Subtitulo" data-toggle="tooltip" data-placement="bottom" title="Monto">
+                  </div>
             
                  <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Nombre</label>
                   
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-1">
                       <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Nombre de campo" data-toggle="tooltip" data-placement="bottom" title="Monto">
                     </div>
 
@@ -143,7 +148,7 @@
                     </div>
 
                     <label for="laboratorios_#index#_abonoS" class="col-sm-1 control-label">Valores de Referencia</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
 
                     <input id="laboratorios_#index#_abonoS" name="monto_abos[laboratorios][#index#][abonos] type="text" class="number form-control abonoL" placeholder="Escriba todos los valores de referencia" data-toggle="tooltip" data-placement="bottom" onkeyup="calcular()" title="Abono">
 

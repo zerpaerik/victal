@@ -834,7 +834,7 @@ class ResultadosController extends Controller
     {
 
       $res_i = DB::table('resultados_laboratorio as a')
-      ->select('a.*','b.*','at.id_paciente','an.nombre as detalle','t.nombre as nom_val','t.metodo','t.referencia','pac.apellidos','pac.nombres','pac.dni')
+      ->select('a.*','b.*','at.id_paciente','at.tipo_origen','an.nombre as detalle','t.nombre as nom_val','t.metodo','t.referencia','t.subtitulo','pac.apellidos','pac.nombres','pac.dni','pac.tipo_doc','pac.fechanac')
       ->join('resultados_lab_template as b','b.id_resultado','a.id')
       ->join('analisis as an','an.id','a.id_laboratorio')
       ->join('templates as t','t.id','b.id_plantilla')
@@ -843,9 +843,13 @@ class ResultadosController extends Controller
       ->where('a.id', '=', $id)
       ->first(); 
 
+      $edad = Carbon::parse($res_i->fechanac)->age;
+
+
+
 	  
         $res = DB::table('resultados_laboratorio as a')
-        ->select('a.*','b.*','an.nombre as detalle','an.metodo','t.nombre as nom_val','t.referencia','t.medida')
+        ->select('a.*','b.*','an.nombre as detalle','an.metodo','t.nombre as nom_val','t.referencia','t.medida','t.subtitulo')
         ->join('resultados_lab_template as b','b.id_resultado','a.id')
         ->join('analisis as an','an.id','a.id_laboratorio')
         ->join('templates as t','t.id','b.id_plantilla')
@@ -855,7 +859,7 @@ class ResultadosController extends Controller
 
 
 
-        $view = \View::make('resultados.pdf', compact('res_i','res'));
+        $view = \View::make('resultados.pdf', compact('res_i','res','edad'));
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
      
@@ -1007,7 +1011,7 @@ class ResultadosController extends Controller
         //->where('a.monto', '!=', '0')
         ->first();
 
-        $plantilla = Templates::where('id_laboratorio','=',$resultados->id_laboratorio)->get();
+        $plantilla = Templates::where('id_laboratorio','=',$resultados->id_laboratorio)->where('estatus','=', 1)->get();
 
 
         return view('resultados.redactar', compact('resultados','plantilla'));

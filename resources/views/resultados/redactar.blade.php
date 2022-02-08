@@ -95,9 +95,14 @@
                     <div class="card-body">
                     @foreach($plantilla as $pla)
                     <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Nombre de Campo</label>
-                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="name" name="nombre[]" placeholder="Nombre de Servicio" value="{{$pla->nombre}}" readonly="readonly">
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">{{$pla->subtitulo}}</label>
+                   </div>
+                   </div>
+                    <div class="row">
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1"></label>
+                    <input style="margin-top:9px;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="name" name="nombre[]" placeholder="Nombre de Servicio" value="{{$pla->nombre}}" readonly="readonly">
                   </div>
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Valor</label>

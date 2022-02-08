@@ -71,8 +71,8 @@
 	}
 	
 	tr th{
-		font-size: 14px;
-		text-transform: uppercase;
+		font-size: 13px;
+		/*text-transform: uppercase;*/
 		padding: 8px 5px;
 	}
 
@@ -149,19 +149,20 @@
         </div>
 
 
-  <br><br><br><br>
-
+  <br><br><br><br><br><br><br>
 
 
 
 <table style="margin-top: -30px;border: none;border-collapse:collapse;">
   <thead>
   
-    <tr><th style="width:25%;" scope="col">Nombre</th>
-    <th style="width:15%;" scope="col">Resultado</th>
-	<th style="width:15%;" scope="col">UM</th>
+    <tr>
+    <th style="width:25%;"></th>
+    <th style="width:25%;" >Nombre</th>
+    <th style="width:15%;" >Resultado</th>
+	<th style="width:15%;" >UM</th>
     <th style="width:35%;text-overflow:ellipsis;" scope="col">Rango de Referencia</th>
-	<th style="width:15%;" scope="col">Método</th>
+	<th style="width:15%;">Método</th>
 
   
   
@@ -170,6 +171,10 @@
   <tbody>
     @foreach($res as $r)
     <tr>
+    <td style="padding: 0;background: #ECE6EF;"><strong>{{$r->subtitulo}}<strong></td>
+    <br>
+    <tr>
+    <td style="padding: 0;"><strong><strong></td>
 	<td style="padding: 0;">{{$r->nom_val}}</td>
     <td style="padding: 0;">{{$r->valor}}</td>
 	<td style="padding: 0;">{{$r->medida}}</td>
@@ -178,12 +183,10 @@
     @endforeach
  </tbody>
 
-
-
-
-
-
 </table>
-        </main>
-    </body>
+
+
+
+</main>
+</body>
 </html>
