@@ -352,7 +352,7 @@ var phonesForm = $("#laboratorios").sheepIt({
     allowRemoveLast: true,
 
     // Limits
-    maxFormsCount: 25,
+    maxFormsCount: 30,
     minFormsCount: 1,
     iniFormsCount: 0,
 
