@@ -714,7 +714,11 @@ return view('atenciones.particular');
                   $lab->id_tipo = $request->tipo_con;
                   $lab->monto = $request->precio_con;
                   $lab->abono = $request->precio_con;
-                  $lab->tipo_pago = $request->tipop_con;
+                  if ($request->origen != 10) {
+                    $lab->tipo_pago = $request->tipop_con;
+                  } else {
+                    $lab->tipo_pago = 'CR';
+                  }
                   $lab->usuario = Auth::user()->id;
                   $lab->sede = $request->session()->get('sede');
                   $lab->save();
@@ -783,7 +787,11 @@ return view('atenciones.particular');
                   $lab->id_tipo = $request->metodo;
                   $lab->monto = $request->precio_met;
                   $lab->abono = $request->precio_met;
-                  $lab->tipo_pago = $request->tipop_met;
+                  if ($request->origen != 10) {
+                    $lab->tipo_pago = $request->tipop_met;
+                  } else {
+                    $lab->tipo_pago = 'CR';
+                  }
                   $lab->usuario = Auth::user()->id;
                   $lab->sede = $request->session()->get('sede');
                   $lab->save();
@@ -847,7 +855,11 @@ return view('atenciones.particular');
                           $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
                           $lab->abono = (float)$request->monto_abol['servicios'][$key]['abono'];
                           $lab->resta = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
-                          $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
+                          if ($request->origen != 10) {
+                            $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
+                          } else {
+                            $lab->tipo_pago = 'CR';
+                          }
                           $lab->usuario = Auth::user()->id;
                           $lab->sede = $request->session()->get('sede');
                           $lab->id_atec =  $atec->id;
@@ -970,7 +982,11 @@ return view('atenciones.particular');
                       $lab->monto = (float)$request->monto_s['salud'][$key]['monto'];
                       $lab->abono = (float)$request->monto_abol['salud'][$key]['abono'];
                       $lab->resta = (float)$request->monto_s['salud'][$key]['monto'] - (float)$request->monto_abol['salud'][$key]['abono'];
-                      $lab->tipo_pago = $request->id_pago['salud'][$key]['tipop'];
+                      if ($request->origen != 10) {
+                        $lab->tipo_pago = $request->id_pago['salud'][$key]['tipop'];
+                      } else {
+                        $lab->tipo_pago = 'CR';
+                      }
                       $lab->usuario = Auth::user()->id;
                       $lab->sede = $request->session()->get('sede');
                       $lab->id_atec =  $atec->id;
@@ -1111,7 +1127,11 @@ return view('atenciones.particular');
                           $lab->monto = (float)$request->monto_s['analisis'][$key]['monto'];
                           $lab->abono = (float)$request->monto_abol['analisis'][$key]['abono'];
                           $lab->resta = (float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
-                          $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
+                          if ($request->origen != 10) {
+                            $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
+                          } else {
+                            $lab->tipo_pago = 'CR';
+                          }
                           $lab->usuario = Auth::user()->id;
                           $lab->sede = $request->session()->get('sede');
                           $lab->id_atec =  $atec->id;
@@ -1211,7 +1231,11 @@ return view('atenciones.particular');
                           $lab->monto = (float)$request->monto_s['paquetes'][$key]['monto'];
                           $lab->abono = (float)$request->monto_abol['paquetes'][$key]['abono'];
                           $lab->resta = (float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
-                          $lab->tipo_pago = $request->id_pago['paquetes'][$key]['tipop'];
+                          if ($request->origen != 10) {
+                            $lab->tipo_pago = $request->id_pago['paquetes'][$key]['tipop'];
+                          } else {
+                            $lab->tipo_pago = 'CR';
+                          }
                           $lab->usuario = Auth::user()->id;
                           $lab->sede = $request->session()->get('sede');
                           $lab->id_atec =  $atec->id;
@@ -1438,7 +1462,11 @@ return view('atenciones.particular');
                           $lab->monto = (float)$request->monto_s['ecografias'][$key]['monto'];
                           $lab->abono = (float)$request->monto_abol['ecografias'][$key]['abono'];
                           $lab->resta = (float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
-                          $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
+                          if ($request->origen != 10) {
+                              $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
+                          } else {
+                              $lab->tipo_pago = 'CR';
+                          }
                           $lab->usuario = Auth::user()->id;
                           $lab->sede = $request->session()->get('sede');
                           $lab->id_atec =  $atec->id;
@@ -1558,7 +1586,11 @@ return view('atenciones.particular');
                         $lab->monto = (float)$request->monto_s['estetica'][$key]['monto'];
                         $lab->abono = (float)$request->monto_abol['estetica'][$key]['abono'];
                         $lab->resta = (float)$request->monto_s['estetica'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
-                        $lab->tipo_pago = $request->id_pago['estetica'][$key]['tipop'];
+                        if ($request->origen != 10) {
+                          $lab->tipo_pago = $request->id_pago['estetica'][$key]['tipop'];
+                        } else {
+                          $lab->tipo_pago = 'CR';
+                        }
                         $lab->usuario = Auth::user()->id;
                         $lab->sede = $request->session()->get('sede');
                         $lab->id_atec =  $atec->id;
@@ -1670,7 +1702,11 @@ return view('atenciones.particular');
                           $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'];
                           $lab->abono = (float)$request->monto_abol['rayos'][$key]['abono'];
                           $lab->resta = (float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
-                          $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
+                          if ($request->origen != 10) {
+                            $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
+                          } else {
+                            $lab->tipo_pago = 'CR';
+                          }
                           $lab->usuario = Auth::user()->id;
                           $lab->sede =$request->session()->get('sede');
                           $lab->id_atec =  $atec->id;
