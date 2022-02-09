@@ -834,12 +834,13 @@ class ResultadosController extends Controller
     {
 
       $res_i = DB::table('resultados_laboratorio as a')
-      ->select('a.*','b.*','at.id_paciente','at.tipo_origen','an.nombre as detalle','t.nombre as nom_val','t.metodo','t.referencia','t.subtitulo','pac.apellidos','pac.nombres','pac.dni','pac.tipo_doc','pac.fechanac')
+      ->select('a.*','b.*','at.id_paciente','at.tipo_origen','at.id_origen','an.nombre as detalle','t.nombre as nom_val','t.metodo','t.referencia','t.subtitulo','pac.apellidos','pac.nombres','pac.dni','pac.tipo_doc','pac.fechanac','us.name','us.lastname')
       ->join('resultados_lab_template as b','b.id_resultado','a.id')
       ->join('analisis as an','an.id','a.id_laboratorio')
       ->join('templates as t','t.id','b.id_plantilla')
       ->join('atenciones as at','at.id','a.id_atencion')
       ->join('pacientes as pac','pac.id','at.id_paciente')
+      ->join('users as us','us.id','at.id_origen')
       ->where('a.id', '=', $id)
       ->first(); 
 
