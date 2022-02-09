@@ -401,6 +401,16 @@ class CajaController extends Controller
             $rayos->monto = 0;
         }
 
+        $estetica = Creditos::where('origen', 'ESTETICA')
+        ->where('sede','=', $request->session()->get('sede'))
+        ->whereRaw("created_at >= ? AND created_at <= ?", 
+         array($fechainic, $fecha))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->first();
+        if ($estetica->cantidad == 0) {
+        $estetica->monto = 0;
+        }
+
         $paq = Creditos::where('origen', 'PAQUETES')
         ->where('sede','=', $request->session()->get('sede'))
         ->whereRaw("created_at >= ? AND created_at <= ?", 
@@ -482,6 +492,16 @@ class CajaController extends Controller
       $yape->monto = 0;
       }
 
+      $plin = Creditos::where('tipopago', 'PL')
+      ->where('sede','=', $request->session()->get('sede'))
+      ->whereRaw("created_at >= ? AND created_at <= ?", 
+              array($fechainic, $fecha))
+      ->select(DB::raw('SUM(monto) as monto'))
+      ->first();
+      if (is_null($plin->monto)) {
+      $plin->monto = 0;
+      }
+
         $tarjeta = Creditos::where('tipopago', 'TJ')
                             ->where('sede','=', $request->session()->get('sede'))
                             ->whereRaw("created_at >= ? AND created_at <= ?", 
@@ -499,12 +519,12 @@ class CajaController extends Controller
             $totalEgresos += $egreso->monto;
         }
     
-         $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+         $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto + $estetica->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
 
         
  
        
-       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos','estetica','plin', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');
@@ -611,6 +631,16 @@ class CajaController extends Controller
           $rayos->monto = 0;
       }
 
+      $estetica = Creditos::where('origen', 'ESTETICA')
+      ->where('sede','=', $request->session()->get('sede'))
+      ->whereRaw("created_at >= ? AND created_at <= ?", 
+       array($fechamañana, $fecha))
+      ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+      ->first();
+if ($estetica->cantidad == 0) {
+$estetica->monto = 0;
+}
+
       $paq = Creditos::where('origen', 'PAQUETES')
       ->where('sede','=', $request->session()->get('sede'))
       ->whereRaw("created_at >= ? AND created_at <= ?", 
@@ -692,6 +722,17 @@ class CajaController extends Controller
     $yape->monto = 0;
     }
 
+    
+    $plin = Creditos::where('tipopago', 'PL')
+    ->where('sede','=', $request->session()->get('sede'))
+    ->whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fechamañana, $fecha))
+    ->select(DB::raw('SUM(monto) as monto'))
+    ->first();
+    if (is_null($plin->monto)) {
+    $plin->monto = 0;
+    }
+
       $tarjeta = Creditos::where('tipopago', 'TJ')
                           ->where('sede','=', $request->session()->get('sede'))
                           ->whereRaw("created_at >= ? AND created_at <= ?", 
@@ -709,12 +750,12 @@ class CajaController extends Controller
           $totalEgresos += $egreso->monto;
       }
   
-       $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+       $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto + $estetica->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
 
       
 
      
-     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos','estetica','plin', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
     
      //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
      $pdf = \App::make('dompdf.wrapper');

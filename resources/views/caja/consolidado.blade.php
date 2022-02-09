@@ -52,7 +52,6 @@
 <div>
 	<div class="text-center title-header col-12">
 		<center><strong>REPORTE DE CIERRE DE CAJA</strong> </center>
-		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
 	</div>
 </div>
 <div>
@@ -115,6 +114,12 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">RayosX</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->monto }}</td>
+		</tr>
+
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Estética</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $estetica->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $estetica->monto }}</td>
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Laboratorios</td>
@@ -190,8 +195,9 @@
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">efectivo</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">tarjeta</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">deposito</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;"> yape</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;"> total</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">yape</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">plin</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">total</th>
 
 		</tr>
 		<tr>
@@ -199,6 +205,7 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $tarjeta->monto }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $deposito->monto }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $yape->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $plin->monto }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $efectivo->monto + $tarjeta->monto + $deposito->monto + $yape->monto}}</td>
 
 		</tr>
