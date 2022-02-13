@@ -117,12 +117,12 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Items</th>
+                    <th style="width: 2%">Items</th>
                     <th>id</th>
                     <th>Fecha</th>
                     <th>Pac.</th>
-                    <th>Origen</th>
-                    <th>Det.</th>
+                    <th width="20%">Origen</th>
+                    <th style="width: 30%">Det.</th>
                     <th>Monto</th>
                   </tr>
                   </thead>
@@ -130,12 +130,12 @@
 
                   @foreach($comisiones as $an)
                   <tr>
-                  <td><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
-                  <td>{{$an->id}}</td>
-                   <td>{{$an->created_at}}</td>
+                    <td style="width: 2%"><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
+                    <td>{{$an->id}}</td>
+                    <td>{{$an->created_at}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
-                    <td>{{$an->lasto}} {{$an->nameo}}</td>
-                    <td width="5%">{{$an->detalle}}</td>
+                    <td width="20%">{{$an->lasto}} {{$an->nameo}}</td>
+                    <td width="30%">{{$an->detalle}}</td>
                    
                     <td>{{$an->monto}}</td>
 

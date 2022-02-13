@@ -55,7 +55,7 @@
 </head>
 <body>
 
-    <img src="/var/www/html/sistemaVICTAL/public/image.png"  style="width: 20%; color: black;"/>
+    <img src="victal.PNG"  style="width: 20%;"/>
 
 
 

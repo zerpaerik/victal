@@ -32,7 +32,7 @@
                 bottom: 0cm; 
                 left: 0cm; 
                 right: 0cm;
-                height: 2cm;
+                height: 4cm;
             }
 
 			.row{
@@ -58,6 +58,10 @@
 	.text-right{
 		text-align: right;
 	}
+
+    .signature{
+        background-image: url("https://picsum.photos/200/300?random=1");
+    }
 
 	.title-header{
 		font-size: 22px; 
@@ -109,15 +113,12 @@
         </header>
 
         <footer>
-            <img src="footer.PNG" width="100%" height="100%"/>
+            <img src="footer2.PNG" width="100%" height="100%"/>
         </footer>
 
-		<div id="watermark">
-            <img src="water.PNG" height="100%" width="100%" />
-        </div>
+		
 
         <!-- Envuelva el contenido de su PDF dentro de una etiqueta principal -->
-        <main>
 		<div>
 
         <div>
@@ -181,12 +182,19 @@
     <td style="padding: 0;">{{$r->referencia}}</td>
 	<td style="padding: 0;">{{$r->metodo}}</td>
     @endforeach
+
  </tbody>
+
 
 </table>
 
+<img src="firma.PNG" height="100%" width="100%" />
 
 
-</main>
+
+
+
+
+
 </body>
 </html>

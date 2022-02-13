@@ -124,7 +124,7 @@
                   <tr>
                     <td>REC-2022-{{$an->recibo}}</td>
                     <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->totalrecibo}}</td>
                     <td>{{$an->tipop}}</td>
                    
