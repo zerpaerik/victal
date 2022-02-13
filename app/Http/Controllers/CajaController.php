@@ -62,7 +62,8 @@ class CajaController extends Controller
 
 
 
-} else {
+    } else {
+
 
 
 
@@ -81,13 +82,17 @@ class CajaController extends Controller
 
 
         if($cajaa != null){
+
+
             
-        $aten = Creditos::where('fecha','>',$cajaa->created_at)
+        $aten = Creditos::where('created_at','>',$cajaa->created_at)
         ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('SUM(monto) as monto'))
         ->first();
 
-        $deb = Debitos::where('fecha','>',$cajaa->created_at)
+
+
+        $deb = Debitos::where('created_at','>',$cajaa->created_at)
         ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('SUM(monto) as monto'))
         ->first();
@@ -95,7 +100,11 @@ class CajaController extends Controller
         $total = $aten->monto - $deb->monto;
 
 
+
+
+
         } else {
+
 
         $aten = Creditos::select(DB::raw('SUM(monto) as monto'))
         ->where('sede','=',$request->session()->get('sede'))
@@ -106,6 +115,8 @@ class CajaController extends Controller
         ->first();
 
         $total = $aten->monto - $deb->monto;
+
+
 
             
         }
@@ -130,6 +141,8 @@ class CajaController extends Controller
 
         }
 		  $hoy =date('Y-m-d H:i:s');
+
+
 
 
 	    return view('caja.index',[
@@ -271,7 +284,7 @@ class CajaController extends Controller
 
         Cajas::create([
               'primer_turno' => 0,
-              'segundo_turno' => $request->total - $caja->primer_turno,
+              'segundo_turno' => $request->total/* - $caja->primer_turno*/,
               'fecha' => Carbon::now()->toDateString(),
               'total' => $request->total,
               'sede' =>  $request->session()->get('sede'),
