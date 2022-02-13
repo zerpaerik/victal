@@ -55,7 +55,7 @@
 </head>
 <body>
 
-    <img src="victal.PNG"  style="width: 20%;"/>
+    <img src="victal.png" style="width: 20%;"/>
 
 
 
