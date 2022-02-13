@@ -36,6 +36,8 @@ Route::post('personal/create', 'PersonalController@store')->middleware('auth');
 Route::get('personal-delete-{id}', 'PersonalController@delete')->middleware('auth');
 Route::get('personal-edit-{id}', 'PersonalController@edit')->name('personal.edit');
 Route::post('personal/edit', 'PersonalController@update');
+Route::get('personal/ver/{id}', 'PersonalController@ver');
+
 
 Route::get('centros', 'CentrosController@index')->name('centros.index');
 Route::get('centros-create', 'CentrosController@create')->name('centros.create')->middleware('auth');

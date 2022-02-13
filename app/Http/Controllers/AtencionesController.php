@@ -615,7 +615,7 @@ class AtencionesController extends Controller
 
     public function personal(){
      
-        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','ProfSalud')->orderBy('lastname','ASC')->get();
+        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','ProfSalud')->orWhere('tipo_personal','=','Especialista')->orderBy('lastname','ASC')->get();
 
  
      return view('atenciones.personal', compact('personal'));

@@ -6,6 +6,7 @@ use App\Roles;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class PersonalController extends Controller
 {
@@ -71,17 +72,22 @@ class PersonalController extends Controller
     }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Roles  $roles
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Roles $roles)
+    public function ver($id)
     {
-        //
-    }
 
+
+      $users = DB::table('users as a')
+      ->select('a.*')
+     // ->join('users as u', 'u.id', 'a.usuario')
+      ->where('a.id', '=', $id)
+      ->first(); 
+	  
+      return view('personal.ver', compact('users'));
+    }	  
+
+
+
+    
     /**
      * Show the form for editing the specified resource.
      *
