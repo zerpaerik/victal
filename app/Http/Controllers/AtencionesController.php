@@ -1566,10 +1566,13 @@ return view('atenciones.particular');
 
               //GUARDANDO ESTÉTICA
 
+             // if ($request->id_servicio != null && $request->id_servicio['servicios'][0]['servicio'] != '1') {
+
+
               if ($request->id_este != null) {
                 foreach ($request->id_este['estetica'] as $key => $estet) {
 
-                    if (!is_null($estet['_este'])) {
+                    if (!is_null($estet['_este']) && $estet['_este'] != '1') {
                         $servicio = Servicios::where('id', '=', $estet['_este'])->first();
 
                         //TIPO ATENCION ECOGRAFIA= 12
