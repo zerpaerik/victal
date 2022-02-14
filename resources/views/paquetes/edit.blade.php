@@ -137,6 +137,8 @@
 					                  <option value="{{$pac->id}}">
 					                            	{{$pac->nombre}}-Precio:{{$pac->precio}}
 					                  </option>
+
+                            
 					              @endif
 				                @endforeach
                     </select>
