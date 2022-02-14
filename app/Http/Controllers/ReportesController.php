@@ -1264,6 +1264,30 @@ class ReportesController extends Controller
         ->where('tipo_atencion','=',12)
         ->first();
 
+        
+    } else if($request->tipo == '13'){
+        $atenciones = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.tipo_atencion', '=', 13)
+        ->where('a.estatus', '!=', 0)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->orderBy('a.id','DESC')
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->get(); 
+
+        
+    $totales = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+    ->select(DB::raw('SUM(abono) as monto,COUNT(*) as cantidad'))
+    ->where('sede','=',$request->session()->get('sede'))
+    ->where('estatus', '!=', 0)
+    ->where('tipo_atencion','=',13)
+    ->first();
+
+
 
                 
             } else if($request->tipo == '6'){

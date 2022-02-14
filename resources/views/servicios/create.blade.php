@@ -124,6 +124,7 @@
                             <option value="RAYOS">RAYOS X</option>
                             <option value="SALUD">SALUD MENTAL</option>
                             <option value="ESTETICA">ESTÉTICA</option>
+                            <option value="MTC">MTC</option>
                             <option value="OTROS">OTROS</option>
                         </select>
                   </div>

@@ -122,6 +122,11 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $estetica->monto }}</td>
 		</tr>
 		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">MTC</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $mtc->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $mtc->monto }}</td>
+		</tr>
+		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Laboratorios</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>

@@ -209,6 +209,9 @@
     <a class="nav-link" data-toggle="tab" href="#est">Estética</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#mtc">MTC</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#lab">Laboratorios</a>
   </li>
   <li class="nav-item">
@@ -559,6 +562,76 @@
             </div>
   
     </div>
+
+    <div class="tab-pane container fade" id="mtc">
+    <div class="row">
+              <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i>MTC Seleccionadas</label>
+              <!-- sheepIt Form -->
+              <div id="mtc" class="embed ">
+              
+                  <!-- Form template-->
+                  <div id="mtc_template" class="template row">
+  
+                  <label for="mtc_#index#_mt" class="col-sm-1 control-label">MTC</label>
+                      <div class="col-sm-3">
+                        <select id="mtc_#index#_mt" name="id_mtc[mtc][#index#][_mt]" class="selectMTC form-control">
+                          <option value="1">Seleccionar MTC</option>
+                          @foreach($mtc as $mt)
+                            <option value="{{$mt->id}}">
+                              {{$mt->nombre}} Precio:{{$mt->precio}}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+  
+                      <label for="mtc_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                      <div class="col-sm-1">
+                        <input id="mtc_#index#_montoHidden" name="monto_h[mtc][#index#][montoHidden]" class="text" type="hidden" value="">
+  
+                        <input id="mtc_#index#_monto" name="monto_s[mtc][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      </div>
+  
+                      <label for="mtc_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                      <div class="col-sm-1">
+  
+                        <input id="mtc_#index#_abonoL" name="monto_abol[mtc][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      </div>
+  
+                      <label for="mtc_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
+                      <div class="col-sm-2">
+                        <select id="mtc_#index#_salu" name="id_pago[mtc][#index#][tipop]" class="form-control">
+                        <option value="" disabled>Seleccione</option>
+                          <option value="EF">Efectivo</option>
+                          <option value="TJ">Tarjeta</option>
+                          <option value="DP">Depósito</option>
+                          <option value="YP">Yape</option>
+                          <option value="PL">Plin</option>
+  
+                        </select>
+                      </div>
+  
+                     
+  
+                      <a id="mtc_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                  </div>
+                  <!-- /Form template-->
+                  
+                  <!-- No forms template -->
+                  <div id="mtc_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                  <!-- /No forms template-->
+                  
+                  <!-- Controls -->
+                  <div id="mtc__controls" class="controls col-sm-11 col-sm-offset-1">
+                      <div id="mtc_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar SaludM</span></a></div>
+                  </div>
+                  <!-- /Controls -->
+                  
+              </div>
+              <!-- /sheepIt Form --> 
+            </div>
+  
+    </div>
+
 
 
   <div class="tab-pane container fade" id="lab">
@@ -1071,6 +1144,29 @@ $(document).on('change','.selectServ',function(){
       });
     });
 
+    $(document).on('change','.selectMTC',function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "atenciones/getServicio/"+$(this).val(),
+         success: function(a) {
+           console.log(a);
+           
+            $('#mtc_'+id+'_montoHidden').val(a.precio);
+            $('#mtc_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+            sumar();
+          
+          
+         }
+      });
+    });
+
+
     $(document).on('change','.selectLab',function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
@@ -1253,6 +1349,25 @@ var botonDisabled = true;
     });
 
     var phonesForm = $("#estetica").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+         sumar();
+         restar();
+
+        }
+    });
+    var phonesForm = $("#mtc").sheepIt({
         separator: '',
         allowRemoveCurrent: true,
         allowAdd: true,

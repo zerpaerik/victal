@@ -72,10 +72,13 @@ class PaquetesController extends Controller
             if ($paquete->save()) {
                 if (isset($request->id_servicio)) {
                 foreach ($request->id_servicio['servicios'] as $servicio) {
-                    $serv = New PaqueteServ;
-                    $serv->paquete  = $paquete->id;
-                    $serv->servicio = $servicio['servicio'];
-                    $serv->save();
+
+                  if ($servicio['servicio'] != '1') {
+                      $serv = new PaqueteServ;
+                      $serv->paquete  = $paquete->id;
+                      $serv->servicio = $servicio['servicio'];
+                      $serv->save();
+                  }
                 }
                 }
             
