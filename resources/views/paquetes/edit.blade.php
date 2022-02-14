@@ -130,7 +130,7 @@
                     <option value="1">Seleccionar servicio</option>
                     @foreach($servicios as $pac)
 				                @if ($serv->servicio == $pac->id)
-					                	<option value="{{$pac->id}}" selected="selected">
+					                         	<option value="{{$pac->id}}" selected="selected">
 					                            	{{$pac->nombre}}-Precio:{{$pac->precio}}
 					                  </option>
 					              @else 

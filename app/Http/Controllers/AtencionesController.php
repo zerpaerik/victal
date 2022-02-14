@@ -2968,9 +2968,11 @@ return view('atenciones.particular');
             }
         }
        
-
-        $creditos = Creditos::where('id_atencion','=',$id)->first();
-        $creditos->delete();
+        
+        if ($aten->tipo_origen != 10) {
+            $creditos = Creditos::where('id_atencion', '=', $id)->first();
+            $creditos->delete();
+        }
 /*
         $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
         $rs->estatus = 0;
