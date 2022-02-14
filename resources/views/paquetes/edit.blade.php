@@ -145,7 +145,7 @@
                   <div class="col-md-6">
                   @foreach ($laboratoriosP as $lab)
                     <label for="exampleInputEmail1">Analisis</label>
-                    <input type="hidden" name="id_laboratorio[laboratorios][{{$loop->index}}][id]" value="{{$serv->id}}">
+                    <input type="hidden" name="id_laboratorio[laboratorios][{{$loop->index}}][id]" value="{{$lab->id}}">
                     <select id="laboratorios_{{$loop->index}}_laboratorio" name="id_laboratorio[laboratorios][{{$loop->index}}][laboratorio]" class="selectLab form-control">
 					                        <option value="1">Seleccionar laboratorio</option>
 					                        @foreach($laboratorios as $pac)
