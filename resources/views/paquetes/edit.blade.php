@@ -129,7 +129,7 @@
                     <select class="form-control"  id="servicios_{{$loop->index}}_servicio" name="id_servicio[servicios][{{$loop->index}}][servicio]">
                     <option value="1">Seleccionar servicio</option>
                     @foreach($servicios as $pac)
-				                @if ($serv->id == $pac->id)
+				                @if ($serv->servicio == $pac->id)
 					                         	<option value="{{$pac->id}}" selected="selected">
 					                            	{{$pac->nombre}}-Precio:{{$pac->precio}}
 					                         	</option>
@@ -149,7 +149,7 @@
                     <select id="laboratorios_{{$loop->index}}_laboratorio" name="id_laboratorio[laboratorios][{{$loop->index}}][laboratorio]" class="selectLab form-control">
 					                        <option value="1">Seleccionar laboratorio</option>
 					                        @foreach($laboratorios as $pac)
-					                        	@if ($lab->id == $pac->id)
+					                        	@if ($lab->laboratorio == $pac->id)
 						                         	<option value="{{$pac->id}}" selected="selected">
 						                            	{{$pac->nombre}}-Precio:{{$pac->precio}}
 						                         	</option>
