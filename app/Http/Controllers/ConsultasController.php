@@ -410,6 +410,56 @@ class ConsultasController extends Controller
 
     }
 
+    public function editar_historiaP(Request $request){
+        $usuario = DB::table('users')
+      ->select('*')
+      ->where('id', '=', Auth::user()->id)
+      ->first();
+      
+      $con = Historia::where('id', '=', $request->id)->first();
+      $con->pa = $request->pa;
+      $con->pulso = $request->pulso;
+      $con->temp = $request->temp;
+      $con->peso = $request->peso;
+      $con->talla = $request->talla;
+      $con->apetito = $request->apetito;
+      $con->sed = $request->sed;
+      $con->animo = $request->animo;
+      $con->mic = $request->mic;
+      $con->rc = $request->rc;
+      $con->dep = $request->dep;
+      $con->fur = $request->fur;
+      $con->pap = $request->pap;
+      $con->mac = $request->mac;
+      $con->andria = $request->andria;
+      $con->g = $request->g;
+      $con->p = $request->p;
+      $con->piel = $request->piel;
+      $con->mamas = $request->mamas;
+      $con->abdomen = $request->abdomen;
+      $con->ext = $request->gen_ext;
+      $con->int = $request->gen_int;
+      $con->miem = $request->miem;
+      $con->evo = $request->evo;
+      $con->tipo = $request->tipo;
+      $con->pd = $request->pd;
+      $con->df = $request->df;
+      $con->ex_aux = $request->ex_aux;
+      $con->cie = $request->cie;
+      $con->cie1 = $request->cie1;
+      $con->plan = $request->plan;
+      $con->obser = $request->observaciones;
+      $con->prox = $request->prox;
+      $con->usuario = Auth::user()->id;
+      $con->save();
+
+
+      return redirect()->action('ConsultasController@historias')
+      ->with('success','Editado Exitosamente!');
+
+    }
+
+
   
 
   
@@ -526,6 +576,29 @@ class ConsultasController extends Controller
          $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
 
         return view('consultas.historias_ver', compact('hist','historias_base','paciente'));
+
+
+    }
+
+    public function editar_historias($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+         $historias_base = HistoriaBase::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+        return view('consultas.editar_historia', compact('hist','historias_base','paciente'));
 
 
     }

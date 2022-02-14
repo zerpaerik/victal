@@ -142,6 +142,12 @@
                               Ver Historia
                           </a>
 
+                          <a class="btn btn-danger btn-sm" href="historias-editar-{{$an->id}}">
+                              <i class="fas fa-edit">
+                              </i>
+                              Editar
+                          </a>
+
                           <a class="btn btn-info btn-sm" href="historias-pdf-{{$an->id}}" target="_blank">
                               <i class="fas fa-print">
                               </i>
