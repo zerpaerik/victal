@@ -329,13 +329,23 @@ class ResultadosController extends Controller
     public function reversarg(Request $request){
 
 
-
-
       $rs = ResultadosServicios::where('id','=',$request->id)->first();
       $rs->estatus = 1;
       $rs->usuario_informe = null;
       $rs->informe_guarda = '';
       $rs->save();
+
+      $rs = ResultadosServTemplate::where('id_resultado','=',$request->id)->get();
+
+      if ($rs != null) {
+        foreach ($rs as $r) {
+            $id_r = $r->id;
+            if (!is_null($id_r)) {
+                $rsf = ResultadosServTemplate::where('id', '=', $id_r)->first();
+                $rsf->delete();
+            }
+        }
+    }
 
        
 
@@ -353,6 +363,22 @@ class ResultadosController extends Controller
       $rl->usuario_informe = null;
       $rl->informe_guarda = '';
       $rl->save();
+
+      $rt = ResultadosLabTemplate::where('id_resultado','=',$request->id)->get();
+
+      if ($rt != null) {
+        foreach ($rt as $r) {
+            $id_r = $r->id;
+            if (!is_null($id_r)) {
+                $rsf = ResultadosLabTemplate::where('id', '=', $id_r)->first();
+                $rsf->delete();
+            }
+        }
+    }
+
+
+      //REVERSA use App\ResultadosLabTemplate;
+
 
 
     return back();
@@ -1038,7 +1064,7 @@ class ResultadosController extends Controller
 
         $subtitulos = Subtitulos::where('estatus','=',1)->get();
 
-        $plantilla = TemplatesS::where('id_servicio','=',$resultados->id_servicio)->get();
+        $plantilla = TemplatesS::where('id_servicio','=',$resultados->id_servicio)->where('estatus','=', 1)->get();
 
 
         $res = DB::table('resultados_serv_template as a')
@@ -1087,6 +1113,7 @@ class ResultadosController extends Controller
           ->select('a.*', 'b.nombre as laboratorio')
           ->join('analisis as b', 'b.id', 'a.id_laboratorio')
           ->where('a.id_laboratorio',  '=', $res->id_laboratorio)
+          ->where('a.estatus','=', 1)
           ->get();
 
 

@@ -140,6 +140,7 @@ class TemplatesController extends Controller
       $templates_detalle = DB::table('templates as a')
       ->select('a.*','an.nombre')
       ->join('analisis as an', 'an.id', 'a.id_laboratorio')
+      ->where('a.estatus','=',1)
       ->where('a.id_laboratorio',$id)
       ->get(); 
       
@@ -155,6 +156,7 @@ class TemplatesController extends Controller
 
       $templates_detalle = DB::table('templates_s as a')
       ->select('a.*')
+      ->where('a.estatus','=',1)
       ->where('a.id_servicio','=',$id)
       ->get(); 
       
