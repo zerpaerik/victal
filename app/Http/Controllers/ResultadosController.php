@@ -901,7 +901,7 @@ class ResultadosController extends Controller
     {
 
       $res_i = DB::table('resultados_laboratorio as a')
-      ->select('a.*','b.*','at.id_paciente','at.id_origen','at.tipo_origen','an.nombre as detalle','t.nombre as nom_val','t.referencia','t.metodo','pac.apellidos','pac.nombres','pac.dni','pac.fechanac','pac.tipo_doc','at.id_tipo','us.name','us.lastname')
+      ->select('a.*','b.*','at.id_paciente','at.id_origen','at.tipo_origen','an.nombre as detalle','t.nombre as nom_val','t.referencia','t.metodo','t.subtitulo','pac.apellidos','pac.nombres','pac.dni','pac.fechanac','pac.tipo_doc','at.id_tipo','us.name','us.lastname')
       ->join('resultados_lab_template as b','b.id_resultado','a.id_atec_paquete')
       ->join('templates as t','t.id','b.id_plantilla')
       ->join('atenciones as at','at.id','a.id_atencion')
@@ -925,7 +925,7 @@ class ResultadosController extends Controller
         ->get(); */
 
         $res = DB::table('resultados_lab_template as a')
-        ->select('a.*','b.*','t.nombre as nom_val','b.metodo','t.referencia','t.medida','t.metodo')
+        ->select('a.*','b.*','t.nombre as nom_val','b.metodo','t.referencia','t.medida','t.metodo','t.subtitulo')
         ->join('analisis as b','b.id','a.id_laboratorio')
        // ->join('analisis as an','an.id','a.id_laboratorio')
         ->join('templates as t','t.id','a.id_plantilla')
