@@ -2972,6 +2972,9 @@ return view('atenciones.particular');
         if ($aten->tipo_origen != 10) {
             $creditos = Creditos::where('id_atencion', '=', $id)->first();
             $creditos->delete();
+
+            $comisionescc = ComisionesC::where('id_atencion', '=', $id)->first();
+            $comisionescc->delete();
         }
 /*
         $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
