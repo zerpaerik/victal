@@ -266,6 +266,7 @@ class ConsultasController extends Controller
       $con->piel = $request->piel;
       $con->mamas = $request->mamas;
       $con->abdomen = $request->abdomen;
+      $con->neuro = $request->neuro;
       $con->ext = $request->gen_ext;
       $con->int = $request->gen_int;
       $con->miem = $request->miem_inf;
@@ -437,6 +438,7 @@ class ConsultasController extends Controller
       $con->piel = $request->piel;
       $con->mamas = $request->mamas;
       $con->abdomen = $request->abdomen;
+      $con->neuro = $request->neuro;
       $con->ext = $request->gen_ext;
       $con->int = $request->gen_int;
       $con->miem = $request->miem;

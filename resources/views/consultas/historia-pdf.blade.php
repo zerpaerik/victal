@@ -259,23 +259,25 @@ table {
 			<div class="divTable">
 				<div class="divTableBody">
 					<div class="divTableRow">
-						<div class="divTableCell" style="width: 10%">Piel/Mucosas</div>
+						<div class="divTableCell" style="width: 10%">Piel</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->piel}}</div>
-						<div class="divTableCell" style="width: 10%">Mamas</div>
+						<div class="divTableCell" style="width: 10%">Mucosas</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->mamas}}</div>
-                        <div class="divTableCell" style="width: 10%">Abdomen</div>
+                        <div class="divTableCell" style="width: 10%">Cardiovascular</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->abdomen}}</div>
                        
 					</div>
 				</div>
                 <div class="divTableBody">
 					    <div class="divTableRow">
-                        <div class="divTableCell" style="width: 10%">Genitales Externos</div>
+                        <div class="divTableCell" style="width: 10%">Torax y Pulmones</div>
                         <div class="divTableCell" style="width: 10%">{{$hist->ext}}</div>
-                        <div class="divTableCell" style="width: 10%">Genitales Internos</div>
+                        <div class="divTableCell" style="width: 10%">Abdomen</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->int}}</div>
-						<div class="divTableCell" style="width: 10%">Miembros Inferiores</div>
+						<div class="divTableCell" style="width: 10%">Genitourinario</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->miem}}</div>
+						<div class="divTableCell" style="width: 10%">Neurológico</div>
+						<div class="divTableCell" style="width: 10%">{{$hist->neuro}}</div>
 					</div>
 				</div>
 			</div>
