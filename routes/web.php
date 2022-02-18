@@ -215,6 +215,10 @@ Route::get('atenciones-editm-{id}', 'AtencionesController@editm')->name('atencio
 Route::get('atenciones-editsa-{id}', 'AtencionesController@editsa')->name('atenciones.editsa');
 Route::get('atenciones-archivo-{id}', 'AtencionesController@guardar_archivo_get');
 Route::post('atenciones_archivo', 'AtencionesController@guardar_archivo');
+Route::get('atenciones-ver-archivo-{id}', 'AtencionesController@ver_archivos');
+Route::get('archivos-eliminar-{id}', 'AtencionesController@eliminar_archivos');
+
+
 
 
 

@@ -160,6 +160,9 @@
                           <a class="btn btn-primary btn-sm" href="atenciones-archivo-{{$an->id}}">
                               <i class="fas fa-upload">
                           </i>
+                          <a class="btn btn-success btn-sm" href="atenciones-ver-archivo-{{$an->id}}">
+                              <i class="fas fa-download">
+                          </i>
                           </a>
 
 
