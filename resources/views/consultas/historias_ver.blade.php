@@ -180,6 +180,11 @@
                     <label for="exampleInputEmail1">Talla</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="talla" placeholder="" value="{{$hist->talla}}">
                    </div>
+
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">SO2</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="so2" placeholder="" value="{{$hist->so2}}">
+                   </div>
     
                     </div>
                    <label for="exampleInputEmail1">Funciones Biológicas</label>
@@ -275,6 +280,11 @@
                     <label for="exampleInputEmail1">Neurológico</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="neuro" placeholder=""  value="{{$hist->neuro}}">
                    </div>
+
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Observaciones Examen Físico</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="neuro" placeholder=""  value="{{$hist->obs_fis}}">
+                   </div>
     
                     </div>
                     <div class="row">
@@ -330,6 +340,14 @@
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->plan}}">
 
                   </div>
+
+                  </div>
+                   <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones Plan de Tratamiento</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->obs_plan}}">
+                   </div>
+                    </div>
                     </div>
                    <div class="row">
                      <div class="col-md-12">

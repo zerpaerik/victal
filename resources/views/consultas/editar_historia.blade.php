@@ -182,6 +182,11 @@
                     <label for="exampleInputEmail1">Talla</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="talla" placeholder="" value="{{$hist->talla}}">
                    </div>
+
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">SO2</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="so2" placeholder="" value="{{$hist->so2}}">
+                   </div>
     
                     </div>
                    <label for="exampleInputEmail1">Funciones Biológicas</label>
@@ -277,6 +282,11 @@
                     <label for="exampleInputEmail1">Neurológico</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="neuro" placeholder=""  value="{{$hist->neuro}}">
                    </div>
+
+                   <div class="col-md-8">
+                    <label for="exampleInputEmail1">Observaciones Examen Físico</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="obs_fis" placeholder=""  value="{{$hist->obs_fis}}">
+                   </div>
     
                     </div>
                     </div>
@@ -333,6 +343,11 @@
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"   name="plan" value="{{$hist->plan}}">
 
                   </div>
+
+                  <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones Plan de Tratamiento</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="obs_plan" value="{{$hist->obs_plan}}">
+                   </div>
                     </div>
                    <div class="row">
                      <div class="col-md-12">

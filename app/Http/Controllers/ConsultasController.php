@@ -43,7 +43,7 @@ class ConsultasController extends Controller
         $f2 = $request->fin;
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
@@ -60,7 +60,7 @@ class ConsultasController extends Controller
         $f2 = date('Y-m-d');
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
@@ -120,13 +120,12 @@ class ConsultasController extends Controller
       $analisis = Analisis::where('estatus','=',1)->orderBy('nombre','ASC')->get();
       $productos = Productos::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
+      $edad = Carbon::parse($paciente->fechanac)->age;
 
 
 
 
-
-
-        return view('consultas.historia',compact('cie','cie1','consulta','servicios','analisis','hist','historias','paciente','productos'));
+        return view('consultas.historia',compact('cie','cie1','consulta','servicios','analisis','hist','historias','paciente','productos','edad'));
     }
 
     
@@ -251,6 +250,9 @@ class ConsultasController extends Controller
       $con->temp = $request->temp;
       $con->peso = $request->peso;
       $con->talla = $request->talla;
+      $con->so2 = $request->so2;
+      $con->obs_fis = $request->obs_fis;
+      $con->obs_plan = $request->obs_plan;
       $con->apetito = $request->apetito;
       $con->sed = $request->sed;
       $con->animo = $request->animo;
@@ -423,6 +425,7 @@ class ConsultasController extends Controller
       $con->temp = $request->temp;
       $con->peso = $request->peso;
       $con->talla = $request->talla;
+      $con->so2 = $request->so2;
       $con->apetito = $request->apetito;
       $con->sed = $request->sed;
       $con->animo = $request->animo;
@@ -440,6 +443,8 @@ class ConsultasController extends Controller
       $con->abdomen = $request->abdomen;
       $con->neuro = $request->neuro;
       $con->ext = $request->gen_ext;
+      $con->obs_fis = $request->obs_fis;
+      $con->obs_plan = $request->obs_plan;
       $con->int = $request->gen_int;
       $con->miem = $request->miem;
       $con->evo = $request->evo;

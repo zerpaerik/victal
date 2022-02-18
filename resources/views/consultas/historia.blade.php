@@ -82,10 +82,20 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <div class="row">
+              <div class="row" style="margin-left: 20px;">
                      <div class="col-md-3">
                     <label for="exampleInputEmail1">PACIENTE</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos.' '.$paciente->nombres}} " name="gestas" placeholder="">
+                   </div>
+
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">DNI</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->dni}} " name="gestas" placeholder="">
+                   </div>
+
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">EDAD</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$edad}} " name="gestas" placeholder="">
                    </div>
                   
                     </div>
@@ -210,6 +220,10 @@
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Talla</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="talla" placeholder="" value="{{$hist->talla}}">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">SO2</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="so2" placeholder="" value="{{$hist->so2}}">
                    </div>
     
                     </div>
@@ -426,6 +440,11 @@
                     <label for="exampleInputEmail1">Talla</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="">
                    </div>
+
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">SO2</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="so2" placeholder="">
+                   </div>
     
                     </div>
                     <br>
@@ -533,6 +552,10 @@
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Neurológico</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="neuro" placeholder=""  >
+                   </div>
+                   <div class="col-md-8">
+                    <label for="exampleInputEmail1">Observaciones Examen Físico</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="obs_fis" placeholder=""  >
                    </div>
     
                     </div>
@@ -656,11 +679,16 @@
                 
             </div>
 
+                   <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones Plan de Tratamiento</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="obs_plan" placeholder=""  >
+                   </div>
+
 
                     <br>
                    <div class="row">
                      <div class="col-md-12">
-                    <label for="exampleInputEmail1">Observaciones</label>
+                    <label for="exampleInputEmail1">Observaciones Generales</label>
                     <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="observaciones" placeholder="Observaciones"></textarea>
                    </div>
                     </div>
