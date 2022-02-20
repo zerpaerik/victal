@@ -618,7 +618,7 @@
                     <label for="exampleInputEmail1">Examen Auxiliar(Servicios)</label>
                     <select class="form-control select2" name="ex_aux_s[]" multiple>
                     @foreach($servicios as $s)
-                    <option value="{{$s->id}}">{{$s->nombre}}</option>
+                    <option value="{{$s->id}}">{{$s->nombre}}-{{$s->tipo}</option>
                     @endforeach
                    </select>    
                   </div>
