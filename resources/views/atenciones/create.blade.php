@@ -600,13 +600,12 @@
                       <label for="mtc_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
                       <div class="col-sm-2">
                         <select id="mtc_#index#_salu" name="id_pago[mtc][#index#][tipop]" class="form-control">
-                        <option value="" disabled>Seleccione</option>
+                          <option value="" disabled>Seleccione</option>
                           <option value="EF">Efectivo</option>
                           <option value="TJ">Tarjeta</option>
                           <option value="DP">Depósito</option>
                           <option value="YP">Yape</option>
                           <option value="PL">Plin</option>
-  
                         </select>
                       </div>
   
@@ -856,7 +855,11 @@
 </div>
 </div>
 
-
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"   name="observaciones">
+                   </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">

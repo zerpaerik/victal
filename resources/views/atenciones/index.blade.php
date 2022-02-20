@@ -151,12 +151,17 @@
                     <td>
 
                     @if($an->estatus == 1)
+                    @if($an->observaciones != null)
+                    <a class="btn btn-primary btn-sm" href="atenciones-ver-{{$an->id}}">
+                              <i class="fas fa-eye">
+                              </i>
+                          </a>
+                    @endif
                     <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
                               <i class="fas fa-print">
                               </i>
                           </a>
 
-                          @if($an->archivo == null)
                           <a class="btn btn-primary btn-sm" href="atenciones-archivo-{{$an->id}}">
                               <i class="fas fa-upload">
                           </i>
@@ -166,11 +171,7 @@
                           </a>
 
 
-                          @else
-                          <a href="{{route('descargar2',$an->archivo)}}" class="btn btn-success btn-sm" target="_blank"><i class="fas fa-download">
-                          </i></a>
-
-                          @endif
+                         
 
                           @if($an->atendido == 2)
                           @if(Auth::user()->rol == 1)

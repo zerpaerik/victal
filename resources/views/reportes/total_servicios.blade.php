@@ -234,7 +234,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Id</th>
@@ -423,6 +423,10 @@
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      dom: 'Bfrtip',
+      buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
     });
     $('#example2').DataTable({
       "paging": true,
