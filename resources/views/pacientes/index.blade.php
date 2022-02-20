@@ -123,7 +123,7 @@
                               </i>
                               Ver
                           </a>
-                          @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
+                          @if(Auth::user()->rol == 1 || Auth::user()->rol == 2 || Auth::user()->rol == 7)
                           <a class="btn btn-info btn-sm" href="pacientes-edit-{{$p->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
