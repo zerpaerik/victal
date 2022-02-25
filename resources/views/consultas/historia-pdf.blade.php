@@ -338,6 +338,23 @@ table {
               
 			</div>
 
+			<div class="divTable">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell divTableHead"> PLAN DE TRATAMIENTO</div>
+					</div>
+				</div>
+			</div>
+			<div class="divTable">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell" style="width: 100%">{{$hist->plan}}</div>
+                       
+					</div>
+				</div>
+              
+			</div>
+
             <div class="divTable">
 				<div class="divTableBody">
 					<div class="divTableRow">

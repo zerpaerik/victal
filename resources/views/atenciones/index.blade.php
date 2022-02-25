@@ -196,7 +196,7 @@
                           @endif
 
                          
-                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
+                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 2 || Auth::user()->rol == 7)
 
 
                          @if($an->tipo_atencion == 1)
@@ -213,6 +213,19 @@
                               </i>
                           </a>
                         @elseif($an->tipo_atencion == 3)
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+                          @elseif($an->tipo_atencion == 12)
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+
+                          @elseif($an->tipo_atencion == 13)
                         
                         <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
