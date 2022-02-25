@@ -62,6 +62,9 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials)) {
 
+            session(['sede' => $request->sede]);
+            session(['sedeName' => Sedes::where('id', '=', $request->sede)->get(['nombre'])->first()->nombre]);
+
             return redirect()->route('home');
 
         }else{

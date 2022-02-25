@@ -4,7 +4,7 @@
       </li>
       
       <li class="nav-item d-none d-sm-inline-block">
-      Sede: PRINCIPAL
+      Sede: {{Session::get('sedeName')}}
       </li>
     </ul>
 
