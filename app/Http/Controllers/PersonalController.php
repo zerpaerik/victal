@@ -64,6 +64,7 @@ class PersonalController extends Controller
         $personal->cargo =$request->cargo;
         $personal->tipo_personal =$request->tipo;
         $personal->rol =$request->rol;
+        $personal->sede =$request->sede;
         $personal->password =Hash::make($request['password']);
         $personal->tipo =1;
         $personal->save();
@@ -120,6 +121,7 @@ class PersonalController extends Controller
       $personal->telefono =$request->telefono;
       $personal->direccion =$request->direccion;
       $personal->cargo =$request->cargo;
+      $personal->sede =$request->sede;
       $personal->tipo_personal =$request->tipo;
       $res = $personal->update();
 

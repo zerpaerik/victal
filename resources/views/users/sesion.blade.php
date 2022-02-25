@@ -2,6 +2,14 @@
                 <h3 class="card-title">Datos para Inicio de Sesión</h3>
               </div>
 <div class="row">
+<div class="col-md-4">
+                    <label for="exampleInputEmail1">Sede</label>
+                    <select class="form-control" name="sede" id="el2">
+						              	<option value="1">PRINCIPAL</option>
+                            <option value="2">AREQUIPA</option>
+                           
+                        </select>
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Contraseña</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña de acceso">
