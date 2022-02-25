@@ -45,8 +45,36 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+
+
+       /* $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);*/
+
+
+        $credentials = $request->only('email','password','sede');
+
+
+       // $user = User::where('name',$request->name)->first();
+
+
+        if (auth()->attempt($credentials)) {
+
+            return redirect()->route('home');
+
+        }else{
+
+            $request->session()->flash('error', 'Credenciales Incorrectas.');
+            return redirect()->back();
+        }
+
+
+        /*
         $this->validateLogin($request);
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email','password','sede');
+
 
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
@@ -64,7 +92,7 @@ class LoginController extends Controller
 
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request);
+        return $this->sendFailedLoginResponse($request);*/
     }    
 
 
