@@ -123,6 +123,8 @@ class ConsultasController extends Controller
       $paquetes = Paquetes::where('estatus','=',1)->orderBy('nombre','ASC')->get();
       $productos = Productos::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
+      dd($paquetes);
+
       $edad = Carbon::parse($paciente->fechanac)->age;
 
 
