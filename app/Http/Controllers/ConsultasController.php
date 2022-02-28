@@ -123,7 +123,6 @@ class ConsultasController extends Controller
       $paquetes = Paquetes::where('estatus','=',1)->orderBy('nombre','ASC')->get();
       $productos = Productos::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
-      dd($paquetes);
 
       $edad = Carbon::parse($paciente->fechanac)->age;
 
@@ -340,7 +339,7 @@ class ConsultasController extends Controller
         foreach ($request->ex_aux_p as $p) {
             $hl = new HistoriaP();
             $hl->id_historia =  $con->id;
-            $hl->id_paquete = $l;
+            $hl->id_paquete = $p;
             $hl->consulta = $request->consulta;
             $hl->save();
         }
