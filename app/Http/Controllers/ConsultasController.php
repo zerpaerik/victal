@@ -203,6 +203,25 @@ class ConsultasController extends Controller
 
       $consultaf = Consultas::where('id','=',$request->consulta)->first();
 
+      $hb = HistoriaBase::where('id_paciente', '=', $consultaf->id_paciente)->first();
+
+
+      if($hb != null){
+
+        $caja = HistoriaBase::where('id_paciente', '=', $consultaf->id_paciente)->first();
+        $caja->delete();
+
+        $con = new HistoriaBase();
+        $con->id_paciente =  $consultaf->id_paciente;
+        $con->alergias = $request->alerg;
+        $con->ant_pat = $request->pat;
+        $con->ant_per = $request->per;
+        $con->ant_fam = $request->fam;
+        $con->sex = $request->sexo;
+        $con->save();
+
+      } else {
+        
       $con = new HistoriaBase();
       $con->id_paciente =  $consultaf->id_paciente;
       $con->alergias = $request->alerg;
@@ -211,6 +230,9 @@ class ConsultasController extends Controller
       $con->ant_fam = $request->fam;
       $con->sex = $request->sexo;
       $con->save();
+
+      }
+
 
       return back();
 

@@ -105,27 +105,47 @@
               
                     
                    <label for="exampleInputEmail1">HISTORIAL BASE</label>
+                   <form role="form" method="post" action="historiab/guardar">
+				          	{{ csrf_field() }}  
                    <div class="row">
                      <div class="col-md-4">
                     <label for="exampleInputEmail1">Alergias</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="alerg" value="{{$hist->alergias}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="alerg" value="{{$hist->alergias}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Antecedentes Personales</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="per" value="{{$hist->ant_per}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="per" value="{{$hist->ant_per}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Antecedentes Familiares</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="fam" value="{{$hist->ant_fam}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="fam" value="{{$hist->ant_fam}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Antecedentes Patológicos</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="pat" value="{{$hist->ant_pat}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="pat" value="{{$hist->ant_pat}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Edad de 1era Rel Sexual</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->sex}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"   name="sexo" value="{{$hist->sex}}">
                    </div>
+                   <input type="hidden" name="consulta" value="{{$consulta->id}}">
+
+                 
+                                                      
+
+                  <br>
+                  <input type="hidden" name="control" value="">
+
+               
+
+                
+                 
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
                     </div>
                   
                    
