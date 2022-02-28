@@ -18,6 +18,8 @@ use App\HistoriaS;
 use App\HistoriaL;
 use App\HistoriaR;
 use App\Productos;
+use App\Paquetes;
+use App\HistoriaP;
 use App\AntecedentesObstetricos;
 use App\Control;
 use App\HistoriaBase;
@@ -118,6 +120,7 @@ class ConsultasController extends Controller
 
       $servicios = Servicios::where('estatus','=',1)->orderBy('nombre','ASC')->get();
       $analisis = Analisis::where('estatus','=',1)->orderBy('nombre','ASC')->get();
+      $paquetes = Paquetes::where('estatus','=',1)->orderBy('nombre','ASC')->get();
       $productos = Productos::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
       $edad = Carbon::parse($paciente->fechanac)->age;
@@ -125,7 +128,7 @@ class ConsultasController extends Controller
 
 
 
-        return view('consultas.historia',compact('cie','cie1','consulta','servicios','analisis','hist','historias','paciente','productos','edad'));
+        return view('consultas.historia',compact('cie','cie1','consulta','paquetes','servicios','analisis','hist','historias','paciente','productos','edad'));
     }
 
     
@@ -243,8 +246,11 @@ class ConsultasController extends Controller
     {
 
 
+
       $ex_s = '';
       $ex_l = '';
+      $ex_p = '';
+
 
 
      if ($request->ex_aux_s != null) {
@@ -327,6 +333,16 @@ class ConsultasController extends Controller
               $hl->save();
           }
       }
+
+      if ($request->ex_aux_p != null) {
+        foreach ($request->ex_aux_p as $p) {
+            $hl = new HistoriaP();
+            $hl->id_historia =  $con->id;
+            $hl->id_paquete = $l;
+            $hl->consulta = $request->consulta;
+            $hl->save();
+        }
+    }
 
       if (isset($request->id_laboratorio)) {
         foreach ($request->id_laboratorio['laboratorios'] as $key => $lab) {
@@ -700,11 +716,19 @@ class ConsultasController extends Controller
       ->where('a.consulta', '=',$id)
       ->get(); 
 
+      $hist_p = DB::table('historia_p as a')
+      ->select('a.*','u.nombre as paquete')
+      ->join('paquetes as u','u.id','a.id_paquete')
+      ->where('a.consulta', '=',$id)
+      ->get(); 
+
+
+
 
 
 
       
-      $view = \View::make('consultas.guia', compact('consulta','hist_s','hist_l','edad'));
+      $view = \View::make('consultas.guia', compact('consulta','hist_s','hist_l','hist_p','edad'));
 
       $pdf = \App::make('dompdf.wrapper');
       $pdf->loadHTML($view);

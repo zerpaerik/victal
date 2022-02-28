@@ -147,6 +147,9 @@
                   <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
                     </div>
+
+                    </form>
+
                   
                    
               @else
@@ -160,7 +163,7 @@
                     </div>
 
               <form role="form" method="post" action="historiab/guardar">
-					{{ csrf_field() }}                
+				        	{{ csrf_field() }}                
                     <div class="card-body">
                     
                    <div class="row">
@@ -187,7 +190,7 @@
                     </div>
                   
 
-                        <input type="hidden" name="consulta" value="{{$consulta->id}}">
+                      <input type="hidden" name="consulta" value="{{$consulta->id}}">
 
                  
                                                       
@@ -421,12 +424,6 @@
 
             </div>
             @endforeach
-
-
-
-             
-              
-
               <form role="form" method="post" action="historia/guardar">
 					{{ csrf_field() }}                
                     <div class="card-body">
@@ -634,7 +631,7 @@
                     </div>
                     <br>
                     <div class="row">
-                     <div class="col-md-6">
+                     <div class="col-md-4">
                     <label for="exampleInputEmail1">Examen Auxiliar(Servicios)</label>
                     <select class="form-control select2" name="ex_aux_s[]" multiple>
                     @foreach($servicios as $s)
@@ -642,11 +639,19 @@
                     @endforeach
                    </select>    
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label for="exampleInputEmail1">Examen Auxiliar(Laboratorios)</label>
                     <select class="form-control select2" name="ex_aux_l[]" multiple>
                     @foreach($analisis as $s)
                     <option value="{{$s->id}}">{{$s->nombre}}</option>
+                    @endforeach
+                   </select> 
+                  </div>
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Examen Auxiliar(Paquetes)</label>
+                    <select class="form-control select2" name="ex_aux_p[]" multiple>
+                    @foreach($paquetes as $pa)
+                    <option value="{{$pa->id}}">{{$pa->nombre}}</option>
                     @endforeach
                    </select> 
                   </div>

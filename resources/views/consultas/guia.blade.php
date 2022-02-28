@@ -128,3 +128,21 @@
 	</table>
 </div>
 
+<div style="font-weight: bold; font-size: 14px">
+		PAQUETES
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
+		</tr>
+		@foreach ($hist_p as $p)
+			<tr>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $p->paquete }}</td>
+			</tr>
+		@endforeach
+	
+	</table>
+</div>
+
+
