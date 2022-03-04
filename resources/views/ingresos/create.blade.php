@@ -87,7 +87,7 @@
                    
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Monto</label>
-                    <input type="number" class="form-control" id="name" name="monto" placeholder="Monto">
+                    <input type="float" class="form-control" id="name" name="monto" placeholder="Monto">
                   </div>
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Descripción</label>
