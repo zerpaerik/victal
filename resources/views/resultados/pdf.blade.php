@@ -150,7 +150,7 @@
         </div>
 
 
-  <br><br><br>
+  <br><br><br><br><br>
 
 
 
@@ -187,13 +187,6 @@
 
 
 </table>
-
-<img src="firma.PNG" height="100%" width="100%" />
-
-
-
-
-
 
 
 </body>
