@@ -180,7 +180,7 @@
     <td style="padding: 0;">{{$r->valor}}</td>
 	<td style="padding: 0;">{{$r->medida}}</td>
     <td style="padding: 0;">{{$r->referencia}}</td>
-	<td style="padding: 0;">{{$r->metodo}}</td>
+	<td style="padding: 0;font-size: 10px;">{{$r->metodo}}</td>
     @endforeach
 
  </tbody>
