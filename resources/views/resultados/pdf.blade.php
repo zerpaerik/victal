@@ -122,9 +122,9 @@
         <main>
         <strong style="margin-top: -10px;">Paciente:</strong> {{ $res_i->apellidos.' '.$res_i->nombres}} - 
         <strong>{{ $res_i->tipo_doc}}:</strong> {{ $res_i->dni}} - 
-        <strong>Edad:</strong> {{ $edad}} - Fecha : {{ date('d-m-Y', strtotime($res_i->created_at))}}
+        <strong>Edad:</strong> {{ $edad}} 
         <br>
-        <strong>Examen:</strong> {{ $res_i->detalle}}
+        <strong>Examen:</strong> {{ $res_i->detalle}} - Fecha : {{ date('d-m-Y', strtotime($res_i->created_at))}}
 
 
         <table style="">
