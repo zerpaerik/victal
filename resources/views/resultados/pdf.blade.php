@@ -124,7 +124,7 @@
         <strong>{{ $res_i->tipo_doc}}:</strong> {{ $res_i->dni}} - 
         <strong>Edad:</strong> {{ $edad}} 
         <br>
-        <strong>Examen:</strong> {{ $res_i->detalle}} - Fecha : {{ date('d-m-Y', strtotime($res_i->created_at))}}
+        <strong>Examen:</strong> {{ $res_i->detalle}} - <strong>Fecha:</strong> {{ date('d-m-Y', strtotime($res_i->created_at))}}
 
 
         <table style="">
