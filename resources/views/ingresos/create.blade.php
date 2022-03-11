@@ -100,7 +100,7 @@
                             <option value="TJ">TARJETA</option>
                             <option value="DP">DEPOSITO</option>
                             <option value="YP">YAPE</option>
-							
+                            <option value="PN">PLIN</option>
                         </select>
                   </div>
                   </div>
