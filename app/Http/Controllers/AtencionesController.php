@@ -760,27 +760,44 @@ return view('atenciones.particular');
                   $lab->sede = $request->session()->get('sede');
                   $lab->save();
 
-                  $cre = new Creditos();
-                  $cre->origen = 'CONSULTAS';
-                  $cre->descripcion = 'INGRESO POR CONSULTA';
-                  $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_con;
-                  $cre->usuario = Auth::user()->id;
-                  $cre->tipopago = $request->tipop_con;
-                  if ($request->tipop_con == 'EF') {
-                    $cre->efectivo = $request->precio_con;
-                  } elseif($request->tipop_con == 'TJ') {
-                    $cre->tarjeta = $request->precio_con;
-                  } elseif($request->tipop_con == 'DP') {
-                    $cre->dep = $request->precio_con;
-                  } elseif($request->tipop_con == 'YP')  {
-                    $cre->yap = $request->precio_con;
-                  } else {
-                    $cre->pl = $request->precio_con;
+                  if ($request->origen != 10) {
+                      $cre = new Creditos();
+                      $cre->origen = 'CONSULTAS';
+                      $cre->descripcion = 'INGRESO POR CONSULTA';
+                      $cre->id_atencion =  $lab->id;
+                      $cre->monto = $request->precio_con;
+                      $cre->usuario = Auth::user()->id;
+                      $cre->tipopago = $request->tipop_con;
+                      if ($request->tipop_con == 'EF') {
+                          $cre->efectivo = $request->precio_con;
+                      } elseif ($request->tipop_con == 'TJ') {
+                          $cre->tarjeta = $request->precio_con;
+                      } elseif ($request->tipop_con == 'DP') {
+                          $cre->dep = $request->precio_con;
+                      } elseif ($request->tipop_con == 'YP') {
+                          $cre->yap = $request->precio_con;
+                      } else {
+                          $cre->pl = $request->precio_con;
+                      }
+                      $cre->sede = $request->session()->get('sede');
+                      $cre->fecha = date('Y-m-d');
+                      $cre->save();
                   }
-                  $cre->sede = $request->session()->get('sede');
-                  $cre->fecha = date('Y-m-d');
-                  $cre->save();
+
+                  if ($request->origen == 10) {
+                    $com = new ComisionesC();
+                    $com->id_atencion =  $lab->id;
+                    $com->porcentaje = '0';
+                    $com->id_responsable = $searchUsuarioID->id;
+                    $com->id_origen = $request->origen;
+                    $com->detalle =  'CONSULTA/CONTROL';
+                    $com->monto = $request->precio_con;
+                    $com->estatus = 1;
+                    $com->usuario = Auth::user()->id;
+                    $com->sede = $request->session()->get('sede');
+                    $com->save();
+                }
+
 
 
                   if ($request->precio_con > $request->precio_con) {

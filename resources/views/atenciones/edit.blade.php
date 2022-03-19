@@ -100,18 +100,26 @@
                   <div class="col-md-4">
                   <label for="exampleInputEmail1">Tipo de Pago</label>
                   <select class="form-control" name="tipo_pago">
-
-                             @if($atencion->tipo_pago == 'EF')
+                  @if($atencion->tipo_pago == 'EF')
                                 <option selected value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP">Depósito</option>
                                 <option value="YP">Yape</option>
+                                <option value="PL">Plin</option>
                             @elseif($atencion->tipo_pago == 'TJ')
                                 <option value="EF">Efectivo</option>
                                 <option value="TJ" selected>Tarjeta</option>
                                 <option value="DP">Depósito</option>
                                 <option value="YP">Yape</option>
+                                <option value="PL">Plin</option>
                             @elseif($atencion->tipo_pago == 'DP')
+                                <option value="EF">Efectivo</option>
+                                <option value="TJ">Tarjeta</option>
+                                <option value="DP" selected>Depósito</option>
+                                <option value="YP">Yape</option>
+                                <option value="PL">Plin</option>
+                            @elseif($atencion->tipo_pago == 'PL')
+                                <option value="PL" selected>Plin</option>
                                 <option value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP" selected>Depósito</option>
@@ -121,6 +129,7 @@
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP">Depósito</option>
                                 <option value="YP" selected>Yape</option>
+                                <option value="PL">Plin</option>
                             @endif
                                 
                             </select>
