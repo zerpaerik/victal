@@ -625,6 +625,7 @@ class AtencionesController extends Controller
 
     
     public function ver($id){
+
         
     $atenciones = Atenciones::where('id','=',$id)->first();
 
@@ -740,10 +741,13 @@ return view('atenciones.particular');
 
 
 
-
                   $lab = new Atenciones();
                   $lab->tipo_origen =  3;
-                  $lab->id_origen = 1;
+                  if ($request->origen != 10) {
+                      $lab->id_origen = 1;
+                  } else {
+                    $lab->id_origen =  $searchUsuarioID->id;
+                  }
                   $lab->id_atec =  $atec->id;
                   $lab->id_paciente =  $request->paciente;
                   $lab->tipo_atencion = 5;
@@ -2911,6 +2915,7 @@ return view('atenciones.particular');
     }
 
     public function ver_archivos($id){
+
 
       $archivos = AtencionesArchivo::where('id_atencion','=',$id)->get();
 
