@@ -694,6 +694,16 @@ $estetica->monto = 0;
         $ingresos->monto = 0;
         }
 
+        $mtc = Creditos::where('origen', 'MTC')
+        ->where('sede','=', $request->session()->get('sede'))
+        ->whereRaw("created_at >= ? AND created_at <= ?", 
+         array($fechamañana, $fecha))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->first();
+        if ($mtc->cantidad == 0) {
+        $mtc->monto = 0;
+        }
+
 
 
       $cuentasXcobrar = Creditos::where('origen', 'COBRO')
@@ -773,12 +783,12 @@ $estetica->monto = 0;
           $totalEgresos += $egreso->monto;
       }
   
-       $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto + $estetica->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+       $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $mtc->monto + $rayos->monto + $estetica->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
 
       
 
      
-     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos','estetica','plin', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos','estetica','plin', 'cuentasXcobrar','metodos','mtc','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
     
      //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
      $pdf = \App::make('dompdf.wrapper');
