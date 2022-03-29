@@ -115,7 +115,7 @@ class ResultadosController extends Controller
             ->join('analisis as s', 's.id', 'a.id_laboratorio')
             ->where('b.estatus', '=', 1)
             ->where('a.estatus', '=', 1)
-            ->where('a.es_paquete', '=', 1)
+            ->where('a.es_paquete', '=', 0)
             ->where('b.sede', '=', $request->session()->get('sede'))
             ->whereBetween('a.created_at', [$f1, $f2])
             ->orderBy('a.id','DESC')
