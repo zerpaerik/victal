@@ -95,15 +95,22 @@
                                     @if($atencion->tipo_origen == 1)
                                     <option value="1" selected>Personal</option>
                                     <option value="2" >Profesional</option>
+                                    <option value="10" >Crèditos</option>
                                     <option value="3" >Otro</option>
-
                                     @elseif($atencion->tipo_origen == 2)
                                     <option value="1" >Personal</option>
                                     <option value="2" selected>Profesional</option>
+                                    <option value="10" >Crèditos</option>
+                                    <option value="3" >Otro</option>
+                                    @elseif($atencion->tipo_origen == 10)
+                                    <option value="1" >Personal</option>
+                                    <option value="2" >Profesional</option>
+                                    <option value="10" selected>Crèditos</option>
                                     <option value="3" >Otro</option>
                                     @else
                                     <option value="1" >Personal</option>
                                     <option value="2" >Profesional</option>
+                                    <option value="10" >Crèditos</option>
                                     <option value="3" selected>Otro</option>
                                     @endif
                             </select>
@@ -113,7 +120,7 @@
                     <div id="origen_usuario">
                    </div>
 
-                   @if($atencion->tipo_origen == 1 || $atencion->tipo_origen == 2)
+                   @if($atencion->tipo_origen == 1 || $atencion->tipo_origen == 2 || $atencion->tipo_origen == 10)
 
                    
                     <label for="exampleInputEmail1">Origen Guardado</label>

@@ -1997,6 +1997,8 @@ return view('atenciones.particular');
     {
         $atencion = Atenciones::where('id','=',$id)->first();
 
+
+
      
         if($atencion->tipo_atencion == 1){
           $servicio = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->get();
@@ -2006,12 +2008,13 @@ return view('atenciones.particular');
           $servicio = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->get();
         }
 
-        if ($atencion->tipo_origen == 1) {
+       /* if ($atencion->tipo_origen == 1) {
           $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->where('tipo_personal', '=', 'ProfSalud')->get();
         } else {
           $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
-        }
-
+          dd($usuario);
+        }*/
+        $usuario = User::where('estatus', '=', 1)->get();
 
 
 
