@@ -789,6 +789,14 @@ return view('atenciones.particular');
                   }
 
                   if ($request->origen == 10) {
+
+
+                    $cb = new Cobrar();
+                    $cb->id_atencion =  $lab->id;
+                    $cb->detalle =  'CONSULTA/CONTROL';
+                    $cb->resta =$request->precio_con;
+                    $cb->save();
+
                     $com = new ComisionesC();
                     $com->id_atencion =  $lab->id;
                     $com->porcentaje = '0';
