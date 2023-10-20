@@ -588,6 +588,34 @@
                     <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento"></textarea>
 
                   </div>
+                  <br>
+                    <div class="row">
+                     <div class="col-md-4">
+                    <label for="exampleInputEmail1">Examen Auxiliar(Servicios)</label>
+                    <select class="form-control select2" name="ex_aux_s[]" multiple>
+                    @foreach($servicios as $s)
+                    <option value="{{$s->id}}">{{$s->nombre}}-{{$s->tipo}}</option>
+                    @endforeach
+                   </select>    
+                  </div>
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Examen Auxiliar(Laboratorios)</label>
+                    <select class="form-control select2" name="ex_aux_l[]" multiple>
+                    @foreach($analisis as $s)
+                    <option value="{{$s->id}}">{{$s->nombre}}</option>
+                    @endforeach
+                   </select> 
+                  </div>
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Examen Auxiliar(Paquetes)</label>
+                    <select class="form-control select2" name="ex_aux_p[]" multiple>
+                    @foreach($paquetes as $pa)
+                    <option value="{{$pa->id}}">{{$pa->nombre}}</option>
+                    @endforeach
+                   </select> 
+                  </div>
+                    </div>
+                   <br>
                     </div>
                     <br>
                    <div class="row">
