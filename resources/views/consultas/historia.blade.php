@@ -82,20 +82,10 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <div class="row" style="margin-left: 20px;">
+              <div class="row">
                      <div class="col-md-3">
                     <label for="exampleInputEmail1">PACIENTE</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos.' '.$paciente->nombres}} " name="gestas" placeholder="">
-                   </div>
-
-                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">DNI</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->dni}} " name="gestas" placeholder="">
-                   </div>
-
-                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">EDAD</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$edad}} " name="gestas" placeholder="">
                    </div>
                   
                     </div>
@@ -105,51 +95,28 @@
               
                     
                    <label for="exampleInputEmail1">HISTORIAL BASE</label>
-                   <form role="form" method="post" action="historiab/guardar">
-				          	{{ csrf_field() }}  
                    <div class="row">
                      <div class="col-md-4">
                     <label for="exampleInputEmail1">Alergias</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="alerg" value="{{$hist->alergias}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="alerg" value="{{$hist->alergias}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Antecedentes Personales</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="per" value="{{$hist->ant_per}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="per" value="{{$hist->ant_per}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Antecedentes Familiares</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="fam" value="{{$hist->ant_fam}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="fam" value="{{$hist->ant_fam}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Antecedentes Patológicos</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="pat" value="{{$hist->ant_pat}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="pat" value="{{$hist->ant_pat}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Edad de 1era Rel Sexual</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"   name="sexo" value="{{$hist->sex}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->sex}}">
                    </div>
-                   <input type="hidden" name="consulta" value="{{$consulta->id}}">
-
-                 
-                                                      
-
-                  <br>
-                  <input type="hidden" name="control" value="">
-
-               
-
-                
-                 
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
                     </div>
-
-                    </form>
-
                   
                    
               @else
@@ -163,7 +130,7 @@
                     </div>
 
               <form role="form" method="post" action="historiab/guardar">
-				        	{{ csrf_field() }}                
+					{{ csrf_field() }}                
                     <div class="card-body">
                     
                    <div class="row">
@@ -190,7 +157,7 @@
                     </div>
                   
 
-                      <input type="hidden" name="consulta" value="{{$consulta->id}}">
+                        <input type="hidden" name="consulta" value="{{$consulta->id}}">
 
                  
                                                       
@@ -213,12 +180,13 @@
 
               @foreach($historias as $hist)
 
+
               <div class="card-body">
                     <label for="exampleInputEmail1">Fecha: {{$hist->created_at }}</label>
                     <div class="row">
                      <div class="col-md-12">
-                    <label for="exampleInputEmail1">Motivo de Consulta</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->motivo}}">
+                    <label for="exampleInputEmail1">Motivo de Consultas</label>
+                    <textarea name="" id="" cols="120" rows="5" disabled>{{$hist->motivo}}</textarea>
 
                    </div>
                     </div>
@@ -243,10 +211,6 @@
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Talla</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="talla" placeholder="" value="{{$hist->talla}}">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">SO2</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="so2" placeholder="" value="{{$hist->so2}}">
                    </div>
     
                     </div>
@@ -312,15 +276,15 @@
                     <label for="exampleInputEmail1">Examen Físico y Regional</label>
                    <div class="row">
                      <div class="col-md-4">
-                    <label for="exampleInputEmail1">Piel</label>
+                    <label for="exampleInputEmail1">Piel/Mucosas</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" disabled id="nombre" name="piel" placeholder=""  value="{{$hist->piel}}">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Mucosas</label>
+                    <label for="exampleInputEmail1">Mamas</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="mamas" placeholder=""  value="{{$hist->mamas}}">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Cardiovascular</label>
+                    <label for="exampleInputEmail1">Abdomen</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="abdomen" placeholder=""  value="{{$hist->abdomen}}">
                    </div>
                  
@@ -328,20 +292,16 @@
                     </div>
                     <div class="row">
                      <div class="col-md-4">
-                    <label for="exampleInputEmail1">Torax y Pulmones</label>
+                    <label for="exampleInputEmail1">Genitales Externos</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" disabled id="nombre" name="gen_ext" placeholder=""  value="{{$hist->ext}}">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Abdomen</label>
+                    <label for="exampleInputEmail1">Genitales Internos</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="gen_int" placeholder=""  value="{{$hist->int}}">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Genitourinario</label>
+                    <label for="exampleInputEmail1">Miembros Inferiores</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="miem_inf" placeholder=""  value="{{$hist->miem}}">
-                   </div>
-                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">Neurológico</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="neuro" placeholder=""  value="{{$hist->neuro}}">
                    </div>
     
                     </div>
@@ -387,13 +347,9 @@
                 
                     </div>
                     <div class="row">
-                     <div class="col-md-6">
-                    <label for="exampleInputEmail1">Examen Auxiliar Servicios</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->ex_aux_s}}">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="exampleInputEmail1">Examen Auxiliar Laboratorios</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->ex_aux_l}}">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Examen Auxiliar</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->ex_aux}}">
                   </div>
                     </div>
                    <div class="row">
@@ -405,7 +361,7 @@
                     </div>
                    <div class="row">
                      <div class="col-md-12">
-                    <label for="exampleInputEmail1">Observacionesss</label>
+                    <label for="exampleInputEmail1">Observaciones</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->obser}}">
                    </div>
                     </div>
@@ -421,9 +377,13 @@
 
                 </div>
                 <!-- /.card-body -->
-
-            </div>
             @endforeach
+
+
+
+             
+              
+
               <form role="form" method="post" action="historia/guardar">
 					{{ csrf_field() }}                
                     <div class="card-body">
@@ -456,11 +416,6 @@
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Talla</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="">
-                   </div>
-
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">SO2</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="so2" placeholder="">
                    </div>
     
                     </div>
@@ -537,42 +492,34 @@
                     </div>
                     <br>
                     <label for="exampleInputEmail1">Examen Físico y Regional</label>
-                    <div class="row">
+                   <div class="row">
                      <div class="col-md-4">
-                    <label for="exampleInputEmail1">Piel</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control"  id="nombre" name="piel" placeholder="" >
+                    <label for="exampleInputEmail1">Piel/Mucosas</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="piel" placeholder="">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Mucosas</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="mamas" placeholder=""  >
+                    <label for="exampleInputEmail1">Mamas</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="mamas" placeholder="">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Cardiovascular</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="abdomen" placeholder=""  >
+                    <label for="exampleInputEmail1">Abdomen</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="abdomen" placeholder="">
                    </div>
                  
     
                     </div>
                     <div class="row">
                      <div class="col-md-4">
-                    <label for="exampleInputEmail1">Torax y Pulmones</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control"  id="nombre" name="gen_ext" placeholder=""  >
+                    <label for="exampleInputEmail1">Genitales Externos</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="gen_ext" placeholder="">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Abdomen</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="gen_int" placeholder=""  >
+                    <label for="exampleInputEmail1">Genitales Internos</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="gen_int" placeholder="">
                    </div>
                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Genitourinario</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="miem_inf" placeholder="" >
-                   </div>
-                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">Neurológico</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="neuro" placeholder=""  >
-                   </div>
-                   <div class="col-md-8">
-                    <label for="exampleInputEmail1">Observaciones Examen Físico</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="obs_fis" placeholder=""  >
+                    <label for="exampleInputEmail1">Miembros Inferiores</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="miem_inf" placeholder="">
                    </div>
     
                     </div>
@@ -626,94 +573,26 @@
                     @endforeach
                    </select>           
                     </div>
-                    
-                
                     </div>
                     <br>
                     <div class="row">
-                     <div class="col-md-4">
-                    <label for="exampleInputEmail1">Examen Auxiliar(Servicios)</label>
-                    <select class="form-control select2" name="ex_aux_s[]" multiple>
-                    @foreach($servicios as $s)
-                    <option value="{{$s->id}}">{{$s->nombre}}-{{$s->tipo}}</option>
-                    @endforeach
-                   </select>    
-                  </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Examen Auxiliar(Laboratorios)</label>
-                    <select class="form-control select2" name="ex_aux_l[]" multiple>
-                    @foreach($analisis as $s)
-                    <option value="{{$s->id}}">{{$s->nombre}}</option>
-                    @endforeach
-                   </select> 
-                  </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Examen Auxiliar(Paquetes)</label>
-                    <select class="form-control select2" name="ex_aux_p[]" multiple>
-                    @foreach($paquetes as $pa)
-                    <option value="{{$pa->id}}">{{$pa->nombre}}</option>
-                    @endforeach
-                   </select> 
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Examen Auxiliar</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="ex_aux" placeholder="Examen Auxiliar"></textarea>
                   </div>
                     </div>
                    <br>
-                 
-
+                   <div class="row">
+                     <div class="col-md-12">
                     <label for="exampleInputEmail1">Plan de Tratamiento</label>
-            <!-- sheepIt Form -->
-            <div id="laboratorios" class="embed ">
-            
-                <!-- Form template-->
-                <div id="laboratorios_template" class="template row">
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento"></textarea>
 
-                    <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Productos</label>
-                    <div class="col-sm-4">
-                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control select22">
-                        <option value="1">Seleccionar Producto</option>
-                        @foreach($productos as $pac)
-                          <option value="{{$pac->id}}">
-                            {{$pac->nombre}} {{$pac->activo}}
-                          </option>
-                        @endforeach
-                      </select>
+                  </div>
                     </div>
-
-            
-              
-                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Indicación</label>
-                    <div class="col-sm-6">
-
-                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Indicación" data-toggle="tooltip" data-placement="bottom" title="Abono">
-                    </div>
-
-                    <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                </div>
-                <!-- /Form template-->
-                
-                <!-- No forms template -->
-                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
-                <!-- /No forms template-->
-                
-                <!-- Controls -->
-                <div id="laboratorios_controls" class="controls col-sm-11 col-sm-offset-1">
-                    <div id="laboratorios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Producto</span></a></div>
-                    <div id="laboratorios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                    <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
-                </div>
-                <!-- /Controls -->
-                
-            </div>
-
-                   <div class="col-md-12">
-                    <label for="exampleInputEmail1">Observaciones Plan de Tratamiento</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control"  id="nombre" name="obs_plan" placeholder=""  >
-                   </div>
-
-
                     <br>
                    <div class="row">
                      <div class="col-md-12">
-                    <label for="exampleInputEmail1">Observaciones Generales</label>
+                    <label for="exampleInputEmail1">Observaciones</label>
                     <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="observaciones" placeholder="Observaciones"></textarea>
                    </div>
                     </div>
@@ -736,11 +615,8 @@
                
 
                 
+                 
                 </div>
-
-                </div>
-                </div>
-
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -834,8 +710,6 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<script src="../../plugins/sheepit/jquery.sheepItPlugin.min.js"></script>
-
 
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
@@ -877,159 +751,82 @@ function disableEnterKey(e)
 		    });
 		}
 
-
-    
-
 	
 	</script>
-
-
-<script>
-
-$(document).ready(function() {
-
-$(".monto").keyup(function(event) {
-  var montoId = $(this).attr('id');
-  var montoArr = montoId.split('_');
-  var id = montoArr[1];
-  var montoH = parseFloat($('#servicios_'+id+'_montoHidden').val());
-  var monto = parseFloat($(this).val());
-  $('#servicios_'+id+'_montoHidden').val(monto);
-  calcular();
-  calculo_general();
-});
-
-$(".montol").keyup(function(event) {
-  var montoId = $(this).attr('id');
-  var montoArr = montoId.split('_');
-  var id = montoArr[1];
-  var montoH = parseFloat($('#laboratorios_'+id+'_montoHidden').val());
-  var monto = parseFloat($(this).val());
-  $('#laboratorios_'+id+'_montoHidden').val(monto);
-  calcular();
-  calculo_general();
-});
-
-$(".abonoL, .abonoS").keyup(function(){
-  var total = 0;
-  var selectId = $(this).attr('id');
-  var selectArr = selectId.split('_');
-  
-  if(selectArr[0] == 'servicios'){
-      if(parseFloat($(this).val()) == parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
-          alert('La cantidad insertada en abono es mayor al monto.');
-          $(this).val('0.00');
-          calculo_general();
-      } else {
-          calculo_general();
-      }
-  } else {
-    if(parseFloat($(this).val()) == 999999){
-          alert('Debe verificar la cantidad.');
-          $(this).val('0.00');
-          calculo_general();
-      } else {
-          calculo_general();
-      }
-  }
-});
-
-var botonDisabled = true;
-
-// Main sheepIt form
-var phonesForm = $("#laboratorios").sheepIt({
-    separator: '',
-    allowRemoveCurrent: true,
-    allowAdd: true,
-    allowRemoveAll: true,
-    allowRemoveLast: true,
-
-    // Limits
-    maxFormsCount: 10,
-    minFormsCount: 1,
-    iniFormsCount: 0,
-
-    removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
-    
-    afterRemoveCurrent: function(source, event){
-      calcular();
-      calculo_general();
-    }
-});
-
-
-$(document).on('change', '.selectLab', function(){
-  var labId = $(this).attr('id');
-  var labArr = labId.split('_');
-  var id = labArr[1];
-
-  $.ajax({
-     type: "GET",
-     url:  "productos/getProducto/"+$(this).val(),
-     success: function(a) {
-        $('#laboratorios_'+id+'_montoHidden').val(a.precio);
-        $('#laboratorios_'+id+'_monto').val(a.precio);
-        var total = parseFloat($('#total').val());
-        $("#total").val(total + parseFloat(a.precio));
-        calcular();
-        calculo_general();
-     }
-  });
-})
-});
-
-
-function calcular() {
-  var total = 0;
-      $(".monto").each(function(){
-        total += parseFloat($(this).val());
-      })
-
-      $(".montol").each(function(i){
-        total += parseFloat($(this).val() * $("#laboratorios_"+i+"_abonoL").val());
-      })
-
-      $(".montop").each(function(){
-        total += parseFloat($(this).val());
-      })
-
-      $("#total").val(total);
-}
-
-function calculo_general() {
-  var total = 0;
-  $(".abonoL").each(function(){
-    total += parseFloat($(this).val());
-  })
-
-  $(".abonoS").each(function(){
-    total += parseFloat($(this).val());
-  })
-
-  $("#total_a").val(total);
-  $("#total_g").val(parseFloat($("#total").val()) - parseFloat(total));
-}
-
-
-
-</script>
 
 <script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-    $('.select22').select2()
+
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     })
 
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
     
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
 
   })
 </script>
-
-
 <!-- page script -->
 
 </body>
