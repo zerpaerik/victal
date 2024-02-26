@@ -69,7 +69,7 @@ class IngresosController extends Controller
 
             //
         }
-        return view('ingresos.index', compact('ingresos', 'f1', 'ing'));
+        return view('ingresos.index', compact('ingresos', 'f1'));
 
     }
 
