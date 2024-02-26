@@ -157,10 +157,8 @@ class HomeController extends Controller
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
-
-
         }
 
-        return view('home',compact('sedes', 'total','efec','tarj','dep','count','yap','plin','cred','egresos'));
+        return view('home',compact('sedes','total','efec','tarj','dep','yap','plin','cred','egresos'));
     }
 }
