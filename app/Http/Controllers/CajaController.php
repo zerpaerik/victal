@@ -382,14 +382,14 @@ class CajaController extends Controller
           }
 
 
-        $serv = Creditos::where('origen', 'SERVICIO')
+        $servicios = Creditos::where('origen', 'SERVICIO')
                                     ->where('sede','=', $request->session()->get('sede'))
                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
-        if ($serv->cantidad == 0) {
-            $serv->monto = 0;
+        if ($servicios->cantidad == 0) {
+            $servicios->monto = 0;
         }
 
         
@@ -547,7 +547,7 @@ class CajaController extends Controller
         
  
        
-       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos','mtc','estetica','plin', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos','mtc','estetica','plin', 'cuentasXcobrar','metodos','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');
