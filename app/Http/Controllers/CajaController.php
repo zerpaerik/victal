@@ -382,14 +382,14 @@ class CajaController extends Controller
           }
 
 
-        $servicios = Creditos::where('origen', 'SERVICIO')
+        $serv = Creditos::where('origen', 'SERVICIO')
                                     ->where('sede','=', $request->session()->get('sede'))
                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
-        if ($servicios->cantidad == 0) {
-            $servicios->monto = 0;
+        if ($serv->cantidad == 0) {
+            $serv->monto = 0;
         }
 
         
